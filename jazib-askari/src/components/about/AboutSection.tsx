@@ -1,6 +1,5 @@
-import React from "react";
 import Section from "../shared/Section";
-const AboutSection: React.FC = () => (
+const AboutSection = () => (
   <Section id="about">
     <h2>About Me</h2>
     <p>I am a front-end developer transitioning to data analytics.</p>

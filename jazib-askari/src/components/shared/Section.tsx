@@ -1,11 +1,10 @@
 import { Box } from "@mui/system";
-import React from "react";
 import type { ReactNode } from "react";
 interface SectionProps {
   id: string;
   children: ReactNode;
 }
-const Section: React.FC<SectionProps> = ({ id, children }) => (
+const Section = ({ id, children }: SectionProps) => (
   <Box
     id={id}
     sx={{
