@@ -3,7 +3,7 @@ import HomeSection from "../components/home/HomeSection";
 import AboutSection from "../components/about/AboutSection";
 import Section from "../components/shared/Section";
 import ProjectCard from "../components/projects/ProjectCard";
-import { Project } from "../types/project";
+import type { Project } from "../types/project";
 
 const projects: Project[] = [
   { id: "1", title: "Project One", summary: "Summary One", details: "Details One" },
