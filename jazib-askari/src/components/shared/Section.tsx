@@ -1,6 +1,4 @@
-// src/components/common/Section.tsx
 import { Box } from "@mui/system";
-import React from "react";
 import type { ReactNode } from "react";
 
 interface SectionProps {
@@ -8,7 +6,7 @@ interface SectionProps {
   children: ReactNode;
 }
 
-const Section: React.FC<SectionProps> = ({ id, children }) => (
+const Section = ({ id, children }: SectionProps) => (
   <Box
     id={id}
     sx={{

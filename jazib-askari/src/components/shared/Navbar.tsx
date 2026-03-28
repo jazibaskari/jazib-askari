@@ -1,10 +1,9 @@
-import React from "react";
 import { Box } from "@mui/system";
 import { Button } from "@mui/material";
 
 const sections = ["home", "about", "projects"];
 
-const Navbar: React.FC = () => {
+const Navbar = () => {
   const handleScroll = (id: string) => {
     const el = document.getElementById(id);
     if (el) el.scrollIntoView({ behavior: "smooth" });
