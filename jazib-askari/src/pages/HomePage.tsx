@@ -1,3 +1,5 @@
+import { Box, Typography } from "@mui/material";
+
 import HomeSection from "../components/home/HomeSection";
 import AboutSection from "../components/about/AboutSection";
 import Section from "../components/shared/Section";
@@ -10,10 +12,19 @@ const HomePage = () => (
     <AboutSection />
 
     <Section id="projects">
-      <h2>Projects</h2>
-      {projects.map((p) => (
-        <ProjectCard key={p.id} project={p} />
-      ))}
+      <Box sx={{ maxWidth: "900px" }}>
+        <Typography variant="h2" gutterBottom>
+          Projects
+        </Typography>
+
+        <Typography variant="body1" sx={{ mb: 4 }}>
+          A selection of work showcasing my experience in frontend development and data-focused projects.
+        </Typography>
+
+        {projects.map((p) => (
+          <ProjectCard key={p.id} project={p} />
+        ))}
+      </Box>
     </Section>
   </>
 );
