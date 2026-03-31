@@ -1,26 +1,32 @@
-import { createTheme } from "@mui/material/styles";
+import { createTheme } from '@mui/material/styles';
+import { typography } from './designTokens';
 export const theme = createTheme({
-  typography: {
-    fontFamily: "'Europa', sans-serif",
-    h1: {
-      fontWeight: 700,
-      fontSize: "3.5rem",
-      lineHeight: 1.1,
-      letterSpacing: "-0.02em",
-    },
-    h2: {
-      fontWeight: 600,
-      fontSize: "2.5rem",
-      lineHeight: 1.2,
-    },
-    body1: {
-      fontWeight: 400,
-      fontSize: "1rem",
-      lineHeight: 1.6,
-    },
-    button: {
-      textTransform: "none",
-      fontWeight: 500,
+  palette: {
+    background: {
+      default: "#f7f7f7", 
     },
   },
+  typography: {
+    fontFamily: typography.fontFamily,
+    h1: {
+      fontWeight: 500,
+      fontSize: typography.sizes.h1,
+      lineHeight: typography.lineHeights.h1,
+    },
+    h2: {
+      fontWeight: 500,
+      fontSize: typography.sizes.h2,
+      lineHeight: typography.lineHeights.h2,
+    },
+    body1: {
+      fontWeight: 500,
+      fontSize: typography.sizes.body,
+      lineHeight: typography.lineHeights.body,
+    },
+    button: {
+      fontWeight: 500,
+      textTransform: 'none',
+    },
+  },
+  spacing: (factor: number) => `${factor * 8}px`, 
 });

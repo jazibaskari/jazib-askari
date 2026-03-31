@@ -8,7 +8,7 @@ const HomePage = () => (
   <>
     <HomeSection />
     <AboutSection />
-    <Section id="projects">
+    <Section id="Projects">
       <Box sx={{ maxWidth: "900px" }}>
         <Typography variant="h2" gutterBottom>
           Projects
