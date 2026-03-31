@@ -16,6 +16,7 @@ const Section = ({ id, children }: SectionProps) => (
       display: "flex",
       flexDirection: "column",
       justifyContent: "center",
+        scrollMarginTop: "80px", 
     }}
   >
     {children}

@@ -1,9 +1,14 @@
 import Section from "../shared/Section";
+import { Typography } from "@mui/material";
 
 const HomeSection = () => (
-  <Section id="home">
-    <h1>Welcome</h1>
-    <p>This is my portfolio.</p>
+  <Section id="Home">
+    <Typography variant="h2" gutterBottom>
+    Welcome
+    </Typography>
+    <Typography variant="h2" >
+    Portfolio 2026
+    </Typography>
   </Section>
 );
 

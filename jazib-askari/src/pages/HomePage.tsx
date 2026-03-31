@@ -1,5 +1,4 @@
 import { Box, Typography } from "@mui/material";
-
 import HomeSection from "../components/home/HomeSection";
 import AboutSection from "../components/about/AboutSection";
 import Section from "../components/shared/Section";
@@ -11,7 +10,7 @@ const HomePage = () => (
     <HomeSection />
     <AboutSection />
 
-    <Section id="projects">
+    <Section id="Projects">
       <Box sx={{ maxWidth: "900px" }}>
         <Typography variant="h2" gutterBottom>
           Projects

@@ -1,7 +1,7 @@
 import { Box } from "@mui/system";
 import { Button } from "@mui/material";
 
-const sections = ["home", "about", "projects"];
+const sections = ["Home", "About", "Projects"];
 
 const Navbar = () => {
   const handleScroll = (id: string) => {
@@ -19,13 +19,23 @@ const Navbar = () => {
         gap: 2,
         p: 2,
         bgcolor: "background.paper",
-        boxShadow: 1,
       }}
     >
       {sections.map((s) => (
-        <Button key={s} onClick={() => handleScroll(s)}>
-          {s.toUpperCase()}
-        </Button>
+       <Button
+       key={s}
+       onClick={() => handleScroll(s)}
+       sx={{
+         typography: "body1",     
+         color: "text.primary",  
+         textTransform: "none",  
+         "&:hover": {
+           backgroundColor: "transparent", 
+         },
+       }}
+     >
+       {s}
+     </Button>
       ))}
     </Box>
   );

@@ -23,8 +23,8 @@ const ProjectCard = ({ project }: Props) => {
       }}
       onClick={() => navigate(`/projects/${project.id}`)}
     >
-      <Typography variant="h6">{project.title}</Typography>
-      <Typography variant="body2">{project.summary}</Typography>
+      <Typography variant="h2" gutterBottom>{project.title}</Typography>
+      <Typography variant="body1">{project.summary}</Typography>
     </Box>
   );
 };
