@@ -2,10 +2,10 @@ import Section from "../shared/Section";
 import { Typography } from "@mui/material";
 const HomeSection = () => (
   <Section id="Home">
-    <Typography variant="h2" gutterBottom>
-    JA
+    <Typography variant="h2">
+    Jazib Askari
     </Typography>
-    <Typography sx={{color:"grey"}} variant="h2" >
+    <Typography sx={{color:"#bfc0c0"}} variant="h2" >
     Portfolio 2026
     </Typography>
   </Section>
