@@ -1,9 +1,13 @@
-/* Regular */
 @font-face {
-    font-family: "Europa";
-    src: url("../assets/fonts/Europa_Grotesk_Medium.otf") format("opentype");
-    font-weight: 400;
-    font-style: normal;
-    font-display: swap;
-  }
-  
+  font-family: "Europa Regular";
+  src: url("../assets/fonts/Europe_Grotesk_Regular.otf") format("opentype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Europa Medium";
+  src: url("../assets/fonts/Europa_Grotesk_Medium.otf") format("opentype");
+  font-weight: normal; /* This MUST match the theme.ts fontWeight */
+  font-style: normal;
+}
