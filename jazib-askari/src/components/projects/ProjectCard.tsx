@@ -12,12 +12,14 @@ const ProjectCard = ({ project }: Props) => {
 
   return (
     <Box
+    
       sx={{
         border: 1,
         borderColor: "grey.300",
         borderRadius: 2,
         p: 2,
         mb: 4,
+        pt: 4, 
         cursor: "pointer",
         "&:hover": { boxShadow: 4 },
       }}

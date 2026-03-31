@@ -8,19 +8,19 @@ const ProjectDetailPage = () => {
 
   if (!project) {
     return (
-      <Box sx={{ p: 6 }}>
+      <Box>
         <Typography variant="h2">Project not found</Typography>
       </Box>
     );
   }
 
   return (
-    <Box sx={{ p: 6, maxWidth: "900px", mx: "auto" }}>
-      <Typography variant="h1" gutterBottom>
+    <Box>
+      <Typography variant="h2" gutterBottom>
         {project.title}
       </Typography>
 
-      <Typography variant="body1" sx={{ mt: 2 }}>
+      <Typography variant="body1">
         {project.details}
       </Typography>
     </Box>

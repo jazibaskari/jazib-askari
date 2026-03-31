@@ -4,9 +4,9 @@ import { Typography } from "@mui/material";
 const HomeSection = () => (
   <Section id="Home">
     <Typography variant="h2" gutterBottom>
-    Welcome
+    JA
     </Typography>
-    <Typography variant="h2" >
+    <Typography sx={{color:"grey"}} variant="h2" >
     Portfolio 2026
     </Typography>
   </Section>
