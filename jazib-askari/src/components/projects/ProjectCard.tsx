@@ -15,6 +15,7 @@ const ProjectCard = ({ project }: Props) => {
         borderRadius: 2,
         p: 2,
         mb: 4,
+        pt: 4, 
         cursor: "pointer",
         "&:hover": { boxShadow: 4 },
       }}

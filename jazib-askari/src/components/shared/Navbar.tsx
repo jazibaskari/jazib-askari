@@ -14,22 +14,15 @@ const Navbar = () => {
         zIndex: 1000,
         display: "flex",
         gap: 2,
-        p: 2,
+        p: 2, 
         bgcolor: "background.paper",
       }}
     >
       {sections.map((s) => (
        <Button
+       sx={{color: "text.primary"}}
        key={s}
        onClick={() => handleScroll(s)}
-       sx={{
-         typography: "body1",     
-         color: "text.primary",  
-         textTransform: "none",  
-         "&:hover": {
-           backgroundColor: "transparent", 
-         },
-       }}
      >
        {s}
      </Button>
