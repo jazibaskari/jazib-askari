@@ -11,9 +11,9 @@ const HomePage = ({ navTrigger }: HomePageProps) => (
   <>
     <HomeSection trigger={navTrigger} />
     <AboutSection trigger={navTrigger} />
+    <SkillsSection trigger={navTrigger} />
     <ExperienceSection trigger={navTrigger}/>
     <ProjectsSection trigger={navTrigger} />
-    <SkillsSection trigger={navTrigger} />
     <DisclaimerSection  />
   </>
 );
