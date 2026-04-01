@@ -14,7 +14,7 @@ const HomeSection = ({ trigger }: HomeSectionProps) => (
       </Typography>
     </TextAnimation>
     <TextAnimation duration={1} trigger={trigger}>
-      <Typography sx={{ color: "#bfc0c0" }} variant="h2" >
+      <Typography sx={{ color: "#bfc0c0" }} variant="body1" >
         Portfolio 2026
       </Typography>
     </TextAnimation>

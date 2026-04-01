@@ -19,10 +19,6 @@ const ProjectDetailPage = () => {
       <Typography variant="h2" gutterBottom>
         {project.title}
       </Typography>
-
-      <Typography variant="body1">
-        {project.details}
-      </Typography>
     </Box>
   );
 };
