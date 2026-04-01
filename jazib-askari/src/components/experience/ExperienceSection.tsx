@@ -1,8 +1,9 @@
+import { useState, useRef, useEffect } from "react";
 import Section from "../shared/Section";
-import { Typography, Box, Stack, Chip, Button } from "@mui/material";
+import { Typography, Box, Stack, Chip, IconButton } from "@mui/material";
 import TextAnimation from "../../animations/AnimatedText";
-import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
-import { useNavigate } from "react-router-dom";
+import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
+import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 interface Experience {
   id: string;
   title: string;
@@ -20,7 +21,7 @@ const experiences: Experience[] = [
     title: "Frontend Developer",
     subtitle: "PwC",
     dates: "2022 — Present",
-    description: "Engineered enterprise-scale applications for 300k+ users using TypeScript and React. Focused on performance optimization and maintaining high coding standards.",
+    description: "Engineered enterprise-scale applications for 300k+ users using TypeScript and React.",
     tags: ["React", "TypeScript", "Design Systems"]
   },
   {
@@ -28,132 +29,162 @@ const experiences: Experience[] = [
     title: "Junior Web Developer",
     subtitle: "Creative Agency",
     dates: "2020 — 2022",
-    description: "Developed responsive user interfaces for various clients. Collaborated closely with designers to translate high-fidelity Figma mockups into functional code.",
+    description: "Developed responsive user interfaces for various clients.",
     tags: ["JavaScript", "Sass", "Figma"]
   },
   {
-    id: "intern",
+    id: "intern-1",
     title: "Software Intern",
     subtitle: "Tech Startup",
     dates: "2019 — 2020",
-    description: "Assisted in the development of core product features and participated in daily stand-ups and code reviews to ensure feature quality.",
+    description: "Assisted in the development of core product features.",
+    tags: ["Node.js", "Git", "Agile"]
+  },
+  {
+    id: "intern-2",
+    title: "Software Intern",
+    subtitle: "Tech Startup",
+    dates: "2019 — 2020",
+    description: "Assisted in the development of core product features.",
+    tags: ["Node.js", "Git", "Agile"]
+  },
+  {
+    id: "intern-3",
+    title: "Software Intern",
+    subtitle: "Tech Startup",
+    dates: "2019 — 2020",
+    description: "Assisted in the development of core product features.",
+    tags: ["Node.js", "Git", "Agile"]
+  },
+  {
+    id: "intern-4",
+    title: "Software Intern",
+    subtitle: "Tech Startup",
+    dates: "2019 — 2020",
+    description: "Assisted in the development of core product features.",
     tags: ["Node.js", "Git", "Agile"]
   }
 ];
 const ExperienceSection = ({ trigger }: ExperienceSectionProps) => {
-  const navigate = useNavigate();
+  const containerRef = useRef<HTMLDivElement>(null);
+  const [canScrollLeft, setCanScrollLeft] = useState(false);
+  const [canScrollRight, setCanScrollRight] = useState(true);
+  const checkScroll = () => {
+    if (containerRef.current) {
+      const { scrollLeft, scrollWidth, clientWidth } = containerRef.current;
+      setCanScrollLeft(scrollLeft > 10);
+      setCanScrollRight(scrollLeft < scrollWidth - clientWidth - 20);
+    }
+  };
+  const scroll = (direction: "left" | "right") => {
+    if (containerRef.current) {
+      const scrollAmount = containerRef.current.clientWidth * 0.8;
+      containerRef.current.scrollBy({
+        left: direction === "left" ? -scrollAmount : scrollAmount,
+        behavior: "smooth",
+      });
+    }
+  };
+  useEffect(() => {
+    const ref = containerRef.current;
+    if (ref) {
+      ref.addEventListener("scroll", checkScroll);
+      checkScroll();
+      window.addEventListener("resize", checkScroll);
+      return () => {
+        ref.removeEventListener("scroll", checkScroll);
+        window.removeEventListener("resize", checkScroll);
+      };
+    }
+  }, []);
   return (
     <Section id="Experience">
       <TextAnimation duration={0.6} trigger={trigger}>
-        <Typography variant="h2" gutterBottom>
-          Experience
-        </Typography>
+        <Box sx={{ display: "flex", justifyContent: "space-between", alignItems: "flex-end", mb: 4 }}>
+          <Typography variant="h2" sx={{ mb: 0 }}>
+            Experience
+          </Typography>
+          <Stack direction="row" spacing={1} sx={{ display: { xs: "none", sm: "flex" } }}>
+            <IconButton 
+              onClick={() => scroll("left")} 
+              disabled={!canScrollLeft}
+              sx={{ border: "1px solid", borderColor: "divider" }}
+            >
+              <ArrowBackIosNewIcon fontSize="small" />
+            </IconButton>
+            <IconButton 
+              onClick={() => scroll("right")} 
+              disabled={!canScrollRight}
+              sx={{ border: "1px solid", borderColor: "divider" }}
+            >
+              <ArrowForwardIosIcon fontSize="small" />
+            </IconButton>
+          </Stack>
+        </Box>
       </TextAnimation>
-      <Box 
-        sx={{ 
-          display: "flex", 
-          flexWrap: "wrap", 
-          gap: 4, 
-          justifyContent: { xs: "center", md: "flex-start" },
-          mt: 4 
+      <Box
+        ref={containerRef}
+        sx={{
+          display: "flex",
+          gap: 3,
+          overflowX: "auto",
+          scrollSnapType: "x proximity", 
+          pb: 4,
+          px: { xs: 0, md: 0 },
+          "::-webkit-scrollbar": { display: "none" },
+          msOverflowStyle: "none",
+          scrollbarWidth: "none",
         }}
       >
         {experiences.map((exp, index) => (
-          <TextAnimation key={exp.id} trigger={trigger} delay={index * 0.1}>
-            <Box
-              sx={{
-                width: { xs: "100%", sm: "400px" },
-                minHeight: "340px", 
-                borderRadius: "28px",
-                backgroundColor: "#f7f7f7",
-                display: "flex",
-                flexDirection: "column",
-                p: 4,
-                boxSizing: "border-box",
-                transition: "0.3s ease-in-out",
-                "&:hover": { 
-                  transform: "translateY(-8px)",
-                  backgroundColor: "#efefef" 
-                },
-              }}
-            >
-              <Box sx={{ mb: 2 }}>
-                <Typography variant="h5" fontWeight="bold">
-                  {exp.title}
-                </Typography>
-                <Typography 
-                  variant="subtitle1" 
-                  sx={{ color: "primary.main", fontWeight: 600, mt: 0.5 }}
-                >
-                  {exp.subtitle}
-                </Typography>
-                <Typography 
-                  variant="caption" 
-                  sx={{ 
-                    color: "text.secondary", 
-                    fontWeight: 600, 
-                    textTransform: "uppercase",
-                    display: "block",
-                    mt: 0.5
-                  }}
-                >
-                  {exp.dates}
-                </Typography>
-              </Box>
-              <Typography 
-                variant="body1" 
-                sx={{ 
-                  color: "text.secondary", 
-                  lineHeight: 1.7,
-                  fontSize: "1rem",
-                  mb: 3,
-                  flex: 1 
+          <Box 
+            key={exp.id} 
+            sx={{ 
+              scrollSnapAlign: "start", 
+              flexShrink: 0,
+              width: { xs: "85%", sm: "45%", md: "31%" } 
+            }}
+          >
+            <TextAnimation trigger={trigger} delay={index * 0.1}>
+              <Box
+                sx={{
+                  width: "100%",
+                  minHeight: "340px",
+                  borderRadius: "28px",
+                  backgroundColor: "#f7f7f7",
+                  display: "flex",
+                  flexDirection: "column",
+                  p: 4,
+                  boxSizing: "border-box",
+                  transition: "0.3s ease-in-out",
+                  "&:hover": {
+                    transform: "translateY(-8px)",
+                    backgroundColor: "#efefef",
+                  },
                 }}
               >
-                {exp.description}
-              </Typography>
-              <Stack direction="row" spacing={1} flexWrap="wrap" sx={{ gap: 1 }}>
-                {exp.tags.map((tag) => (
-                  <Chip 
-                    key={tag} 
-                    label={tag} 
-                    sx={{ 
-                      bgcolor: "white", 
-                      fontWeight: 600, 
-                      fontSize: "0.8rem",
-                      height: "28px" 
-                    }} 
-                  />
-                ))}
-              </Stack>
-            </Box>
-          </TextAnimation>
+                <Box sx={{ mb: 2 }}>
+                  <Typography variant="h5" fontWeight="bold">{exp.title}</Typography>
+                  <Typography variant="subtitle1" sx={{ color: "primary.main", fontWeight: 600, mt: 0.5 }}>
+                    {exp.subtitle}
+                  </Typography>
+                  <Typography variant="caption" sx={{ color: "text.secondary", fontWeight: 600, textTransform: "uppercase", display: "block", mt: 0.5 }}>
+                    {exp.dates}
+                  </Typography>
+                </Box>
+                <Typography variant="body1" sx={{ color: "text.secondary", lineHeight: 1.7, fontSize: "1rem", mb: 3, flex: 1 }}>
+                  {exp.description}
+                </Typography>
+                <Stack direction="row" spacing={1} flexWrap="wrap" sx={{ gap: 1 }}>
+                  {exp.tags.map((tag) => (
+                    <Chip key={tag} label={tag} sx={{ bgcolor: "white", fontWeight: 600, fontSize: "0.8rem", height: "28px" }} />
+                  ))}
+                </Stack>
+              </Box>
+            </TextAnimation>
+          </Box>
         ))}
-                   <Button
-  variant="text"
-  endIcon={<ArrowForwardIcon />}
-  onClick={() => navigate("/projects")}
-  sx={(theme) => ({
-    ...theme.typography.body1, 
-    textTransform: "none",
-    p: 0, 
-    minWidth: 0,
-    color: "text.primary",
-    transition: "all 0.3s cubic-bezier(0.4, 0, 0.2, 1)",
-    "& .MuiButton-endIcon": {
-      transition: "transform 0.3s cubic-bezier(0.4, 0, 0.2, 1)",
-    },
-    "&:hover": {
-      backgroundColor: "transparent",
-      color: "primary.main",
-      "& .MuiButton-endIcon": {
-        transform: "translateX(6px)", 
-      },
-    },
-  })}
->
-  View All Experience
-</Button>
+        <Box sx={{ minWidth: { xs: "40px", md: "150px" }, flexShrink: 0 }} />
       </Box>
     </Section>
   );
