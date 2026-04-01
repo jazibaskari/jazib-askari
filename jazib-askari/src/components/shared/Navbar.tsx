@@ -3,10 +3,17 @@ import { Button } from "@mui/material";
 
 const sections = ["Home", "About", "Projects"];
 
-const Navbar = () => {
+interface NavbarProps {
+  onNavClick: () => void;
+}
+
+const Navbar = ({ onNavClick }: NavbarProps) => {
   const handleScroll = (id: string) => {
     const el = document.getElementById(id);
-    if (el) el.scrollIntoView({ behavior: "smooth" });
+    if (el) {
+      el.scrollIntoView({ behavior: "smooth" });
+      onNavClick(); 
+    }
   };
 
   return (
@@ -22,13 +29,13 @@ const Navbar = () => {
       }}
     >
       {sections.map((s) => (
-       <Button
-       sx={{color: "text.primary"}}
-       key={s}
-       onClick={() => handleScroll(s)}
-     >
-       {s}
-     </Button>
+        <Button
+          sx={{ color: "text.primary" }}
+          key={s}
+          onClick={() => handleScroll(s)}
+        >
+          {s}
+        </Button>
       ))}
     </Box>
   );
