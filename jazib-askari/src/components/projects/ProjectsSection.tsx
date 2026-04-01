@@ -30,7 +30,6 @@ const ProjectsSection = ({ trigger }: ProjectsSectionProps) => {
         </TextAnimation>
 
         <Box sx={{ width: "100%", mt: 4 }}>
-          {/* Tab Navigation */}
           <Box sx={{ mb: 3, px: { xs: 2, md: 4 } }}>
             <Tabs
               value={value}

@@ -1,5 +1,3 @@
-// This file remains largely the same as your provided version 
-// but ensure the typography and chip styles match exactly for visual consistency.
 import { useState } from "react";
 import Section from "../shared/Section";
 import { Typography, Box, Stack, Chip } from "@mui/material";
@@ -70,9 +68,9 @@ const SkillsSection = ({ trigger }: SkillsSectionProps) => {
                   "&:hover": { transform: "translateY(-8px)"},
                 }}
               >
-                <Box sx={{ bgcolor: "white", borderRadius: "50%", width: 48, height: 48, display: 'flex', alignItems: 'center', justifyContent: 'center', mb: 2, color: "primary.main"}}>
+                {/* <Box sx={{ bgcolor: "white", borderRadius: "50%", width: 48, height: 48, display: 'flex', alignItems: 'center', justifyContent: 'center', mb: 2, color: "primary.main"}}>
                   {cat.icon}
-                </Box>
+                </Box> */}
                 <Typography variant="h5" fontWeight="bold" sx={{ mb: 1 }}>{cat.label}</Typography>
                 <Typography variant="body2" sx={{ color: "text.secondary", mb: 2.5 }}>{cat.description}</Typography>
                 <Stack direction="row" spacing={1} flexWrap="wrap" sx={{ gap: 1.5 }}>

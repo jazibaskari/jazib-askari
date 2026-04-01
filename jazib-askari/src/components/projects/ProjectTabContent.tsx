@@ -11,23 +11,61 @@ const ProjectTabContent = ({ project }: Props) => {
   return (
     <Box
       sx={{
-        p: { xs: 4, md: 6, lg: 8 },
-        width: "100%",
-        boxSizing: "border-box",
-        borderRadius: { xs: "0px", md: "24px" },
-        backgroundColor: "#f7f7f7",
-        minHeight: "450px",
         display: "flex",
-        flexDirection: { xs: "column-reverse", md: "row" }, // Image on top for mobile, right for desktop
-        gap: { xs: 4, md: 6 },
-        alignItems: "center",
-        position: "relative",
+        flexDirection: { xs: "column", md: "row" },
+        width: "100%",
+        alignItems: "stretch", 
+        gap: { xs: 2, md: 4 },
+        mt: 0, 
       }}
     >
-      <Box sx={{ flex: 1, width: "100%" }}>
-        <Typography variant="h3" sx={{ mb: 2, fontWeight: "bold" }}>
-          {project.title}
-        </Typography>
+      <Box
+        sx={{
+          flex: 1,
+          bgcolor: "white",
+          p: { xs: 4, md: 6 },
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "flex-start", 
+          borderRadius: "24px",
+        }}
+      >
+        <Stack direction="row" spacing={2} sx={{ mb: 3 }}>
+          {project.githubUrl && (
+            <Tooltip title="View Code">
+              <IconButton
+                href={project.githubUrl}
+                target="_blank"
+                sx={{
+                  bgcolor: "#f7f7f7",
+                  width: 48,
+                  height: 48,
+                  "&:hover": { transform: "translateY(-2px)" },
+                  transition: "all 0.3s ease",
+                }}
+              >
+                <GitHubIcon />
+              </IconButton>
+            </Tooltip>
+          )}
+          {project.liveUrl && (
+            <Tooltip title="Live Preview">
+              <IconButton
+                href={project.liveUrl}
+                target="_blank"
+                sx={{
+                  bgcolor: "#f7f7f7",
+                  width: 48,
+                  height: 48,
+                  "&:hover": { transform: "translateY(-2px)" },
+                  transition: "all 0.3s ease",
+                }}
+              >
+                <LaunchIcon />
+              </IconButton>
+            </Tooltip>
+          )}
+        </Stack>
 
         <Typography
           variant="body1"
@@ -47,7 +85,7 @@ const ProjectTabContent = ({ project }: Props) => {
               key={skill}
               label={skill}
               sx={{
-                bgcolor: "white",
+                bgcolor: "#f7f7f7",
                 fontWeight: 600,
                 fontSize: "0.9rem",
                 height: "36px",
@@ -56,74 +94,24 @@ const ProjectTabContent = ({ project }: Props) => {
           ))}
         </Stack>
       </Box>
-      <Box 
-        sx={{ 
-          flex: 1, 
-          width: "100%", 
-          position: "relative",
+      <Box
+        sx={{
+          flex: 1,
+          bgcolor: "#f7f7f7",
+          p: 0, 
+          borderRadius: "24px",
+          overflow: "hidden",
           display: "flex",
-          flexDirection: "column",
-          alignItems: "flex-end" 
         }}
       >
-        <Stack
-          direction="row"
-          spacing={2}
-          sx={{
-            mb: 2, 
-          }}
-        >
-          {project.githubUrl && (
-            <Tooltip title="View Code">
-              <IconButton
-                href={project.githubUrl}
-                target="_blank"
-                sx={{
-                  bgcolor: "white",
-                  borderRadius: "50%",
-                  width: 48,
-                  height: 48,
-                  color: "primary.main",
-                  "&:hover": { bgcolor: "white", transform: "translateY(-2px)" },
-                  transition: "all 0.3s ease",
-                }}
-              >
-                <GitHubIcon />
-              </IconButton>
-            </Tooltip>
-          )}
-          {project.liveUrl && (
-            <Tooltip title="Live Preview">
-              <IconButton
-                href={project.liveUrl}
-                target="_blank"
-                sx={{
-                  bgcolor: "white",
-                  borderRadius: "50%",
-                  width: 48,
-                  height: 48,
-                  color: "primary.main",
-                  "&:hover": { bgcolor: "white", transform: "translateY(-2px)" },
-                  transition: "all 0.3s ease",
-                }}
-              >
-                <LaunchIcon />
-              </IconButton>
-            </Tooltip>
-          )}
-        </Stack>
-
-        {/* Project Image Placeholder/Container */}
         <Box
           component="img"
           src={project.image}
-          alt={project.title}
           sx={{
             width: "100%",
-            height: { xs: "250px", md: "350px" },
+            height: "100%", 
+            minHeight: { xs: "300px", md: "450px" },
             objectFit: "cover",
-            borderRadius: "20px",
-            backgroundColor: "#fff" // Fallback color
           }}
         />
       </Box>
