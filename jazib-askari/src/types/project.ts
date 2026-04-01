@@ -1,6 +1,10 @@
 export interface Project {
     id: string;
     title: string;
+    subtitle: string; 
     summary: string;
-    details: string;
+    skills: string[];
+    githubUrl?: string;  
+    liveUrl?: string;
+    image?: string;
   }

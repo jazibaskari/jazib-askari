@@ -1,3 +1,5 @@
+// This file remains largely the same as your provided version 
+// but ensure the typography and chip styles match exactly for visual consistency.
 import { useState } from "react";
 import Section from "../shared/Section";
 import { Typography, Box, Stack, Chip } from "@mui/material";
@@ -52,12 +54,7 @@ const SkillsSection = ({ trigger }: SkillsSectionProps) => {
         ))}
       </Stack>
 
-      <Box sx={{ 
-        display: "flex", 
-        flexWrap: "wrap", 
-        gap: 4, 
-        justifyContent: { xs: "center", md: "flex-start" } 
-      }}>
+      <Box sx={{ display: "flex", flexWrap: "wrap", gap: 4, justifyContent: { xs: "center", md: "flex-start" } }}>
         {skillCategories.map((cat, catIndex) => {
           if (!activeFilters.includes(cat.id)) return null;
 
@@ -65,60 +62,22 @@ const SkillsSection = ({ trigger }: SkillsSectionProps) => {
             <TextAnimation key={cat.id} trigger={trigger} delay={catIndex * 0.1}>
               <Box
                 sx={{
-                  width: "400px",
-                  height: "300px",
-                  borderRadius: "28px",
-                  backgroundColor: "#f7f7f7",
-                  display: "flex",
-                  flexDirection: "column",
-                  alignItems: "flex-start",
-                  p: 4,
-                  border: "1px solid #e0e0e0",
-                  boxSizing: "border-box",
-                  overflowY: "auto",
-                  msOverflowStyle: 'none',
-                  scrollbarWidth: 'none',
+                  width: "400px", height: "300px", borderRadius: "28px", backgroundColor: "#f7f7f7",
+                  display: "flex", flexDirection: "column", alignItems: "flex-start", p: 4,
+                 boxSizing: "border-box", overflowY: "auto",
                   '&::-webkit-scrollbar': { display: 'none' },
-                  transition: "all 0.3s ease",
-                  "&:hover": { 
-                    transform: "translateY(-8px)",
-                    boxShadow: "0 12px 30px rgba(0,0,0,0.08)"
-                  },
+                  transition: "0.3s",
+                  "&:hover": { transform: "translateY(-8px)"},
                 }}
               >
-                {/* Bigger Icon Circle */}
-                <Box sx={{ 
-                  bgcolor: "white", borderRadius: "50%", 
-                  width: 48, height: 48, 
-                  display: 'flex', alignItems: 'center', justifyContent: 'center',
-                  mb: 2, color: "primary.main", boxShadow: "0 4px 10px rgba(0,0,0,0.05)"
-                }}>
+                <Box sx={{ bgcolor: "white", borderRadius: "50%", width: 48, height: 48, display: 'flex', alignItems: 'center', justifyContent: 'center', mb: 2, color: "primary.main"}}>
                   {cat.icon}
                 </Box>
-                
-                {/* Bigger Title */}
-                <Typography variant="h5" fontWeight="bold" sx={{ mb: 1, lineHeight: 1.2 }}>
-                  {cat.label}
-                </Typography>
-                
-                {/* Bigger Description */}
-                <Typography variant="body2" sx={{ color: "text.secondary", mb: 2.5, lineHeight: 1.6 }}>
-                  {cat.description}
-                </Typography>
-                
-                {/* Default Size Chips */}
+                <Typography variant="h5" fontWeight="bold" sx={{ mb: 1 }}>{cat.label}</Typography>
+                <Typography variant="body2" sx={{ color: "text.secondary", mb: 2.5 }}>{cat.description}</Typography>
                 <Stack direction="row" spacing={1} flexWrap="wrap" sx={{ gap: 1.5 }}>
                   {cat.skills.map((s) => (
-                    <Chip 
-                      key={s} 
-                      label={s} 
-                      sx={{ 
-                        bgcolor: "white", 
-                        fontWeight: 600, 
-                        border: "1px solid #ddd",
-                        fontSize: "0.9rem" 
-                      }} 
-                    />
+                    <Chip key={s} label={s} sx={{ bgcolor: "white", fontWeight: 600, fontSize: "0.9rem" }} />
                   ))}
                 </Stack>
               </Box>
