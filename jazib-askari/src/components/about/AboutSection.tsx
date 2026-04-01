@@ -8,7 +8,7 @@ interface AboutSectionProps {
   trigger: number;
 }
 
-const words = ["developer", "designer", "creative"];
+const words = ["developing", "designing", "creating"];
 
 const AboutSection = ({ trigger }: AboutSectionProps) => {
   const [index, setIndex] = useState(0);
@@ -47,7 +47,7 @@ const AboutSection = ({ trigger }: AboutSectionProps) => {
                 mb: 2
               }}
             >
-              I'm a&nbsp;
+              Find me&nbsp;
               <Box 
                 component="span" 
                 sx={{ 
@@ -117,7 +117,7 @@ const AboutSection = ({ trigger }: AboutSectionProps) => {
           >
             {/* STAT 1 */}
             <Stack direction="row" spacing={1} alignItems="center">
-              <Typography variant="h1" sx={{ fontWeight: 'bold' }}>12</Typography>
+              <Typography variant="h1" sx={{ fontWeight: 'bold' }}>10</Typography>
               <Typography 
                 variant="h2" 
                 sx={{ 
@@ -136,7 +136,7 @@ const AboutSection = ({ trigger }: AboutSectionProps) => {
             
             {/* STAT 2 */}
             <Stack direction="row" spacing={1} alignItems="center">
-              <Typography variant="h1" sx={{ fontWeight: 'bold' }}>150</Typography>
+              <Typography variant="h1" sx={{ fontWeight: 'bold' }}>30k</Typography>
               <Typography 
                 variant="h2" 
                 sx={{ 
@@ -149,7 +149,7 @@ const AboutSection = ({ trigger }: AboutSectionProps) => {
                 +
               </Typography>
               <Typography variant="body1" sx={{ color: statColor, fontWeight: 500, lineHeight: 1.2, ml: 1 }}>
-                Successful <br /> projects
+                Users <br /> reached
               </Typography>
             </Stack>
           </Stack>

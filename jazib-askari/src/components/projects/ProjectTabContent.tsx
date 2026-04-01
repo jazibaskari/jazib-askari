@@ -2,6 +2,7 @@ import { Box, Typography, Stack, Chip, IconButton, Tooltip } from "@mui/material
 import GitHubIcon from "@mui/icons-material/GitHub";
 import LaunchIcon from "@mui/icons-material/Launch";
 import type { Project } from "../../types/project";
+import Photo from "../../assets/images/Photo.png";
 
 interface Props {
   project: Project;
@@ -94,10 +95,11 @@ const ProjectTabContent = ({ project }: Props) => {
           ))}
         </Stack>
       </Box>
+
       <Box
         sx={{
           flex: 1,
-          bgcolor: "#f7f7f7",
+          bgcolor: "white",
           p: 0, 
           borderRadius: "24px",
           overflow: "hidden",
@@ -106,12 +108,15 @@ const ProjectTabContent = ({ project }: Props) => {
       >
         <Box
           component="img"
-          src={project.image}
+          src={Photo} 
+          alt={project.title}
           sx={{
             width: "100%",
             height: "100%", 
-            minHeight: { xs: "300px", md: "450px" },
+            // minHeight: { xs: "200px", md: "200px" },
+            maxHeight: { xs: "300px", md: "300px" },
             objectFit: "cover",
+            objectPosition: "50% 40%",
           }}
         />
       </Box>
