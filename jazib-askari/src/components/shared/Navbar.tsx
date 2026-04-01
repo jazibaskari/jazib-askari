@@ -1,6 +1,6 @@
 import { Box } from "@mui/system";
 import { Button } from "@mui/material";
-const sections = ["Home", "About", "Projects"];
+const sections = ["Home", "About", "Projects", "Skills"];
 interface NavbarProps {
   onNavClick: () => void;
 }
