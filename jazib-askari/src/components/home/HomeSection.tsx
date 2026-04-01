@@ -13,20 +13,20 @@ const HomeSection = ({ trigger }: HomeSectionProps) => {
   const iconColor = "#bfc0c0";
 
   return (
-    <Section id="Home">
+    <Section id="Home" isHome={true}>
       <TextAnimation duration={0.6} trigger={trigger}>
-        <Typography variant="h2" sx={{ mb: 1 }}>
-          Jazib Askari
+        <Typography variant="h2" sx={{ mb: 0 }}>
+          Jazib Askari 
         </Typography>
       </TextAnimation>
       <TextAnimation duration={1.2} trigger={trigger}>
-        <Stack direction="row" spacing={1} sx={{ ml: -1 }}> 
+        <Stack direction="row" spacing={1} sx={{ ml: -1.5 }}> 
           <IconButton 
             href="https://github.com/yourusername" 
             target="_blank"
             sx={{ color: iconColor }}
           >
-            <GitHubIcon />
+            <GitHubIcon /> 
           </IconButton>
 
           <IconButton 

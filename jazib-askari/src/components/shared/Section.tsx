@@ -4,22 +4,27 @@ import type { ReactNode } from "react";
 interface SectionProps {
   id: string;
   children: ReactNode;
+  isHome?: boolean;
 }
 
-const Section = ({ id, children }: SectionProps) => (
+const Section = ({ id, children, isHome }: SectionProps) => (
   <Box
     component="section" 
     id={id}
     sx={{
-      minHeight: "100vh",
-      px: { xs: 2, sm: 6, md: "100px" }, 
-      py: 8,
+      width: "100%",
+      height: isHome ? "100vh" : "auto", 
       display: "flex",
       flexDirection: "column",
-      justifyContent: "center",
-      scrollMarginTop: "80px",
-      width: "100%",
       boxSizing: "border-box",
+
+      px: isHome ? { xs: 4, md: "100px" } : { xs: 2, sm: 6, md: "100px" }, 
+
+      justifyContent: isHome ? "flex-end" : "flex-start",
+      pb: isHome ? "250px" : { xs: 8, md: 12 }, 
+      pt: isHome ? 0 : { xs: 8, md: 12 },
+
+      scrollMarginTop: isHome ? "0px" : "80px", 
     }}
   >
     {children}
