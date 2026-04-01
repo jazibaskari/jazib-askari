@@ -6,11 +6,15 @@ interface NavbarProps {
 }
 const Navbar = ({ onNavClick }: NavbarProps) => {
   const handleScroll = (id: string) => {
-    const el = document.getElementById(id);
-    if (el) {
-      el.scrollIntoView({ behavior: "smooth" });
-      onNavClick(); 
+    if (id === "Home") {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    } else {
+      const el = document.getElementById(id);
+      if (el) {
+        el.scrollIntoView({ behavior: "smooth" });
+      }
     }
+    onNavClick(); 
   };
   return (
     <Box
