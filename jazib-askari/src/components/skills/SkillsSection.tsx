@@ -60,9 +60,6 @@ const SkillsSection = ({ trigger }: SkillsSectionProps) => {
                   "&:hover": { transform: "translateY(-8px)"},
                 }}
               >
-                <Box sx={{ bgcolor: "white", borderRadius: "50%", width: 48, height: 48, display: 'flex', alignItems: 'center', justifyContent: 'center', mb: 2, color: "primary.main"}}>
-                  {cat.icon}
-                </Box>
                 <Typography variant="h5" fontWeight="bold" sx={{ mb: 1 }}>{cat.label}</Typography>
                 <Typography variant="body2" sx={{ color: "text.secondary", mb: 2.5 }}>{cat.description}</Typography>
                 <Stack direction="row" spacing={1} flexWrap="wrap" sx={{ gap: 1.5 }}>
