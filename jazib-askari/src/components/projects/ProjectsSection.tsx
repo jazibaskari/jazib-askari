@@ -1,15 +1,18 @@
-import { useState} from "react";
+import { useState } from "react";
 import type { SyntheticEvent } from "react";
 import Section from "../shared/Section";
-import { Box, Typography, Tabs, Tab } from "@mui/material";
+import { Box, Typography, Tabs, Tab, Button } from "@mui/material";
 import { projects } from "../../data/projects";
 import TextAnimation from "../../animations/AnimatedText";
 import ProjectTabContent from "./ProjectTabContent";
+import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
+import { useNavigate } from "react-router-dom";
 interface ProjectsSectionProps {
   trigger: number;
 }
 const ProjectsSection = ({ trigger }: ProjectsSectionProps) => {
   const [value, setValue] = useState(0);
+  const navigate = useNavigate();
   const handleChange = (_event: SyntheticEvent, newValue: number) => {
     setValue(newValue);
   };
@@ -22,7 +25,7 @@ const ProjectsSection = ({ trigger }: ProjectsSectionProps) => {
           </Typography>
         </TextAnimation>
         <Box sx={{ width: "100%", mt: 4 }}>
-          <Box sx={{  mb: 3, px: { xs: 2, md: 4 } }}>
+          <Box sx={{ mb: 3, px: { xs: 2, md: 4 } }}>
             <Tabs
               value={value}
               onChange={handleChange}
@@ -33,37 +36,74 @@ const ProjectsSection = ({ trigger }: ProjectsSectionProps) => {
               {projects.map((p, index) => (
                 <Tab
                   key={p.id}
-                  label={p.subtitle}
+                  label={p.subtitle} 
                   id={`project-tab-${index}`}
                   aria-controls={`project-tabpanel-${index}`}
-                  sx={{
-                    fontWeight: "bold",
+                  sx={(theme) => ({
+                    ...theme.typography.body1,
                     textTransform: "none",
                     fontSize: "1.1rem",
                     mr: 2,
-                  }}
-                />
-              ))}
+                  })}
+                  />
+                ))}
             </Tabs>
           </Box>
-          {projects.map((p, index) => (
-            <div
-              role="tabpanel"
-              hidden={value !== index}
-              id={`project-tabpanel-${index}`}
-              aria-labelledby={`project-tab-${index}`}
-              key={p.id}
-              style={{ width: "100%" }}
-            >
-              {value === index && (
-                <Box sx={{ width: "100%" }}>
-                  <TextAnimation duration={0.5} trigger={value}>
-                    <ProjectTabContent project={p} />
-                  </TextAnimation>
-                </Box>
-              )}
-            </div>
-          ))}
+          <Box sx={{ width: "100%" }}>
+            {projects.map((p, index) => (
+              <div
+                role="tabpanel"
+                hidden={value !== index}
+                id={`project-tabpanel-${index}`}
+                aria-labelledby={`project-tab-${index}`}
+                key={p.id}
+                style={{ width: "100%" }}
+              >
+                {value === index && (
+                  <Box sx={{ width: "100%" }}>
+                    <TextAnimation duration={0.5} trigger={value}>
+                      <ProjectTabContent project={p} />
+                    </TextAnimation>
+                  </Box>
+                )}
+              </div>
+            ))}
+          </Box>
+          <Box 
+            sx={{ 
+              width: "100%", 
+              display: "flex", 
+              justifyContent: "flex-start", 
+              mt: 1.5,
+              px: { xs: 2, md: 4 } 
+            }}
+          >
+            <Button
+  variant="text"
+  endIcon={<ArrowForwardIcon />}
+  onClick={() => navigate("/projects")}
+  sx={(theme) => ({
+    ...theme.typography.body1, 
+    textTransform: "none",
+    p: 0, 
+    minWidth: 0,
+    color: "text.primary",
+    transition: "all 0.3s cubic-bezier(0.4, 0, 0.2, 1)",
+    "& .MuiButton-endIcon": {
+      transition: "transform 0.3s cubic-bezier(0.4, 0, 0.2, 1)",
+    },
+    "&:hover": {
+      backgroundColor: "transparent",
+      color: "primary.main",
+      "& .MuiButton-endIcon": {
+        transform: "translateX(6px)", 
+      },
+    },
+  })}
+>
+  View All Projects
+</Button>
+          </Box>
         </Box>
       </Box>
     </Section>
