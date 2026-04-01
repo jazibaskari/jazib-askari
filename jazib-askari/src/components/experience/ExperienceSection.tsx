@@ -1,6 +1,8 @@
 import Section from "../shared/Section";
-import { Typography, Box, Stack, Chip } from "@mui/material";
+import { Typography, Box, Stack, Chip, Button } from "@mui/material";
 import TextAnimation from "../../animations/AnimatedText";
+import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
+import { useNavigate } from "react-router-dom";
 
 interface Experience {
   id: string;
@@ -43,6 +45,7 @@ const experiences: Experience[] = [
 ];
 
 const ExperienceSection = ({ trigger }: ExperienceSectionProps) => {
+  const navigate = useNavigate();
   return (
     <Section id="Experience">
       <TextAnimation duration={0.6} trigger={trigger}>
@@ -138,6 +141,35 @@ const ExperienceSection = ({ trigger }: ExperienceSectionProps) => {
             </Box>
           </TextAnimation>
         ))}
+                   <Button
+  variant="text"
+  endIcon={<ArrowForwardIcon />}
+  onClick={() => navigate("/projects")}
+  sx={(theme) => ({
+    ...theme.typography.body1, 
+    textTransform: "none",
+    p: 0, 
+    minWidth: 0,
+    color: "text.primary",
+    
+    
+    transition: "all 0.3s cubic-bezier(0.4, 0, 0.2, 1)",
+    
+    "& .MuiButton-endIcon": {
+      transition: "transform 0.3s cubic-bezier(0.4, 0, 0.2, 1)",
+    },
+
+    "&:hover": {
+      backgroundColor: "transparent",
+      color: "primary.main",
+      "& .MuiButton-endIcon": {
+        transform: "translateX(6px)", 
+      },
+    },
+  })}
+>
+  View All Experience
+</Button>
       </Box>
     </Section>
   );
