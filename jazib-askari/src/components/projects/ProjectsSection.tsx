@@ -58,7 +58,7 @@ const ProjectsSection = ({ trigger }: ProjectsSectionProps) => {
               ))}
             </Tabs>
           </Box>
-          <Box sx={{ width: "100%", minHeight: { xs: "auto", md: "450px" } }}>
+          <Box sx={{ width: "100%", minHeight: { xs: "auto", md: "400px" } }}>
             {projects.map((p, index) => (
               <div
                 role="tabpanel"
@@ -80,7 +80,7 @@ const ProjectsSection = ({ trigger }: ProjectsSectionProps) => {
               width: "100%", 
               display: "flex", 
               justifyContent: "flex-start", 
-              mt: 5 
+              mt: 2 
             }}
           >
             <Button

@@ -2,9 +2,10 @@ import { Box, Typography, Stack, Chip, IconButton, Tooltip } from "@mui/material
 import GitHubIcon from "@mui/icons-material/GitHub";
 import LaunchIcon from "@mui/icons-material/Launch";
 import type { Project } from "../../types/project";
-import Photo from "../../assets/images/Photo.png";
 import { useTheme } from '@mui/material/styles';
 import TextAnimation from "../../animations/AnimatedText";
+import PortfolioLight from "../../assets/images/PortfolioLight.png";
+import PortfolioDark from "../../assets/images/PortfolioDark.png";
 interface Props {
   project: Project;
   trigger: number;
@@ -101,19 +102,26 @@ const ProjectTabContent = ({ project, trigger }: Props) => {
           borderRadius: "24px", 
           overflow: "hidden", 
           display: "flex",
-          minHeight: { xs: "250px", md: "100%" } 
+          position: "relative",
+          minHeight: { xs: "250px", md: "100%" },
+          cursor: "pointer",
+          "&:hover img": {
+            transform: 'scale(1.1)',
+          }
         }}
       >
         <TextAnimation key={project.id} duration={1.2} trigger={trigger}>
           <Box
             component="img"
-            src={Photo} 
+            src={theme.palette.mode === 'dark' ? PortfolioDark : PortfolioLight} 
             alt={project.title}
             sx={{
               width: "100%",
               height: "100%", 
               maxHeight: { xs: "300px", md: "400px" },
               objectFit: "cover",
+              display: "block",
+              transition: 'transform 0.6s cubic-bezier(0.4, 0, 0.2, 1)', 
             }}
           />
         </TextAnimation>
