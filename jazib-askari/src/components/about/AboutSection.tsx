@@ -87,7 +87,7 @@ const AboutSection = ({ trigger }: AboutSectionProps) => {
             </Typography>
           </TextAnimation>
           
-          <TextAnimation duration={1} trigger={trigger}>
+          <TextAnimation duration={0.1} trigger={trigger}>
             <Typography 
               variant="body1" 
               sx={{ 
@@ -100,8 +100,6 @@ const AboutSection = ({ trigger }: AboutSectionProps) => {
             </Typography>
           </TextAnimation>
         </Box>
-
-        {/* RIGHT COLUMN: Stats with Animated Color Plus Symbol */}
         <TextAnimation duration={1.5} trigger={trigger} delay={0.3}>
           <Stack 
             direction="row" 
@@ -114,7 +112,6 @@ const AboutSection = ({ trigger }: AboutSectionProps) => {
               minWidth: { md: "450px" }
             }}
           >
-            {/* STAT 1 */}
             <Stack direction="row" spacing={1} alignItems="center">
               <Typography variant="h1" sx={{ fontWeight: 'bold' }}>10</Typography>
               <Typography 
@@ -132,8 +129,6 @@ const AboutSection = ({ trigger }: AboutSectionProps) => {
                 Years of <br /> experience
               </Typography>
             </Stack>
-            
-            {/* STAT 2 */}
             <Stack direction="row" spacing={1} alignItems="center">
               <Typography variant="h1" sx={{ fontWeight: 'bold' }}>30k</Typography>
               <Typography 
