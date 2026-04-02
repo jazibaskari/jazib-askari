@@ -10,7 +10,6 @@ interface ExperienceSectionProps {
   trigger: number;
 }
 
-
 const ExperienceSection = ({ trigger }: ExperienceSectionProps) => {
   const theme = useTheme();
   const containerRef = useRef<HTMLDivElement>(null);
@@ -97,7 +96,7 @@ const ExperienceSection = ({ trigger }: ExperienceSectionProps) => {
           gap: 3, 
           overflowX: "auto",
           scrollSnapType: "x mandatory", 
-          pt: 2, 
+          pt: 2, // Hover clearance
           pb: 4,
           "::-webkit-scrollbar": { display: "none" },
           msOverflowStyle: "none",
@@ -146,7 +145,7 @@ const ExperienceSection = ({ trigger }: ExperienceSectionProps) => {
                     </Typography>
                   </Box>
 
-                  <Typography variant="body1" sx={{ color: "text.secondary", lineHeight: 1.7, fontSize: "1rem", mb: 3, flex: 1 }}>
+                  <Typography variant="body1" sx={{ color: "text.secondary", lineHeight: 1.7, flex: 1, mb: 3 }}>
                     {exp.description}
                   </Typography>
                   
