@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { Box } from "@mui/system";
 import { 
   Button, 
@@ -7,9 +7,13 @@ import {
   List, 
   ListItem, 
   ListItemButton, 
-  ListItemText 
+  ListItemText,
+  useTheme 
 } from "@mui/material";
 import MenuIcon from '@mui/icons-material/Menu';
+import Brightness4Icon from '@mui/icons-material/Brightness4'; // Moon
+import Brightness7Icon from '@mui/icons-material/Brightness7'; // Sun
+import { ColorModeContext } from "../../App"; // Adjust this path to point to your App file
 
 const allSections = ["Home", "About", "Skills", "Experience", "Projects"];
 
@@ -19,6 +23,8 @@ interface NavbarProps {
 
 const Navbar = ({ onNavClick }: NavbarProps) => {
   const [mobileOpen, setMobileOpen] = useState(false);
+  const theme = useTheme();
+  const colorMode = useContext(ColorModeContext);
 
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
@@ -31,7 +37,6 @@ const Navbar = ({ onNavClick }: NavbarProps) => {
       const el = document.getElementById(id);
       if (el) {
         const elementPosition = el.getBoundingClientRect().top + window.pageYOffset;
-        
         const offset = 80; 
         const offsetPosition = elementPosition - offset;
 
@@ -44,12 +49,13 @@ const Navbar = ({ onNavClick }: NavbarProps) => {
     setMobileOpen(false);
     if (onNavClick) onNavClick();
   };
+
   const buttonStyle = {
     color: "text.primary",
     textTransform: "none",
     fontWeight: 500,
     fontSize: "0.95rem",
-    "&:hover": { bgcolor: "rgba(0,0,0,0.04)" }
+    "&:hover": { bgcolor: "action.hover" }
   };
 
   return (
@@ -59,12 +65,13 @@ const Navbar = ({ onNavClick }: NavbarProps) => {
         top: 0,
         zIndex: 1000,
         display: "flex",
-        justifyContent: "flex-start", 
+        justifyContent: "space-between", // Changed to space-between for icon placement
         alignItems: "center",
         p: 2,
-        bgcolor: "background.paper",
+        bgcolor: "background.default", // THEME AWARE
       }}
     >
+      {/* Desktop Menu */}
       <Box sx={{ display: { xs: "none", md: "flex" }, gap: 2 }}>
         {allSections.map((s) => (
           <Button key={s} sx={buttonStyle} onClick={() => handleScroll(s)}>
@@ -72,19 +79,25 @@ const Navbar = ({ onNavClick }: NavbarProps) => {
           </Button>
         ))}
       </Box>
-      <Box sx={{ 
-        display: { xs: "flex", md: "none" }, 
-        width: "100%", 
-        justifyContent: "flex-end" 
-      }}>
-        <IconButton
-          color="inherit"
-          aria-label="open drawer"
-          onClick={handleDrawerToggle}
-        >
-          <MenuIcon />
+
+      {/* Theme Toggle Button (Always Visible) */}
+      <Box sx={{ display: "flex", alignItems: "center" }}>
+        <IconButton onClick={colorMode.toggleColorMode} color="inherit">
+          {theme.palette.mode === 'dark' ? <Brightness7Icon /> : <Brightness4Icon />}
         </IconButton>
+
+        {/* Mobile Burger (Right side) */}
+        <Box sx={{ display: { xs: "flex", md: "none" }, ml: 1 }}>
+          <IconButton
+            color="inherit"
+            aria-label="open drawer"
+            onClick={handleDrawerToggle}
+          >
+            <MenuIcon />
+          </IconButton>
+        </Box>
       </Box>
+
       <Drawer
         anchor="right"
         open={mobileOpen}

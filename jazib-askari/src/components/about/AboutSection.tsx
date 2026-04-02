@@ -3,7 +3,6 @@ import Section from "../shared/Section";
 import { Typography, Box, Stack } from "@mui/material";
 import TextAnimation from "../../animations/AnimatedText";
 import { motion, AnimatePresence } from "framer-motion";
-
 interface AboutSectionProps {
   trigger: number;
 }
@@ -53,10 +52,10 @@ const AboutSection = ({ trigger }: AboutSectionProps) => {
                 sx={{ 
                   position: "relative", 
                   display: "inline-grid", 
-                  color: "primary.main",
+                  color: "text.tertiary",
                 }}
               >
-                <Typography 
+                <Typography
                   variant="h2" 
                   component="span" 
                   sx={{ 
@@ -122,7 +121,7 @@ const AboutSection = ({ trigger }: AboutSectionProps) => {
                 variant="h2" 
                 sx={{ 
                   fontWeight: 'bold', 
-                  color: "primary.main", // Matches animated word color
+                  color: "text.tertiary", // Matches animated word color
                   lineHeight: 1,
                   mt: -1 // Adjusts vertical alignment to match screenshot
                 }}
@@ -141,7 +140,7 @@ const AboutSection = ({ trigger }: AboutSectionProps) => {
                 variant="h2" 
                 sx={{ 
                   fontWeight: 'bold', 
-                  color: "primary.main", // Matches animated word color
+                  color: "text.tertiary", 
                   lineHeight: 1,
                   mt: -1
                 }}

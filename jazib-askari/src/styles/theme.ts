@@ -1,41 +1,91 @@
-import { createTheme } from '@mui/material/styles';
+import { createTheme, type PaletteMode } from '@mui/material/styles';
 import { typography } from './designTokens';
 
-export const theme = createTheme({
-  palette: {
-    background: {
-      default: "#ffffff", 
-    },
-  },
-  typography: {
+declare module '@mui/material/styles' {
+  interface TypeText {
+    tertiary?: string;
+    grey?: string;
+  }
+}
 
-    h1: {
-      fontFamily: typography.families.medium, // Force Medium
-      fontWeight: 500, // Ensure Medium weight
-      fontSize: typography.sizes.h1,
-      lineHeight: typography.lineHeights.h1,
+export const getTheme = (mode: PaletteMode) => 
+  createTheme({
+    palette: {
+      mode,
+      ...(mode === 'light'
+        ? {
+            // Light Mode Palette
+            primary: {
+              main: "#4CAF50",
+            },
+            background: {
+              default: "#ffffff",
+              paper: "#f7f7f7",
+            },
+            text: {
+              primary: "#1a1a1a",
+              secondary: "#666666",
+              tertiary: "#4CAF50",
+              grey: "#bfc0c0",  
+            },
+            divider: "rgba(0, 0, 0, 0.12)",
+          }
+        : {
+            // Dark Mode Palette
+            primary: {
+              main: "#4CAF50",
+            },
+            background: {
+              default: "#121212",
+              paper: "#1e1e1e",
+            },
+            text: {
+              primary: "#ffffff",
+              secondary: "#b0b0b0",
+              tertiary: "#4CAF50", 
+              grey: "#bfc0c0", 
+            },
+            divider: "rgba(255, 255, 255, 0.12)",
+          }),
     },
-    h2: {
-      fontFamily: typography.families.medium, // Force Medium
-      fontWeight: 500, // Ensure Medium weight
-      fontSize: typography.sizes.h2,
-      lineHeight: typography.lineHeights.h2,
+    typography: {
+      h1: {
+        fontFamily: typography.families.medium,
+        fontWeight: 500,
+        fontSize: typography.sizes.h1,
+        lineHeight: typography.lineHeights.h1,
+      },
+      h2: {
+        fontFamily: typography.families.medium,
+        fontWeight: 500,
+        fontSize: typography.sizes.h2,
+        lineHeight: typography.lineHeights.h2,
+      },
+      h3: {
+        fontFamily: typography.families.regular,
+        fontSize: typography.sizes.h2,
+        lineHeight: typography.lineHeights.h2,
+      },
+      body1: {
+        fontFamily: typography.families.regular,
+        fontSize: typography.sizes.body,
+        lineHeight: typography.lineHeights.body,
+      },
+      button: {
+        fontFamily: typography.families.medium,
+        fontWeight: 500,
+        textTransform: 'none',
+        fontSize: typography.sizes.button,
+      },
     },
-    h3: {
-      fontFamily: typography.families.regular, // Force Medium
-      fontSize: typography.sizes.h2,
-      lineHeight: typography.lineHeights.h2,
+    // Optional: Global component overrides to ensure chips/buttons look good in both modes
+    components: {
+      MuiPaper: {
+        styleOverrides: {
+          root: {
+            backgroundImage: 'none', // Removes the default MUI "elevation" overlay in dark mode
+          },
+        },
+      },
     },
-    body1: {
-      fontFamily: typography.families.regular, // Force Regular
-      fontSize: typography.sizes.body,
-      lineHeight: typography.lineHeights.body,
-    },
-    button: {
-      fontFamily: typography.families.medium, // Force Medium
-      fontWeight: 500, // Ensure Medium weight
-      textTransform: 'none',
-      fontSize: typography.sizes.button,
-    },
-  },
-});
+  });
