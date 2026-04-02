@@ -79,7 +79,7 @@ const AboutSection = ({ trigger }: AboutSectionProps) => {
               </Box>
             </Typography>
           </TextAnimation>
-          <TextAnimation duration={1} trigger={trigger}>
+          <TextAnimation duration={0.1} trigger={trigger}>
             <Typography 
               variant="body1" 
               sx={{ 
