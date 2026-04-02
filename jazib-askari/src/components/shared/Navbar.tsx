@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { Box } from "@mui/system";
 import { 
   Button, 
@@ -7,15 +7,21 @@ import {
   List, 
   ListItem, 
   ListItemButton, 
-  ListItemText 
+  ListItemText,
+  useTheme 
 } from "@mui/material";
 import MenuIcon from '@mui/icons-material/Menu';
+import Brightness4Icon from '@mui/icons-material/Brightness4'; 
+import Brightness7Icon from '@mui/icons-material/Brightness7'; 
+import { ColorModeContext } from "../../App"; 
 const allSections = ["Home", "About", "Skills", "Experience", "Projects"];
 interface NavbarProps {
   onNavClick?: () => void;
 }
 const Navbar = ({ onNavClick }: NavbarProps) => {
   const [mobileOpen, setMobileOpen] = useState(false);
+  const theme = useTheme();
+  const colorMode = useContext(ColorModeContext);
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
   };
@@ -42,7 +48,7 @@ const Navbar = ({ onNavClick }: NavbarProps) => {
     textTransform: "none",
     fontWeight: 500,
     fontSize: "0.95rem",
-    "&:hover": { bgcolor: "rgba(0,0,0,0.04)" }
+    "&:hover": { bgcolor: "action.hover" }
   };
   return (
     <Box
@@ -51,10 +57,10 @@ const Navbar = ({ onNavClick }: NavbarProps) => {
         top: 0,
         zIndex: 1000,
         display: "flex",
-        justifyContent: "flex-start", 
+        justifyContent: "space-between", 
         alignItems: "center",
         p: 2,
-        bgcolor: "background.paper",
+        bgcolor: "background.default", 
       }}
     >
       <Box sx={{ display: { xs: "none", md: "flex" }, gap: 2 }}>
@@ -64,18 +70,19 @@ const Navbar = ({ onNavClick }: NavbarProps) => {
           </Button>
         ))}
       </Box>
-      <Box sx={{ 
-        display: { xs: "flex", md: "none" }, 
-        width: "100%", 
-        justifyContent: "flex-end" 
-      }}>
-        <IconButton
-          color="inherit"
-          aria-label="open drawer"
-          onClick={handleDrawerToggle}
-        >
-          <MenuIcon />
+      <Box sx={{ display: "flex", alignItems: "center" }}>
+        <IconButton onClick={colorMode.toggleColorMode} color="inherit">
+          {theme.palette.mode === 'dark' ? <Brightness7Icon /> : <Brightness4Icon />}
         </IconButton>
+        <Box sx={{ display: { xs: "flex", md: "none" }, ml: 1 }}>
+          <IconButton
+            color="inherit"
+            aria-label="open drawer"
+            onClick={handleDrawerToggle}
+          >
+            <MenuIcon />
+          </IconButton>
+        </Box>
       </Box>
       <Drawer
         anchor="right"

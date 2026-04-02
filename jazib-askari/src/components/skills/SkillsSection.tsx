@@ -8,6 +8,7 @@ import BrushIcon from "@mui/icons-material/Brush";
 import RuleIcon from "@mui/icons-material/Rule";
 import BuildIcon from "@mui/icons-material/Build";
 import TextAnimation from "../../animations/AnimatedText";
+import { useTheme } from '@mui/material/styles';
 interface SkillsSectionProps {
   trigger: number;
 }
@@ -19,6 +20,7 @@ const skillCategories = [
   { id: "tooling", label: "Tooling", icon: <BuildIcon />, description: "Streamlined development workflows and deployment.", skills: ["Git", "Docker"] },
 ];
 const SkillsSection = ({ trigger }: SkillsSectionProps) => {
+  const theme = useTheme();
   const [activeFilters, setActiveFilters] = useState<string[]>(
     skillCategories.map((c) => c.id)
   );
@@ -49,8 +51,9 @@ const SkillsSection = ({ trigger }: SkillsSectionProps) => {
             onClick={() => toggleFilter(cat.id)}
             icon={activeFilters.includes(cat.id) ? <CheckIcon /> : undefined}
             color={activeFilters.includes(cat.id) ? "primary" : "default"}
-            variant={activeFilters.includes(cat.id) ? "filled" : "outlined"}
+            variant={activeFilters.includes(cat.id) ? "filled" : "filled"}
             sx={{ 
+              color: activeFilters.includes(cat.id) ? "white": theme.palette.text.primary,
               cursor: "pointer", 
               fontSize: "1rem", 
               py: 2, 
@@ -78,7 +81,7 @@ const SkillsSection = ({ trigger }: SkillsSectionProps) => {
                   maxWidth: "400px",
                   height: "300px", 
                   borderRadius: "28px", 
-                  backgroundColor: "#f7f7f7",
+                  backgroundColor: "background.paper",
                   display: "flex", 
                   flexDirection: "column", 
                   alignItems: "flex-start", 
@@ -87,13 +90,13 @@ const SkillsSection = ({ trigger }: SkillsSectionProps) => {
                   overflowY: "auto",
                   '&::-webkit-scrollbar': { display: 'none' },
                   transition: "0.3s",
-                  "&:hover": { transform: "translateY(-8px)"},
+                  "&:hover": { bgcolor:"action.hover", transform: "translateY(-8px)"},
                 }}
               >
                 <Typography variant="h5" fontWeight="bold" sx={{ mb: 1}}>
                   {cat.label}
                 </Typography>
-                <Typography variant="body2" sx={{ color: "text.secondary", mb: 2.5 }}>
+                <Typography variant="body2" sx={{ color: "text.grey", mb: 2.5 }}>
                   {cat.description}
                 </Typography>
                 <Box 
@@ -110,7 +113,7 @@ const SkillsSection = ({ trigger }: SkillsSectionProps) => {
                       key={s} 
                       label={s} 
                       sx={{ 
-                        bgcolor: "white", 
+                        bgcolor: "action.hover", 
                         fontWeight: 600, 
                         fontSize: "0.9rem",
                         ml: "0 !important"

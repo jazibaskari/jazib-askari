@@ -10,7 +10,7 @@ const Footer = () => {
       sx={{
         py: 6,
         px: { xs: 2, md: "150px" }, 
-        bgcolor: "background.paper",
+        bgcolor: "background.default"
       }}
     >
       <Box
@@ -24,7 +24,7 @@ const Footer = () => {
       >
         <Typography
           variant="body2"
-          sx={{ color: iconColor, fontWeight: 500, textAlign: { xs: "center", md: "left" } }}
+          sx={{ color: "text.grey", fontWeight: 500, textAlign: { xs: "center", md: "left" } }}
         >
           © Jazib Askari. All rights reserved.
         </Typography>
@@ -32,20 +32,20 @@ const Footer = () => {
           <IconButton
             href="https://github.com/yourusername"
             target="_blank"
-            sx={{ color: iconColor, "&:hover": { color: "text.primary" } }}
+            sx={{ color: iconColor, "&:hover": { color: "text.grey" } }}
           >
             <GitHubIcon fontSize="small" />
           </IconButton>
           <IconButton
             href="https://linkedin.com/in/yourusername"
             target="_blank"
-            sx={{ color: iconColor, "&:hover": { color: "text.primary" } }}
+            sx={{ color: iconColor, "&:hover": { color: "text.grey" } }}
           >
             <LinkedInIcon fontSize="small" />
           </IconButton>
           <IconButton
             href="mailto:your.email@example.com"
-            sx={{ color: iconColor, "&:hover": { color: "text.primary" } }}
+            sx={{ color: iconColor, "&:hover": { color: "text.grey" } }}
           >
             <MailOutlineIcon fontSize="small" />
           </IconButton>
