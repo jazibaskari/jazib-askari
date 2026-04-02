@@ -1,4 +1,4 @@
-import { Box, Typography, Stack, IconButton, Container } from "@mui/material";
+import { Box, Typography, Stack, IconButton} from "@mui/material";
 import GitHubIcon from "@mui/icons-material/GitHub";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
 import MailOutlineIcon from "@mui/icons-material/MailOutline";
@@ -11,9 +11,7 @@ const Footer = () => {
       component="footer"
       sx={{
         py: 6,
-        px: { xs: 2, md: "150px" }, // Matches your Home section alignment
-        borderTop: "1px solid",
-        borderColor: "divider",
+        px: { xs: 2, md: "150px" }, 
         bgcolor: "background.paper",
       }}
     >
