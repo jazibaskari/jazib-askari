@@ -46,10 +46,10 @@ const AboutSection = ({ trigger }: AboutSectionProps) => {
                 sx={{ 
                   position: "relative", 
                   display: "inline-grid", 
-                  color: "primary.main",
+                  color: "text.tertiary",
                 }}
               >
-                <Typography 
+                <Typography
                   variant="h2" 
                   component="span" 
                   sx={{ 
@@ -110,7 +110,7 @@ const AboutSection = ({ trigger }: AboutSectionProps) => {
                 variant="h2" 
                 sx={{ 
                   fontWeight: 'bold', 
-                  color: "primary.main", 
+                  color: "text.tertiary", 
                   lineHeight: 1,
                   mt: -1 
                 }}
@@ -127,7 +127,7 @@ const AboutSection = ({ trigger }: AboutSectionProps) => {
                 variant="h2" 
                 sx={{ 
                   fontWeight: 'bold', 
-                  color: "primary.main", 
+                  color: "text.tertiary", 
                   lineHeight: 1,
                   mt: -1
                 }}
