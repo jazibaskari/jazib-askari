@@ -10,7 +10,7 @@ interface HomeSectionProps {
 }
 
 const HomeSection = ({ trigger }: HomeSectionProps) => {
-  const iconColor = "#bfc0c0";
+  const iconColor = "#4CAF50"; 
 
   return (
     <Section id="Home" isHome={true}>

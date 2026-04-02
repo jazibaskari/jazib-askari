@@ -23,7 +23,7 @@ const ProjectTabContent = ({ project }: Props) => {
       <Box
         sx={{
           flex: 1,
-          bgcolor: "white",
+          bgcolor: "background.paper",
           p: { xs: 4, md: 6 },
           display: "flex",
           flexDirection: "column",
@@ -38,10 +38,10 @@ const ProjectTabContent = ({ project }: Props) => {
                 href={project.githubUrl}
                 target="_blank"
                 sx={{
-                  bgcolor: "#f7f7f7",
+                  bgcolor: "action.hover",
                   width: 48,
                   height: 48,
-                  "&:hover": { transform: "translateY(-2px)" },
+                  "&:hover": { bgcolor:"primary.main", transform: "translateY(-2px)" },
                   transition: "all 0.3s ease",
                 }}
               >
@@ -55,10 +55,10 @@ const ProjectTabContent = ({ project }: Props) => {
                 href={project.liveUrl}
                 target="_blank"
                 sx={{
-                  bgcolor: "#f7f7f7",
+                  bgcolor: "action.hover",
                   width: 48,
                   height: 48,
-                  "&:hover": { transform: "translateY(-2px)" },
+                  "&:hover": { bgcolor:"primary.main", transform: "translateY(-2px)" },
                   transition: "all 0.3s ease",
                 }}
               >
@@ -71,7 +71,7 @@ const ProjectTabContent = ({ project }: Props) => {
         <Typography
           variant="body1"
           sx={{
-            color: "text.secondary",
+            color: "text.grey",
             lineHeight: 1.8,
             fontSize: "1.15rem",
             mb: 4,
@@ -86,7 +86,7 @@ const ProjectTabContent = ({ project }: Props) => {
               key={skill}
               label={skill}
               sx={{
-                bgcolor: "#f7f7f7",
+                bgcolor: "action.hover",
                 fontWeight: 600,
                 fontSize: "0.9rem",
                 height: "36px",
@@ -99,7 +99,7 @@ const ProjectTabContent = ({ project }: Props) => {
       <Box
         sx={{
           flex: 1,
-          bgcolor: "white",
+          bgcolor: "none",
           p: 0, 
           borderRadius: "24px",
           overflow: "hidden",

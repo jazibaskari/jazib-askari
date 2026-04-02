@@ -104,7 +104,7 @@ const ProjectsSection = ({ trigger }: ProjectsSectionProps) => {
 
     "&:hover": {
       backgroundColor: "transparent",
-      color: "primary.main",
+      color: "text.tertiary",
       "& .MuiButton-endIcon": {
         transform: "translateX(6px)", 
       },

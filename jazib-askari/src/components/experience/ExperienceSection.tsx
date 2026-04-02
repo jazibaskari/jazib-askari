@@ -169,7 +169,7 @@ const ExperienceSection = ({ trigger }: ExperienceSectionProps) => {
                   width: "100%",
                   minHeight: "340px",
                   borderRadius: "28px",
-                  backgroundColor: "#f7f7f7",
+                  backgroundColor: "background.paper",
                   display: "flex",
                   flexDirection: "column",
                   p: 4,
@@ -177,16 +177,16 @@ const ExperienceSection = ({ trigger }: ExperienceSectionProps) => {
                   transition: "0.3s ease-in-out",
                   "&:hover": {
                     transform: "translateY(-8px)",
-                    backgroundColor: "#efefef",
+                    backgroundColor: "action.hover",
                   },
                 }}
               >
                 <Box sx={{ mb: 2 }}>
-                  <Typography variant="h5" fontWeight="bold">{exp.title}</Typography>
-                  <Typography variant="subtitle1" sx={{ color: "primary.main", fontWeight: 600, mt: 0.5 }}>
+                  <Typography variant="h5" fontWeight="bold" sx={{color: "text.grey"}}>{exp.title}</Typography>
+                  <Typography variant="subtitle1" sx={{ color: "text.tertiary", fontWeight: 600, mt: 0.5 }}>
                     {exp.subtitle}
                   </Typography>
-                  <Typography variant="caption" sx={{ color: "text.secondary", fontWeight: 600, textTransform: "uppercase", display: "block", mt: 0.5 }}>
+                  <Typography variant="caption" sx={{ color: "text.primary", fontWeight: 600, textTransform: "uppercase", display: "block", mt: 0.5 }}>
                     {exp.dates}
                   </Typography>
                 </Box>
@@ -197,7 +197,7 @@ const ExperienceSection = ({ trigger }: ExperienceSectionProps) => {
 
                 <Stack direction="row" spacing={1} flexWrap="wrap" sx={{ gap: 1 }}>
                   {exp.tags.map((tag) => (
-                    <Chip key={tag} label={tag} sx={{ bgcolor: "white", fontWeight: 600, fontSize: "0.8rem", height: "28px" }} />
+                    <Chip key={tag} label={tag} sx={{ bgcolor: "action.hover", fontWeight: 600, fontSize: "0.8rem", height: "28px" }} />
                   ))}
                 </Stack>
               </Box>
