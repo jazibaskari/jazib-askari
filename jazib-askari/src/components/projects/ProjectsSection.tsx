@@ -70,7 +70,7 @@ const ProjectsSection = ({ trigger }: ProjectsSectionProps) => {
               >
                 {value === index && (
                   <Box sx={{ width: "100%" }}>
-                      <ProjectTabContent project={p} trigger={value} />
+                    <ProjectTabContent project={p} trigger={value} />
                   </Box>
                 )}
               </div>
