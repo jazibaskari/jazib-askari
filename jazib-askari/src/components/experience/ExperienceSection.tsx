@@ -131,7 +131,7 @@ const ExperienceSection = ({ trigger }: ExperienceSectionProps) => {
                       {exp.dates}
                     </Typography>
                   </Box>
-                  <Typography variant="body1" sx={{ color: "text.secondary", lineHeight: 1.7, fontSize: "1rem", mb: 3, flex: 1 }}>
+                  <Typography variant="body1" sx={{ color: "text.secondary", lineHeight: 1.7, flex: 1, mb: 3 }}>
                     {exp.description}
                   </Typography>
                   <Box sx={{ display: "flex", flexWrap: "wrap", gap: 1 }}>

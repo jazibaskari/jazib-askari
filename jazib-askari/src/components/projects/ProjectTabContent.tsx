@@ -12,16 +12,7 @@ interface Props {
 const ProjectTabContent = ({ project, trigger }: Props) => {
   const theme = useTheme();
   return (
-    <Box
-      sx={{
-        display: "flex",
-        flexDirection: { xs: "column", md: "row" },
-        width: "100%",
-        alignItems: "stretch", 
-        gap: { xs: 2, md: 4 },
-        mt: 0, 
-      }}
-    >
+    <Box sx={{ display: "flex", flexDirection: { xs: "column", md: "row" }, width: "100%", alignItems: "stretch", gap: { xs: 2, md: 4 } }}>
       <Box
         sx={{
           flex: 1,
@@ -29,7 +20,6 @@ const ProjectTabContent = ({ project, trigger }: Props) => {
           p: 4, 
           display: "flex",
           flexDirection: "column",
-          justifyContent: "flex-start", 
           borderRadius: "24px",
         }}
       >
@@ -41,8 +31,7 @@ const ProjectTabContent = ({ project, trigger }: Props) => {
                 target="_blank"
                 sx={{
                   bgcolor: "action.hover",
-                  width: 44, 
-                  height: 44,
+                  width: 44, height: 44,
                   "&:hover": { bgcolor:"primary.main", transform: "translateY(-2px)" },
                   transition: "all 0.3s ease",
                 }}
@@ -58,8 +47,7 @@ const ProjectTabContent = ({ project, trigger }: Props) => {
                 target="_blank"
                 sx={{
                   bgcolor: "action.hover",
-                  width: 44,
-                  height: 44,
+                  width: 44, height: 44,
                   "&:hover": { bgcolor:"primary.main", transform: "translateY(-2px)" },
                   transition: "all 0.3s ease",
                 }}
@@ -76,6 +64,7 @@ const ProjectTabContent = ({ project, trigger }: Props) => {
             lineHeight: 1.8,
             fontSize: "1.1rem",
             mb: 4,
+            flex: 1, 
           }}
         >
           {project.summary}
@@ -88,7 +77,7 @@ const ProjectTabContent = ({ project, trigger }: Props) => {
               sx={{
                 ...theme.typography.h4,
                 py: 2, 
-                px: 1,
+                px: 1, 
                 bgcolor: "action.hover",
                 fontSize: "0.9rem",
                 height: "28px",
@@ -98,26 +87,19 @@ const ProjectTabContent = ({ project, trigger }: Props) => {
           ))}
         </Box>
       </Box>
-      <Box
-        sx={{
-          flex: 1,
-          borderRadius: "24px",
-          overflow: "hidden",
-          display: "flex",
-        }}
-      >
+      <Box sx={{ flex: 1, borderRadius: "24px", overflow: "hidden", display: "flex" }}>
         <TextAnimation duration={1.2} trigger={trigger}>
           <Box
-          component="img"
-          src={Photo} 
-          alt={project.title}
-          sx={{
-            width: "100%",
-            height: "100%", 
-            maxHeight: { xs: "300px", md: "400px" },
-            objectFit: "cover",
-          }}
-        />
+            component="img"
+            src={Photo} 
+            alt={project.title}
+            sx={{
+              width: "100%",
+              height: "100%", 
+              maxHeight: { xs: "300px", md: "400px" },
+              objectFit: "cover",
+            }}
+          />
         </TextAnimation>
       </Box>
     </Box>
