@@ -76,9 +76,7 @@ const ProjectsSection = ({ trigger }: ProjectsSectionProps) => {
               >
                 {value === index && (
                   <Box sx={{ width: "100%" }}>
-                    {/* <TextAnimation duration={0.5} trigger={value}> */}
-                      <ProjectTabContent project={p} trigger={value} />
-                    {/* </TextAnimation> */}
+                    <ProjectTabContent project={p} trigger={value} />
                   </Box>
                 )}
               </div>
@@ -100,7 +98,7 @@ const ProjectsSection = ({ trigger }: ProjectsSectionProps) => {
               sx={(theme) => ({
                 ...theme.typography.body1, 
                 textTransform: "none",
-                p: 0, 
+                p: 0, // Critical: removes the 8px default text-button padding
                 minWidth: 0,
                 color: "text.primary",
                 transition: "all 0.3s ease",
