@@ -63,8 +63,13 @@ export const getTheme = (mode: PaletteMode) =>
       },
       h3: {
         fontFamily: typography.families.regular,
-        fontSize: typography.sizes.h2,
-        lineHeight: typography.lineHeights.h2,
+        fontSize: typography.sizes.h3,
+        lineHeight: typography.lineHeights.h3,
+      },
+      h4: {
+        fontFamily: typography.families.regular,
+        fontSize: typography.sizes.h4,
+        lineHeight: typography.lineHeights.h4,
       },
       body1: {
         fontFamily: typography.families.regular,
@@ -78,12 +83,11 @@ export const getTheme = (mode: PaletteMode) =>
         fontSize: typography.sizes.button,
       },
     },
-    // Optional: Global component overrides to ensure chips/buttons look good in both modes
     components: {
       MuiPaper: {
         styleOverrides: {
           root: {
-            backgroundImage: 'none', // Removes the default MUI "elevation" overlay in dark mode
+            backgroundImage: 'none', 
           },
         },
       },

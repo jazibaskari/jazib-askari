@@ -4,6 +4,7 @@ import { Typography, Box, Stack, Chip, IconButton } from "@mui/material";
 import TextAnimation from "../../animations/AnimatedText";
 import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
+import { useTheme } from '@mui/material/styles';
 
 interface Experience {
   id: string;
@@ -70,6 +71,7 @@ const experiences: Experience[] = [
 ];
 
 const ExperienceSection = ({ trigger }: ExperienceSectionProps) => {
+  const theme = useTheme();
   const containerRef = useRef<HTMLDivElement>(null);
   const [canScrollLeft, setCanScrollLeft] = useState(false);
   const [canScrollRight, setCanScrollRight] = useState(true);
@@ -182,7 +184,7 @@ const ExperienceSection = ({ trigger }: ExperienceSectionProps) => {
                 }}
               >
                 <Box sx={{ mb: 2 }}>
-                  <Typography variant="h5" fontWeight="bold" sx={{color: "text.grey"}}>{exp.title}</Typography>
+                  <Typography variant="h3" fontWeight="bold" sx={{color: "text.grey"}}>{exp.title}</Typography>
                   <Typography variant="subtitle1" sx={{ color: "text.tertiary", fontWeight: 600, mt: 0.5 }}>
                     {exp.subtitle}
                   </Typography>
@@ -197,7 +199,8 @@ const ExperienceSection = ({ trigger }: ExperienceSectionProps) => {
 
                 <Stack direction="row" spacing={1} flexWrap="wrap" sx={{ gap: 1 }}>
                   {exp.tags.map((tag) => (
-                    <Chip key={tag} label={tag} sx={{ bgcolor: "action.hover", fontWeight: 600, fontSize: "0.8rem", height: "28px" }} />
+                    <Chip key={tag} label={tag} sx={{ ...theme.typography.h4, bgcolor: "action.hover",     py: 2, 
+                      px: 1, fontSize: "0.9rem", height: "28px" }} />
                   ))}
                 </Stack>
               </Box>
