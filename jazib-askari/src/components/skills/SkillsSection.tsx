@@ -110,7 +110,7 @@ const SkillsSection = ({ trigger }: SkillsSectionProps) => {
                   sx={{ 
                     display: "flex", 
                     flexWrap: "wrap", 
-                    gap: 1.5,
+                    gap: 1,
                     justifyContent: "flex-start",
                     width: "100%"
                   }}

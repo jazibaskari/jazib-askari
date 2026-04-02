@@ -82,7 +82,7 @@ const ProjectTabContent = ({ project }: Props) => {
           {project.summary}
         </Typography>
 
-        <Stack direction="row" spacing={1} flexWrap="wrap" sx={{ gap: 1.5 }}>
+        <Stack direction="row" flexWrap="wrap" sx={{ gap: 1 }}>
           {project.skills?.map((skill) => (
             <Chip
               key={skill}
