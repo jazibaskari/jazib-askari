@@ -1,19 +1,19 @@
 import { ThemeProvider } from "@mui/material/styles"; 
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { CssBaseline } from "@mui/material";
-import { useMemo, useState, createContext } from "react";
+import { useMemo, useState } from "react";
 import { getTheme } from "./styles/theme";
+import { ColourModeContext } from "./context/ColourModeContext";
 import Navbar from "./components/shared/Navbar";
 import HomePage from "./pages/HomePage";
 import ProjectDetailPage from "./pages/ProjectDetailPage";
-export const ColorModeContext = createContext({ toggleColorMode: () => {} });
 const App = () => {
   const [mode, setMode] = useState<'light' | 'dark'>(
     (localStorage.getItem("themeMode") as 'light' | 'dark') || 'light'
   );
-  const colorMode = useMemo(
+  const colourMode = useMemo(
     () => ({
-      toggleColorMode: () => {
+      toggleColourMode: () => {
         setMode((prevMode) => {
           const newMode = prevMode === 'light' ? 'dark' : 'light';
           localStorage.setItem("themeMode", newMode);
@@ -29,7 +29,7 @@ const App = () => {
     setNavTrigger((prev) => prev + 1);
   };
   return (
-    <ColorModeContext.Provider value={colorMode}>
+    <ColourModeContext.Provider value={colourMode}>
       <ThemeProvider theme={theme}>
         <CssBaseline /> 
         <BrowserRouter>
@@ -40,7 +40,7 @@ const App = () => {
           </Routes>
         </BrowserRouter>
       </ThemeProvider>
-    </ColorModeContext.Provider>
+    </ColourModeContext.Provider>
   );
 };
 export default App;
