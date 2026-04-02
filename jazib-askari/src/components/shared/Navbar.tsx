@@ -6,8 +6,6 @@ import {
   Drawer, 
   List, 
   ListItem, 
-  ListItemButton, 
-  ListItemText,
   useTheme 
 } from "@mui/material";
 import MenuIcon from '@mui/icons-material/Menu';
@@ -43,11 +41,12 @@ const Navbar = ({ onNavClick }: NavbarProps) => {
     setMobileOpen(false);
     if (onNavClick) onNavClick();
   };
-  const buttonStyle = {
+  const commonButtonStyle = {
     color: "text.primary",
     textTransform: "none",
     fontWeight: 500,
     fontSize: "0.95rem",
+    transition: "0.2s",
     "&:hover": { bgcolor: "action.hover" }
   };
   return (
@@ -57,15 +56,23 @@ const Navbar = ({ onNavClick }: NavbarProps) => {
         top: 0,
         zIndex: 1000,
         display: "flex",
-        justifyContent: "space-between", 
+        justifyContent: "space-between",
         alignItems: "center",
         p: 2,
-        bgcolor: "background.default", 
+        bgcolor: "background.default",
       }}
     >
-      <Box sx={{ display: { xs: "none", md: "flex" }, gap: 2 }}>
+      <Box sx={{ display: { xs: "none", md: "flex" }, gap: 1 }}>
         {allSections.map((s) => (
-          <Button key={s} sx={buttonStyle} onClick={() => handleScroll(s)}>
+          <Button 
+            key={s} 
+            onClick={() => handleScroll(s)}
+            sx={{ 
+              ...commonButtonStyle,
+              px: 2,
+              minWidth: "auto" 
+            }}
+          >
             {s}
           </Button>
         ))}
@@ -90,16 +97,31 @@ const Navbar = ({ onNavClick }: NavbarProps) => {
         onClose={handleDrawerToggle}
         sx={{
           display: { xs: "block", md: "none" },
-          "& .MuiDrawer-paper": { boxSizing: "border-box", width: 240 },
+          "& .MuiDrawer-paper": { 
+            boxSizing: "border-box", 
+            width: 180, 
+            bgcolor: "background.default",
+            backgroundImage: "none"
+          },
         }}
       >
-        <Box sx={{ pt: 2 }}>
-          <List>
+        <Box sx={{ pt: 4 }}>
+          <List disablePadding>
             {allSections.map((s) => (
               <ListItem key={s} disablePadding>
-                <ListItemButton onClick={() => handleScroll(s)}>
-                  <ListItemText primary={s} sx={{ textAlign: 'center' }} />
-                </ListItemButton>
+                <Button 
+                  onClick={() => handleScroll(s)}
+                  sx={{ 
+                    ...commonButtonStyle,
+                    width: "100%",
+                    justifyContent: "flex-end", 
+                    px: 3, 
+                    py: 2, 
+                    borderRadius: 0, 
+                  }}
+                >
+                  {s}
+                </Button>
               </ListItem>
             ))}
           </List>
