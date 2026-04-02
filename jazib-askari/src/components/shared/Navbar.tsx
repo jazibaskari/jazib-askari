@@ -11,8 +11,7 @@ import {
 import MenuIcon from '@mui/icons-material/Menu';
 import Brightness4Icon from '@mui/icons-material/Brightness4'; 
 import Brightness7Icon from '@mui/icons-material/Brightness7'; 
-import { ColorModeContext } from "../../App"; 
-
+import { ColourModeContext } from "../../context/ColourModeContext";
 const allSections = ["Home", "About", "Skills", "Experience", "Projects"];
 
 interface NavbarProps {
@@ -22,7 +21,7 @@ interface NavbarProps {
 const Navbar = ({ onNavClick }: NavbarProps) => {
   const [mobileOpen, setMobileOpen] = useState(false);
   const theme = useTheme();
-  const colorMode = useContext(ColorModeContext);
+  const colourMode = useContext(ColourModeContext);
 
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
@@ -86,7 +85,7 @@ const Navbar = ({ onNavClick }: NavbarProps) => {
         ))}
       </Box>
       <Box sx={{ display: "flex", alignItems: "center" }}>
-        <IconButton onClick={colorMode.toggleColorMode} color="inherit">
+        <IconButton onClick={colourMode.toggleColourMode} color="inherit">
           {theme.palette.mode === 'dark' ? <Brightness7Icon /> : <Brightness4Icon />}
         </IconButton>
 
