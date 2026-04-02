@@ -14,7 +14,6 @@ export const getTheme = (mode: PaletteMode) =>
       mode,
       ...(mode === 'light'
         ? {
-            // Light Mode Palette
             primary: {
               main: "#4CAF50",
             },
@@ -31,7 +30,6 @@ export const getTheme = (mode: PaletteMode) =>
             divider: "rgba(0, 0, 0, 0.12)",
           }
         : {
-            // Dark Mode Palette
             primary: {
               main: "#4CAF50",
             },
