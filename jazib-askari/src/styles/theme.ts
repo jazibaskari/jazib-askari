@@ -59,8 +59,13 @@ export const getTheme = (mode: PaletteMode) =>
       },
       h3: {
         fontFamily: typography.families.regular,
-        fontSize: typography.sizes.h2,
-        lineHeight: typography.lineHeights.h2,
+        fontSize: typography.sizes.h3,
+        lineHeight: typography.lineHeights.h3,
+      },
+      h4: {
+        fontFamily: typography.families.regular,
+        fontSize: typography.sizes.h4,
+        lineHeight: typography.lineHeights.h4,
       },
       body1: {
         fontFamily: typography.families.regular,
