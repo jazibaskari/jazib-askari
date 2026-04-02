@@ -11,10 +11,9 @@ import {
   useTheme 
 } from "@mui/material";
 import MenuIcon from '@mui/icons-material/Menu';
-import Brightness4Icon from '@mui/icons-material/Brightness4'; // Moon
-import Brightness7Icon from '@mui/icons-material/Brightness7'; // Sun
-import { ColorModeContext } from "../../App"; // Adjust this path to point to your App file
-
+import Brightness4Icon from '@mui/icons-material/Brightness4'; 
+import Brightness7Icon from '@mui/icons-material/Brightness7'; 
+import { ColourModeContext } from "../../context/ColourModeContext"; 
 const allSections = ["Home", "About", "Skills", "Experience", "Projects"];
 
 interface NavbarProps {
@@ -24,7 +23,7 @@ interface NavbarProps {
 const Navbar = ({ onNavClick }: NavbarProps) => {
   const [mobileOpen, setMobileOpen] = useState(false);
   const theme = useTheme();
-  const colorMode = useContext(ColorModeContext);
+  const colourMode = useContext(ColourModeContext);
 
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
@@ -65,13 +64,12 @@ const Navbar = ({ onNavClick }: NavbarProps) => {
         top: 0,
         zIndex: 1000,
         display: "flex",
-        justifyContent: "space-between", // Changed to space-between for icon placement
+        justifyContent: "space-between", 
         alignItems: "center",
         p: 2,
-        bgcolor: "background.default", // THEME AWARE
+        bgcolor: "background.default", 
       }}
     >
-      {/* Desktop Menu */}
       <Box sx={{ display: { xs: "none", md: "flex" }, gap: 2 }}>
         {allSections.map((s) => (
           <Button key={s} sx={buttonStyle} onClick={() => handleScroll(s)}>
@@ -79,14 +77,10 @@ const Navbar = ({ onNavClick }: NavbarProps) => {
           </Button>
         ))}
       </Box>
-
-      {/* Theme Toggle Button (Always Visible) */}
       <Box sx={{ display: "flex", alignItems: "center" }}>
-        <IconButton onClick={colorMode.toggleColorMode} color="inherit">
+        <IconButton onClick={colourMode.toggleColourMode} color="inherit">
           {theme.palette.mode === 'dark' ? <Brightness7Icon /> : <Brightness4Icon />}
         </IconButton>
-
-        {/* Mobile Burger (Right side) */}
         <Box sx={{ display: { xs: "flex", md: "none" }, ml: 1 }}>
           <IconButton
             color="inherit"
