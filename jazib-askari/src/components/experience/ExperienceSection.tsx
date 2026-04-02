@@ -166,23 +166,41 @@ const ExperienceSection = ({ trigger }: ExperienceSectionProps) => {
                 }}
               >
                 <Box sx={{ mb: 2 }}>
-                  <Typography variant="h3" fontWeight="bold" sx={{color: "text.grey"}}>{exp.title}</Typography>
-                  <Typography variant="subtitle1" sx={{ color: "text.tertiary", fontWeight: 600, mt: 0.5 }}>
+                  <Typography variant="h3" fontWeight="bold" sx={{color: "text.primary"}}>{exp.title}</Typography>
+                  <Typography variant="body1" sx={{ color: "text.tertiary", mt: 0.5 }}>
                     {exp.subtitle}
                   </Typography>
-                  <Typography variant="caption" sx={{ color: "text.primary", fontWeight: 600, textTransform: "uppercase", display: "block", mt: 0.5 }}>
+                  <Typography variant="body2" sx={{ color: "text.primary", textTransform:"uppercase", fontWeight: 600, display: "block", mt: 0.5 }}>
                     {exp.dates}
                   </Typography>
                 </Box>
                 <Typography variant="body1" sx={{ color: "text.secondary", lineHeight: 1.7, fontSize: "1rem", mb: 3, flex: 1 }}>
                   {exp.description}
                 </Typography>
-                <Stack direction="row" spacing={1} flexWrap="wrap" sx={{ gap: 1 }}>
+                <Box 
+                  sx={{ 
+                    display: "flex", 
+                    flexWrap: "wrap", 
+                    gap: 1, 
+                    justifyContent: "flex-start" 
+                  }}
+                >
                   {exp.tags.map((tag) => (
-                    <Chip key={tag} label={tag} sx={{ ...theme.typography.h4, bgcolor: "action.hover",     py: 2, 
-                      px: 1, fontSize: "0.9rem", height: "28px" }} />
+                    <Chip 
+                      key={tag} 
+                      label={tag} 
+                      sx={{ 
+                        ...theme.typography.h4, 
+                        bgcolor: "action.hover",     
+                        py: 2, 
+                        px: 1, 
+                        fontSize: "0.9rem", 
+                        height: "28px", 
+                        ml: "0 !important" 
+                      }} 
+                    />
                   ))}
-                </Stack>
+                </Box>
               </Box>
             </TextAnimation>
           </Box>
