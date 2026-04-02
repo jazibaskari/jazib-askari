@@ -86,9 +86,7 @@ const ExperienceSection = ({ trigger }: ExperienceSectionProps) => {
 
   const scroll = (direction: "left" | "right") => {
     if (containerRef.current) {
-      // Logic: Scroll by 80% of the visible width to ensure the "peek" carries over
       const scrollAmount = containerRef.current.clientWidth * 0.8;
-      
       containerRef.current.scrollBy({
         left: direction === "left" ? -scrollAmount : scrollAmount,
         behavior: "smooth",
@@ -142,10 +140,8 @@ const ExperienceSection = ({ trigger }: ExperienceSectionProps) => {
           display: "flex",
           gap: 3,
           overflowX: "auto",
-          // Removed mandatory snap to allow for fluid "peeking" positions
           scrollSnapType: "x proximity", 
           pb: 4,
-          // This padding ensures that even the last card has "air" on the right
           px: { xs: 0, md: 0 },
           "::-webkit-scrollbar": { display: "none" },
           msOverflowStyle: "none",
@@ -158,10 +154,6 @@ const ExperienceSection = ({ trigger }: ExperienceSectionProps) => {
             sx={{ 
               scrollSnapAlign: "start", 
               flexShrink: 0,
-              // CALCULATED WIDTHS:
-              // Desktop: ~31% ensures 3 full cards + a gap + a sliver of the 4th
-              // Tablet: 45% (2 cards + sliver)
-              // Mobile: 85% (1 card + sliver)
               width: { xs: "85%", sm: "45%", md: "31%" } 
             }}
           >
@@ -184,11 +176,11 @@ const ExperienceSection = ({ trigger }: ExperienceSectionProps) => {
                 }}
               >
                 <Box sx={{ mb: 2 }}>
-                  <Typography variant="h3" fontWeight="bold" sx={{color: "text.grey"}}>{exp.title}</Typography>
-                  <Typography variant="subtitle1" sx={{ color: "text.tertiary", fontWeight: 600, mt: 0.5 }}>
+                  <Typography variant="h3" fontWeight="bold" sx={{color: "text.primary"}}>{exp.title}</Typography>
+                  <Typography variant="body1" sx={{ color: "text.tertiary", mt: 0.5 }}>
                     {exp.subtitle}
                   </Typography>
-                  <Typography variant="caption" sx={{ color: "text.primary", fontWeight: 600, textTransform: "uppercase", display: "block", mt: 0.5 }}>
+                  <Typography variant="body2" sx={{ color: "text.primary", textTransform:"uppercase", fontWeight: 600, display: "block", mt: 0.5 }}>
                     {exp.dates}
                   </Typography>
                 </Box>
@@ -196,13 +188,30 @@ const ExperienceSection = ({ trigger }: ExperienceSectionProps) => {
                 <Typography variant="body1" sx={{ color: "text.secondary", lineHeight: 1.7, fontSize: "1rem", mb: 3, flex: 1 }}>
                   {exp.description}
                 </Typography>
-
-                <Stack direction="row" spacing={1} flexWrap="wrap" sx={{ gap: 1 }}>
+                <Box 
+                  sx={{ 
+                    display: "flex", 
+                    flexWrap: "wrap", 
+                    gap: 1, 
+                    justifyContent: "flex-start" 
+                  }}
+                >
                   {exp.tags.map((tag) => (
-                    <Chip key={tag} label={tag} sx={{ ...theme.typography.h4, bgcolor: "action.hover",     py: 2, 
-                      px: 1, fontSize: "0.9rem", height: "28px" }} />
+                    <Chip 
+                      key={tag} 
+                      label={tag} 
+                      sx={{ 
+                        ...theme.typography.h4, 
+                        bgcolor: "action.hover",     
+                        py: 2, 
+                        px: 1, 
+                        fontSize: "0.9rem", 
+                        height: "28px", 
+                        ml: "0 !important" 
+                      }} 
+                    />
                   ))}
-                </Stack>
+                </Box>
               </Box>
             </TextAnimation>
           </Box>
