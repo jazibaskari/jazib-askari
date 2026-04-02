@@ -16,8 +16,8 @@ const HomeSection = ({ trigger }: HomeSectionProps) => {
           Jazib Askari 
         </Typography>
       </TextAnimation>
-      <TextAnimation duration={1.2} trigger={trigger}>
         <Stack direction="row" spacing={1} sx={{ ml: -1.5 }}> 
+        <TextAnimation duration={0.3} trigger={trigger}>
           <IconButton 
             href="https://github.com/yourusername" 
             target="_blank"
@@ -25,6 +25,8 @@ const HomeSection = ({ trigger }: HomeSectionProps) => {
           >
             <GitHubIcon /> 
           </IconButton>
+          </TextAnimation>
+          <TextAnimation duration={0.6} trigger={trigger}>
           <IconButton 
             href="https://linkedin.com/in/yourusername" 
             target="_blank"
@@ -32,14 +34,16 @@ const HomeSection = ({ trigger }: HomeSectionProps) => {
           >
             <LinkedInIcon />
           </IconButton>
+          </TextAnimation>
+          <TextAnimation duration={1.2} trigger={trigger}>
           <IconButton 
             href="mailto:your.email@example.com" 
             sx={{ color: iconColor }}
           >
             <MailOutlineIcon />
           </IconButton>
+          </TextAnimation>
         </Stack>
-      </TextAnimation>
     </Section>
   );
 };

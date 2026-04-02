@@ -53,6 +53,7 @@ const SkillsSection = ({ trigger }: SkillsSectionProps) => {
             color={activeFilters.includes(cat.id) ? "primary" : "default"}
             variant={activeFilters.includes(cat.id) ? "filled" : "filled"}
             sx={{ 
+              ...theme.typography.h4,
               color: activeFilters.includes(cat.id) ? "white": theme.palette.text.primary,
               cursor: "pointer", 
               fontSize: "1rem", 
@@ -93,7 +94,7 @@ const SkillsSection = ({ trigger }: SkillsSectionProps) => {
                   "&:hover": { bgcolor:"action.hover", transform: "translateY(-8px)"},
                 }}
               >
-                <Typography variant="h5" fontWeight="bold" sx={{ mb: 1}}>
+                <Typography variant="h3" fontWeight="bold" sx={{ mb: 1}}>
                   {cat.label}
                 </Typography>
                 <Typography variant="body2" sx={{ color: "text.grey", mb: 2.5 }}>
@@ -113,10 +114,13 @@ const SkillsSection = ({ trigger }: SkillsSectionProps) => {
                       key={s} 
                       label={s} 
                       sx={{ 
+                        ...theme.typography.h4,
                         bgcolor: "action.hover", 
-                        fontWeight: 600, 
                         fontSize: "0.9rem",
-                        ml: "0 !important"
+                        ml: "0 !important",
+                        py: 2, 
+                        px: 1,
+                        height: "28px"
                       }} 
                     />
                   ))}

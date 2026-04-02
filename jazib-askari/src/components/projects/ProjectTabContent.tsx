@@ -3,10 +3,12 @@ import GitHubIcon from "@mui/icons-material/GitHub";
 import LaunchIcon from "@mui/icons-material/Launch";
 import type { Project } from "../../types/project";
 import Photo from "../../assets/images/Photo.png";
+import { useTheme } from '@mui/material/styles';
 interface Props {
   project: Project;
 }
 const ProjectTabContent = ({ project }: Props) => {
+  const theme = useTheme();
   return (
     <Box
       sx={{
@@ -82,10 +84,12 @@ const ProjectTabContent = ({ project }: Props) => {
               key={skill}
               label={skill}
               sx={{
+                ...theme.typography.h4,
+                py: 2, 
+                px: 1,
                 bgcolor: "action.hover",
-                fontWeight: 600,
                 fontSize: "0.9rem",
-                height: "36px",
+                height: "28px",
               }}
             />
           ))}

@@ -10,7 +10,7 @@ const Footer = () => {
       sx={{
         py: 6,
         px: { xs: 2, md: "150px" }, 
-        bgcolor: "background.default"
+        bgcolor: "background.paper"
       }}
     >
       <Box
