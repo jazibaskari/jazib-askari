@@ -12,7 +12,15 @@ interface Props {
 const ProjectTabContent = ({ project, trigger }: Props) => {
   const theme = useTheme();
   return (
-    <Box sx={{ display: "flex", flexDirection: { xs: "column", md: "row" }, width: "100%", alignItems: "stretch", gap: { xs: 2, md: 4 } }}>
+    <Box 
+      sx={{ 
+        display: "flex", 
+        flexDirection: { xs: "column", md: "row" }, 
+        width: "100%", 
+        alignItems: "stretch", 
+        gap: { xs: 2, md: 4 } 
+      }}
+    >
       <Box
         sx={{
           flex: 1,
@@ -32,7 +40,7 @@ const ProjectTabContent = ({ project, trigger }: Props) => {
                 sx={{
                   bgcolor: "action.hover",
                   width: 44, height: 44,
-                  "&:hover": { bgcolor:"primary.main", transform: "translateY(-2px)" },
+                  "&:hover": { bgcolor:"primary.main", transform: "translateY(-2px)", color: "white" },
                   transition: "all 0.3s ease",
                 }}
               >
@@ -48,7 +56,7 @@ const ProjectTabContent = ({ project, trigger }: Props) => {
                 sx={{
                   bgcolor: "action.hover",
                   width: 44, height: 44,
-                  "&:hover": { bgcolor:"primary.main", transform: "translateY(-2px)" },
+                  "&:hover": { bgcolor:"primary.main", transform: "translateY(-2px)", color: "white" },
                   transition: "all 0.3s ease",
                 }}
               >
@@ -64,7 +72,7 @@ const ProjectTabContent = ({ project, trigger }: Props) => {
             lineHeight: 1.8,
             fontSize: "1.1rem",
             mb: 4,
-            flex: 1, 
+            flex: 1,
           }}
         >
           {project.summary}
@@ -87,8 +95,16 @@ const ProjectTabContent = ({ project, trigger }: Props) => {
           ))}
         </Box>
       </Box>
-      <Box sx={{ flex: 1, borderRadius: "24px", overflow: "hidden", display: "flex" }}>
-        <TextAnimation duration={1.2} trigger={trigger}>
+      <Box 
+        sx={{ 
+          flex: 1, 
+          borderRadius: "24px", 
+          overflow: "hidden", 
+          display: "flex",
+          minHeight: { xs: "250px", md: "100%" } 
+        }}
+      >
+        <TextAnimation key={project.id} duration={1.2} trigger={trigger}>
           <Box
             component="img"
             src={Photo} 

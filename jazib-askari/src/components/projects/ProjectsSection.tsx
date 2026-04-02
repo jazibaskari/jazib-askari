@@ -58,7 +58,7 @@ const ProjectsSection = ({ trigger }: ProjectsSectionProps) => {
               ))}
             </Tabs>
           </Box>
-          <Box sx={{ width: "100%" }}>
+          <Box sx={{ width: "100%", minHeight: { xs: "auto", md: "450px" } }}>
             {projects.map((p, index) => (
               <div
                 role="tabpanel"
@@ -66,13 +66,12 @@ const ProjectsSection = ({ trigger }: ProjectsSectionProps) => {
                 id={`project-tabpanel-${index}`}
                 aria-labelledby={`project-tab-${index}`}
                 key={p.id}
-                style={{ width: "100%" }}
+                style={{ 
+                  width: "100%", 
+                  display: value === index ? "block" : "none" 
+                }}
               >
-                {value === index && (
-                  <Box sx={{ width: "100%" }}>
-                    <ProjectTabContent project={p} trigger={value} />
-                  </Box>
-                )}
+                <ProjectTabContent project={p} trigger={trigger + value} />
               </div>
             ))}
           </Box>
@@ -81,7 +80,7 @@ const ProjectsSection = ({ trigger }: ProjectsSectionProps) => {
               width: "100%", 
               display: "flex", 
               justifyContent: "flex-start", 
-              mt: 3 
+              mt: 5 
             }}
           >
             <Button
@@ -91,7 +90,7 @@ const ProjectsSection = ({ trigger }: ProjectsSectionProps) => {
               sx={(theme) => ({
                 ...theme.typography.body1, 
                 textTransform: "none",
-                p: 0, 
+                p: 0,
                 minWidth: 0,
                 color: "text.primary",
                 transition: "all 0.3s ease",
