@@ -9,7 +9,7 @@ const Footer = () => {
       component="footer"
       sx={{
         py: 6,
-        px: { xs: 2, md: "150px" }, 
+        px: { xs: 4, md: "100px" }, 
         bgcolor: "background.paper"
       }}
     >
@@ -24,7 +24,12 @@ const Footer = () => {
       >
         <Typography
           variant="body2"
-          sx={{ color: "text.grey", fontWeight: 500, textAlign: { xs: "center", md: "left" } }}
+          sx={{ 
+            color: "text.grey", 
+            fontWeight: 500, 
+            textAlign: { xs: "center", md: "left" },
+            p: 0 
+          }}
         >
           © Jazib Askari. All rights reserved.
         </Typography>
