@@ -12,7 +12,7 @@ const Footer = () => {
       sx={{
         py: 6,
         px: { xs: 2, md: "150px" }, 
-        bgcolor: "background.default"
+        bgcolor: "background.paper"
       }}
     >
       <Box
@@ -24,15 +24,12 @@ const Footer = () => {
           gap: 3,
         }}
       >
-        {/* Copyright Text */}
         <Typography
           variant="body2"
           sx={{ color: "text.grey", fontWeight: 500, textAlign: { xs: "center", md: "left" } }}
         >
           © Jazib Askari. All rights reserved.
         </Typography>
-
-        {/* Social Icons - Exact same as Home */}
         <Stack direction="row" spacing={1}>
           <IconButton
             href="https://github.com/yourusername"
