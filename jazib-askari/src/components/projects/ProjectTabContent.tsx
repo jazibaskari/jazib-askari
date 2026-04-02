@@ -4,32 +4,33 @@ import LaunchIcon from "@mui/icons-material/Launch";
 import type { Project } from "../../types/project";
 import Photo from "../../assets/images/Photo.png";
 import { useTheme } from '@mui/material/styles';
+import TextAnimation from "../../animations/AnimatedText";
 
 interface Props {
   project: Project;
+  trigger: number;
 }
 
-const ProjectTabContent = ({ project }: Props) => {
+const ProjectTabContent = ({ project, trigger }: Props) => {
   const theme = useTheme();
+  
   return (
-    <Box
-      sx={{
-        display: "flex",
-        flexDirection: { xs: "column", md: "row" },
-        width: "100%",
+    <Box 
+      sx={{ 
+        display: "flex", 
+        flexDirection: { xs: "column", md: "row" }, 
+        width: "100%", 
         alignItems: "stretch", 
-        gap: { xs: 2, md: 4 },
-        mt: 0, 
+        gap: { xs: 2, md: 4 } 
       }}
     >
       <Box
         sx={{
           flex: 1,
           bgcolor: "background.paper",
-          p: { xs: 4, md: 6 },
+          p: 4, 
           display: "flex",
           flexDirection: "column",
-          justifyContent: "flex-start", 
           borderRadius: "24px",
         }}
       >
@@ -41,9 +42,8 @@ const ProjectTabContent = ({ project }: Props) => {
                 target="_blank"
                 sx={{
                   bgcolor: "action.hover",
-                  width: 48,
-                  height: 48,
-                  "&:hover": { bgcolor:"primary.main", transform: "translateY(-2px)" },
+                  width: 44, height: 44,
+                  "&:hover": { bgcolor:"primary.main", transform: "translateY(-2px)", color: "white" },
                   transition: "all 0.3s ease",
                 }}
               >
@@ -58,9 +58,8 @@ const ProjectTabContent = ({ project }: Props) => {
                 target="_blank"
                 sx={{
                   bgcolor: "action.hover",
-                  width: 48,
-                  height: 48,
-                  "&:hover": { bgcolor:"primary.main", transform: "translateY(-2px)" },
+                  width: 44, height: 44,
+                  "&:hover": { bgcolor:"primary.main", transform: "translateY(-2px)", color: "white" },
                   transition: "all 0.3s ease",
                 }}
               >
@@ -73,16 +72,17 @@ const ProjectTabContent = ({ project }: Props) => {
         <Typography
           variant="body1"
           sx={{
-            color: "text.grey",
+            color: "text.secondary",
             lineHeight: 1.8,
-            fontSize: "1.15rem",
+            fontSize: "1.1rem",
             mb: 4,
+            flex: 1,
           }}
         >
           {project.summary}
         </Typography>
 
-        <Stack direction="row" spacing={1} flexWrap="wrap" sx={{ gap: 1.5 }}>
+        <Box sx={{ display: "flex", flexWrap: "wrap", gap: 1 }}>
           {project.skills?.map((skill) => (
             <Chip
               key={skill}
@@ -90,39 +90,39 @@ const ProjectTabContent = ({ project }: Props) => {
               sx={{
                 ...theme.typography.h4,
                 py: 2, 
-                px: 1,
+                px: 1, 
                 bgcolor: "action.hover",
                 fontSize: "0.9rem",
                 height: "28px",
+                ml: "0 !important"
               }}
             />
           ))}
-        </Stack>
+        </Box>
       </Box>
 
-      <Box
-        sx={{
-          flex: 1,
-          bgcolor: "none",
-          p: 0, 
-          borderRadius: "24px",
-          overflow: "hidden",
+      <Box 
+        sx={{ 
+          flex: 1, 
+          borderRadius: "24px", 
+          overflow: "hidden", 
           display: "flex",
+          minHeight: { xs: "250px", md: "100%" } 
         }}
       >
-        <Box
-          component="img"
-          src={Photo} 
-          alt={project.title}
-          sx={{
-            width: "100%",
-            height: "100%", 
-            // minHeight: { xs: "200px", md: "200px" },
-            maxHeight: { xs: "300px", md: "300px" },
-            objectFit: "cover",
-            objectPosition: "50% 40%",
-          }}
-        />
+        <TextAnimation key={project.id} duration={1.2} trigger={trigger}>
+          <Box
+            component="img"
+            src={Photo} 
+            alt={project.title}
+            sx={{
+              width: "100%",
+              height: "100%", 
+              maxHeight: { xs: "300px", md: "400px" },
+              objectFit: "cover",
+            }}
+          />
+        </TextAnimation>
       </Box>
     </Box>
   );
