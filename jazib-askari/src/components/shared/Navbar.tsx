@@ -1,26 +1,27 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { Box } from "@mui/system";
-import { Button, Menu, MenuItem, Fade } from "@mui/material";
-import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
+import { 
+  Button, 
+  IconButton, 
+  Drawer, 
+  List, 
+  ListItem, 
+  ListItemButton, 
+  ListItemText 
+} from "@mui/material";
+import MenuIcon from '@mui/icons-material/Menu';
 
-// Define which sections stay and which hide on mobile
-const alwaysVisible = ["Home", "About", "Skills"];
-const mobileHidden = ["Experience", "Projects"];
+const allSections = ["Home", "About", "Skills", "Experience", "Projects"];
 
 interface NavbarProps {
-  onNavClick: () => void;
+  onNavClick?: () => void;
 }
 
 const Navbar = ({ onNavClick }: NavbarProps) => {
-  const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
-  const open = Boolean(anchorEl);
+  const [mobileOpen, setMobileOpen] = useState(false);
 
-  const handleOpenMore = (event: React.MouseEvent<HTMLButtonElement>) => {
-    setAnchorEl(event.currentTarget);
-  };
-
-  const handleCloseMore = () => {
-    setAnchorEl(null);
+  const handleDrawerToggle = () => {
+    setMobileOpen(!mobileOpen);
   };
 
   const handleScroll = (id: string) => {
@@ -29,19 +30,25 @@ const Navbar = ({ onNavClick }: NavbarProps) => {
     } else {
       const el = document.getElementById(id);
       if (el) {
-        el.scrollIntoView({ behavior: "smooth" });
+        const elementPosition = el.getBoundingClientRect().top + window.pageYOffset;
+        
+        const offset = 80; 
+        const offsetPosition = elementPosition - offset;
+
+        window.scrollTo({
+          top: offsetPosition,
+          behavior: "smooth"
+        });
       }
     }
-    handleCloseMore();
-    onNavClick();
+    setMobileOpen(false);
+    if (onNavClick) onNavClick();
   };
-
   const buttonStyle = {
     color: "text.primary",
     textTransform: "none",
     fontWeight: 500,
     fontSize: "0.95rem",
-    minWidth: "auto",
     "&:hover": { bgcolor: "rgba(0,0,0,0.04)" }
   };
 
@@ -52,87 +59,53 @@ const Navbar = ({ onNavClick }: NavbarProps) => {
         top: 0,
         zIndex: 1000,
         display: "flex",
+        justifyContent: "flex-start", 
         alignItems: "center",
-        gap: { xs: 0.5, sm: 2 },
         p: 2,
         bgcolor: "background.paper",
-        borderBottom: "1px solid",
-        borderColor: "divider",
       }}
     >
-      {/* 1. Permanent Sections (Home, About, Skills) */}
-      {alwaysVisible.map((s) => (
-        <Button
-          sx={buttonStyle}
-          key={s}
-          onClick={() => handleScroll(s)}
-        >
-          {s}
-        </Button>
-      ))}
-
-      {/* 2. Desktop-Only Sections (Experience, Projects) */}
-      {mobileHidden.map((s) => (
-        <Button
-          key={s}
-          onClick={() => handleScroll(s)}
-          sx={{
-            ...buttonStyle,
-            display: { xs: "none", md: "inline-flex" }
-          }}
-        >
-          {s}
-        </Button>
-      ))}
-
-      {/* 3. "More" Dropdown (Mobile Only) */}
-      <Box sx={{ display: { xs: "block", md: "none" } }}>
-        <Button
-          sx={buttonStyle}
-          onClick={handleOpenMore}
-          endIcon={<KeyboardArrowDownIcon />}
-        >
-          More
-        </Button>
-        <Menu
-          anchorEl={anchorEl}
-          open={open}
-          onClose={handleCloseMore}
-          TransitionComponent={Fade}
-          anchorOrigin={{
-            vertical: 'bottom',
-            horizontal: 'left',
-          }}
-          transformOrigin={{
-            vertical: 'top',
-            horizontal: 'left',
-          }}
-          PaperProps={{
-            sx: {
-              mt: 1.5,
-              borderRadius: "12px",
-              minWidth: "150px",
-              boxShadow: "0px 8px 24px rgba(0,0,0,0.1)"
-            }
-          }}
-        >
-          {mobileHidden.map((s) => (
-            <MenuItem 
-              key={s} 
-              onClick={() => handleScroll(s)}
-              sx={{ 
-                color: "text.primary",
-                py: 1.5, 
-                px: 3,
-                fontSize: "0.95rem",
-                fontWeight: 500
-              }}
-            >
-              {s}
-            </MenuItem>
-          ))}
-        </Menu>
+      <Box sx={{ display: { xs: "none", md: "flex" }, gap: 2 }}>
+        {allSections.map((s) => (
+          <Button key={s} sx={buttonStyle} onClick={() => handleScroll(s)}>
+            {s}
+          </Button>
+        ))}
       </Box>
+      <Box sx={{ 
+        display: { xs: "flex", md: "none" }, 
+        width: "100%", 
+        justifyContent: "flex-end" 
+      }}>
+        <IconButton
+          color="inherit"
+          aria-label="open drawer"
+          onClick={handleDrawerToggle}
+        >
+          <MenuIcon />
+        </IconButton>
+      </Box>
+      <Drawer
+        anchor="right"
+        open={mobileOpen}
+        onClose={handleDrawerToggle}
+        sx={{
+          display: { xs: "block", md: "none" },
+          "& .MuiDrawer-paper": { boxSizing: "border-box", width: 240 },
+        }}
+      >
+        <Box sx={{ pt: 2 }}>
+          <List>
+            {allSections.map((s) => (
+              <ListItem key={s} disablePadding>
+                <ListItemButton onClick={() => handleScroll(s)}>
+                  <ListItemText primary={s} sx={{ textAlign: 'center' }} />
+                </ListItemButton>
+              </ListItem>
+            ))}
+          </List>
+        </Box>
+      </Drawer>
     </Box>
   );
 };

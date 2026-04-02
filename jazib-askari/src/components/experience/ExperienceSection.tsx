@@ -204,7 +204,6 @@ const ExperienceSection = ({ trigger }: ExperienceSectionProps) => {
             </TextAnimation>
           </Box>
         ))}
-        {/* The "Anchor" - this invisible box ensures the scroll has a definitive end point */}
         <Box sx={{ minWidth: { xs: "40px", md: "150px" }, flexShrink: 0 }} />
       </Box>
     </Section>

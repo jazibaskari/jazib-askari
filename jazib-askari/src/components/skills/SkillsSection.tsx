@@ -1,6 +1,6 @@
 import { useState } from "react";
 import Section from "../shared/Section";
-import { Typography, Box, Stack, Chip } from "@mui/material";
+import { Typography, Box, Chip } from "@mui/material";
 import CheckIcon from "@mui/icons-material/Check";
 import CodeIcon from "@mui/icons-material/Code";
 import StorageIcon from "@mui/icons-material/Storage";
@@ -37,8 +37,16 @@ const SkillsSection = ({ trigger }: SkillsSectionProps) => {
       <TextAnimation duration={0.6} trigger={trigger}>
         <Typography variant="h2" gutterBottom>Skills</Typography>
       </TextAnimation>
-
-      <Stack direction="row" spacing={1} flexWrap="wrap" sx={{ mb: 6, gap: 1 }}>
+      <Box 
+        sx={{ 
+          display: "flex", 
+          flexWrap: "wrap", 
+          gap: 1, 
+          mb: 6, 
+          justifyContent: "flex-start",
+          width: "100%"
+        }}
+      >
         {skillCategories.map((cat) => (
           <Chip
             key={cat.id}
@@ -47,12 +55,24 @@ const SkillsSection = ({ trigger }: SkillsSectionProps) => {
             icon={activeFilters.includes(cat.id) ? <CheckIcon /> : undefined}
             color={activeFilters.includes(cat.id) ? "primary" : "default"}
             variant={activeFilters.includes(cat.id) ? "filled" : "outlined"}
-            sx={{ cursor: "pointer", fontSize: "1rem", py: 2, px: 1 }}
+            sx={{ 
+              cursor: "pointer", 
+              fontSize: "1rem", 
+              py: 2, 
+              px: 1,
+              ml: "0 !important" 
+            }}
           />
         ))}
-      </Stack>
-
-      <Box sx={{ display: "flex", flexWrap: "wrap", gap: 4, justifyContent: { xs: "center", md: "flex-start" } }}>
+      </Box>
+      <Box 
+        sx={{ 
+          display: "flex", 
+          flexWrap: "wrap", 
+          gap: 4, 
+          justifyContent: "flex-start" 
+        }}
+      >
         {skillCategories.map((cat, catIndex) => {
           if (!activeFilters.includes(cat.id)) return null;
 
@@ -60,24 +80,50 @@ const SkillsSection = ({ trigger }: SkillsSectionProps) => {
             <TextAnimation key={cat.id} trigger={trigger} delay={catIndex * 0.1}>
               <Box
                 sx={{
-                  width: "400px", height: "300px", borderRadius: "28px", backgroundColor: "#f7f7f7",
-                  display: "flex", flexDirection: "column", alignItems: "flex-start", p: 4,
-                 boxSizing: "border-box", overflowY: "auto",
+                  width: { xs: "100%", sm: "400px" }, 
+                  maxWidth: "400px",
+                  height: "300px", 
+                  borderRadius: "28px", 
+                  backgroundColor: "#f7f7f7",
+                  display: "flex", 
+                  flexDirection: "column", 
+                  alignItems: "flex-start", 
+                  p: 4,
+                  boxSizing: "border-box", 
+                  overflowY: "auto",
                   '&::-webkit-scrollbar': { display: 'none' },
                   transition: "0.3s",
                   "&:hover": { transform: "translateY(-8px)"},
                 }}
               >
-                {/* <Box sx={{ bgcolor: "white", borderRadius: "50%", width: 48, height: 48, display: 'flex', alignItems: 'center', justifyContent: 'center', mb: 2, color: "primary.main"}}>
-                  {cat.icon}
-                </Box> */}
-                <Typography variant="h5" fontWeight="bold" sx={{ mb: 1 }}>{cat.label}</Typography>
-                <Typography variant="body2" sx={{ color: "text.secondary", mb: 2.5 }}>{cat.description}</Typography>
-                <Stack direction="row" spacing={1} flexWrap="wrap" sx={{ gap: 1.5 }}>
+                <Typography variant="h5" fontWeight="bold" sx={{ mb: 1}}>
+                  {cat.label}
+                </Typography>
+                <Typography variant="body2" sx={{ color: "text.secondary", mb: 2.5 }}>
+                  {cat.description}
+                </Typography>
+                <Box 
+                  sx={{ 
+                    display: "flex", 
+                    flexWrap: "wrap", 
+                    gap: 1.5,
+                    justifyContent: "flex-start",
+                    width: "100%"
+                  }}
+                >
                   {cat.skills.map((s) => (
-                    <Chip key={s} label={s} sx={{ bgcolor: "white", fontWeight: 600, fontSize: "0.9rem" }} />
+                    <Chip 
+                      key={s} 
+                      label={s} 
+                      sx={{ 
+                        bgcolor: "white", 
+                        fontWeight: 600, 
+                        fontSize: "0.9rem",
+                        ml: "0 !important"
+                      }} 
+                    />
                   ))}
-                </Stack>
+                </Box>
               </Box>
             </TextAnimation>
           );
