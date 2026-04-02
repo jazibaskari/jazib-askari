@@ -4,10 +4,12 @@ import LaunchIcon from "@mui/icons-material/Launch";
 import type { Project } from "../../types/project";
 import Photo from "../../assets/images/Photo.png";
 import { useTheme } from '@mui/material/styles';
+import TextAnimation from "../../animations/AnimatedText";
 interface Props {
   project: Project;
+  trigger: number;
 }
-const ProjectTabContent = ({ project }: Props) => {
+const ProjectTabContent = ({ project, trigger }: Props) => {
   const theme = useTheme();
   return (
     <Box
@@ -24,7 +26,7 @@ const ProjectTabContent = ({ project }: Props) => {
         sx={{
           flex: 1,
           bgcolor: "background.paper",
-          p: { xs: 4, md: 6 },
+          p: 4, 
           display: "flex",
           flexDirection: "column",
           justifyContent: "flex-start", 
@@ -39,8 +41,8 @@ const ProjectTabContent = ({ project }: Props) => {
                 target="_blank"
                 sx={{
                   bgcolor: "action.hover",
-                  width: 48,
-                  height: 48,
+                  width: 44, 
+                  height: 44,
                   "&:hover": { bgcolor:"primary.main", transform: "translateY(-2px)" },
                   transition: "all 0.3s ease",
                 }}
@@ -56,8 +58,8 @@ const ProjectTabContent = ({ project }: Props) => {
                 target="_blank"
                 sx={{
                   bgcolor: "action.hover",
-                  width: 48,
-                  height: 48,
+                  width: 44,
+                  height: 44,
                   "&:hover": { bgcolor:"primary.main", transform: "translateY(-2px)" },
                   transition: "all 0.3s ease",
                 }}
@@ -70,15 +72,15 @@ const ProjectTabContent = ({ project }: Props) => {
         <Typography
           variant="body1"
           sx={{
-            color: "text.grey",
+            color: "text.secondary",
             lineHeight: 1.8,
-            fontSize: "1.15rem",
+            fontSize: "1.1rem",
             mb: 4,
           }}
         >
           {project.summary}
         </Typography>
-        <Stack direction="row" flexWrap="wrap" sx={{ gap: 1 }}>
+        <Box sx={{ display: "flex", flexWrap: "wrap", gap: 1 }}>
           {project.skills?.map((skill) => (
             <Chip
               key={skill}
@@ -90,33 +92,33 @@ const ProjectTabContent = ({ project }: Props) => {
                 bgcolor: "action.hover",
                 fontSize: "0.9rem",
                 height: "28px",
+                ml: "0 !important"
               }}
             />
           ))}
-        </Stack>
+        </Box>
       </Box>
       <Box
         sx={{
           flex: 1,
-          bgcolor: "none",
-          p: 0, 
           borderRadius: "24px",
           overflow: "hidden",
           display: "flex",
         }}
       >
-        <Box
+        <TextAnimation duration={1.2} trigger={trigger}>
+          <Box
           component="img"
           src={Photo} 
           alt={project.title}
           sx={{
             width: "100%",
             height: "100%", 
-            maxHeight: { xs: "300px", md: "300px" },
+            maxHeight: { xs: "300px", md: "400px" },
             objectFit: "cover",
-            objectPosition: "50% 40%",
           }}
         />
+        </TextAnimation>
       </Box>
     </Box>
   );
