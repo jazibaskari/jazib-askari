@@ -6,14 +6,12 @@ import {
   Drawer, 
   List, 
   ListItem, 
-  ListItemButton, 
-  ListItemText,
   useTheme 
 } from "@mui/material";
 import MenuIcon from '@mui/icons-material/Menu';
-import Brightness4Icon from '@mui/icons-material/Brightness4'; // Moon
-import Brightness7Icon from '@mui/icons-material/Brightness7'; // Sun
-import { ColorModeContext } from "../../App"; // Adjust this path to point to your App file
+import Brightness4Icon from '@mui/icons-material/Brightness4'; 
+import Brightness7Icon from '@mui/icons-material/Brightness7'; 
+import { ColorModeContext } from "../../App"; 
 
 const allSections = ["Home", "About", "Skills", "Experience", "Projects"];
 
@@ -50,11 +48,12 @@ const Navbar = ({ onNavClick }: NavbarProps) => {
     if (onNavClick) onNavClick();
   };
 
-  const buttonStyle = {
+  const commonButtonStyle = {
     color: "text.primary",
     textTransform: "none",
     fontWeight: 500,
     fontSize: "0.95rem",
+    transition: "0.2s",
     "&:hover": { bgcolor: "action.hover" }
   };
 
@@ -65,28 +64,32 @@ const Navbar = ({ onNavClick }: NavbarProps) => {
         top: 0,
         zIndex: 1000,
         display: "flex",
-        justifyContent: "space-between", // Changed to space-between for icon placement
+        justifyContent: "space-between",
         alignItems: "center",
         p: 2,
-        bgcolor: "background.default", // THEME AWARE
+        bgcolor: "background.default",
       }}
     >
-      {/* Desktop Menu */}
-      <Box sx={{ display: { xs: "none", md: "flex" }, gap: 2 }}>
+      <Box sx={{ display: { xs: "none", md: "flex" }, gap: 1 }}>
         {allSections.map((s) => (
-          <Button key={s} sx={buttonStyle} onClick={() => handleScroll(s)}>
+          <Button 
+            key={s} 
+            onClick={() => handleScroll(s)}
+            sx={{ 
+              ...commonButtonStyle,
+              px: 2,
+              minWidth: "auto" 
+            }}
+          >
             {s}
           </Button>
         ))}
       </Box>
-
-      {/* Theme Toggle Button (Always Visible) */}
       <Box sx={{ display: "flex", alignItems: "center" }}>
         <IconButton onClick={colorMode.toggleColorMode} color="inherit">
           {theme.palette.mode === 'dark' ? <Brightness7Icon /> : <Brightness4Icon />}
         </IconButton>
 
-        {/* Mobile Burger (Right side) */}
         <Box sx={{ display: { xs: "flex", md: "none" }, ml: 1 }}>
           <IconButton
             color="inherit"
@@ -97,23 +100,37 @@ const Navbar = ({ onNavClick }: NavbarProps) => {
           </IconButton>
         </Box>
       </Box>
-
       <Drawer
         anchor="right"
         open={mobileOpen}
         onClose={handleDrawerToggle}
         sx={{
           display: { xs: "block", md: "none" },
-          "& .MuiDrawer-paper": { boxSizing: "border-box", width: 240 },
+          "& .MuiDrawer-paper": { 
+            boxSizing: "border-box", 
+            width: 180, 
+            bgcolor: "background.default",
+            backgroundImage: "none"
+          },
         }}
       >
-        <Box sx={{ pt: 2 }}>
-          <List>
+        <Box sx={{ pt: 4 }}>
+          <List disablePadding>
             {allSections.map((s) => (
               <ListItem key={s} disablePadding>
-                <ListItemButton onClick={() => handleScroll(s)}>
-                  <ListItemText primary={s} sx={{ textAlign: 'center' }} />
-                </ListItemButton>
+                <Button 
+                  onClick={() => handleScroll(s)}
+                  sx={{ 
+                    ...commonButtonStyle,
+                    width: "100%",
+                    justifyContent: "flex-end", 
+                    px: 3, 
+                    py: 2, 
+                    borderRadius: 0, 
+                  }}
+                >
+                  {s}
+                </Button>
               </ListItem>
             ))}
           </List>
