@@ -24,19 +24,24 @@ const ProjectsSection = ({ trigger }: ProjectsSectionProps) => {
     <Section id="Projects">
       <Box sx={{ width: "100%" }}>
         <TextAnimation duration={0.6} trigger={trigger}>
-          <Typography variant="h2" gutterBottom sx={{ pl: { xs: 2, md: 4 } }}>
+          <Typography variant="h2" gutterBottom sx={{ pl: 0 }}>
             Projects
           </Typography>
         </TextAnimation>
 
         <Box sx={{ width: "100%", mt: 4 }}>
-          <Box sx={{ mb: 3, px: { xs: 2, md: 4 } }}>
+          <Box sx={{ mb: 3 }}>
             <Tabs
               value={value}
               onChange={handleChange}
               variant="scrollable"
               scrollButtons="auto"
               aria-label="project tabs"
+              sx={{
+                '& .MuiTabs-flexContainer': {
+                  justifyContent: 'flex-start',
+                }
+              }}
             >
               {projects.map((p, index) => (
                 <Tab
@@ -48,10 +53,14 @@ const ProjectsSection = ({ trigger }: ProjectsSectionProps) => {
                     ...theme.typography.body1,
                     textTransform: "none",
                     fontSize: "1.1rem",
-                    mr: 2,
+                    minWidth: 0,
+                    p: 0,
+                    mr: 4, 
+                    alignItems: 'flex-start',
+                    textAlign: 'left',
                   })}
-                  />
-                ))}
+                />
+              ))}
             </Tabs>
           </Box>
 
@@ -67,52 +76,45 @@ const ProjectsSection = ({ trigger }: ProjectsSectionProps) => {
               >
                 {value === index && (
                   <Box sx={{ width: "100%" }}>
-                    <TextAnimation duration={0.5} trigger={value}>
-                      <ProjectTabContent project={p} />
-                    </TextAnimation>
+                    {/* <TextAnimation duration={0.5} trigger={value}> */}
+                      <ProjectTabContent project={p} trigger={value} />
+                    {/* </TextAnimation> */}
                   </Box>
                 )}
               </div>
             ))}
           </Box>
+
           <Box 
             sx={{ 
               width: "100%", 
               display: "flex", 
               justifyContent: "flex-start", 
-              mt: 1.5,
-              px: { xs: 2, md: 4 } 
+              mt: 3 
             }}
           >
             <Button
-  variant="text"
-  endIcon={<ArrowForwardIcon />}
-  onClick={() => navigate("/projects")}
-  sx={(theme) => ({
-    ...theme.typography.body1, 
-    textTransform: "none",
-    p: 0, 
-    minWidth: 0,
-    color: "text.primary",
-    
-    
-    transition: "all 0.3s cubic-bezier(0.4, 0, 0.2, 1)",
-    
-    "& .MuiButton-endIcon": {
-      transition: "transform 0.3s cubic-bezier(0.4, 0, 0.2, 1)",
-    },
-
-    "&:hover": {
-      backgroundColor: "transparent",
-      color: "text.tertiary",
-      "& .MuiButton-endIcon": {
-        transform: "translateX(6px)", 
-      },
-    },
-  })}
->
-  View All Projects
-</Button>
+              variant="text"
+              endIcon={<ArrowForwardIcon />}
+              onClick={() => navigate("/projects")}
+              sx={(theme) => ({
+                ...theme.typography.body1, 
+                textTransform: "none",
+                p: 0, 
+                minWidth: 0,
+                color: "text.primary",
+                transition: "all 0.3s ease",
+                "&:hover": {
+                  backgroundColor: "transparent",
+                  color: "text.tertiary",
+                  "& .MuiButton-endIcon": {
+                    transform: "translateX(6px)", 
+                  },
+                },
+              })}
+            >
+              View All Projects
+            </Button>
           </Box>
         </Box>
       </Box>
