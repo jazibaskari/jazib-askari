@@ -8,7 +8,7 @@ interface HomeSectionProps {
   trigger: number;
 }
 const HomeSection = ({ trigger }: HomeSectionProps) => {
-  const iconColor = "#4CAF50"; 
+  const iconColor = "#8FBCBB"; 
   return (
     <Section id="Home" isHome={true}>
       <TextAnimation duration={0.6} trigger={trigger}>

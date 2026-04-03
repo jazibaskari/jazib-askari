@@ -22,7 +22,7 @@ export const typography = {
     h1: 1.1,
     h2: 1.2,
     h3: 1.2,
-    h4: 1.0,
+    h4: 1.2,
     body: 1.5,
   },
 };

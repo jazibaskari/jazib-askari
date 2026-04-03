@@ -3,7 +3,7 @@ import GitHubIcon from "@mui/icons-material/GitHub";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
 import MailOutlineIcon from "@mui/icons-material/MailOutline";
 const Footer = () => {
-  const iconColor = "#bfc0c0";
+  const iconColor = "#8FBCBB";
   return (
     <Box
       component="footer"
