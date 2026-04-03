@@ -13,7 +13,7 @@ export const getTheme = (mode: PaletteMode) =>
       ...(mode === 'light'
         ? {
             primary: {
-              main: "#4CAF50",
+              main: "#8FBCBB",
             },
             background: {
               default: "#ffffff",
@@ -22,14 +22,14 @@ export const getTheme = (mode: PaletteMode) =>
             text: {
               primary: "#1a1a1a",
               secondary: "#666666",
-              tertiary: "#4CAF50",
+              tertiary:  "#8FBCBB",
               grey: "#bfc0c0",  
             },
             divider: "rgba(0, 0, 0, 0.12)",
           }
         : {
             primary: {
-              main: "#4CAF50",
+              main: "#8FBCBB",
             },
             background: {
               default: "#121212",
@@ -38,7 +38,7 @@ export const getTheme = (mode: PaletteMode) =>
             text: {
               primary: "#ffffff",
               secondary: "#b0b0b0",
-              tertiary: "#4CAF50", 
+              tertiary:  "#8FBCBB", 
               grey: "#bfc0c0", 
             },
             divider: "rgba(255, 255, 255, 0.12)",

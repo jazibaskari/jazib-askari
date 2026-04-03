@@ -9,26 +9,31 @@ import RuleIcon from "@mui/icons-material/Rule";
 import BuildIcon from "@mui/icons-material/Build";
 import TextAnimation from "../../animations/AnimatedText";
 import { useTheme } from '@mui/material/styles';
+
 interface SkillsSectionProps {
   trigger: number;
 }
+
 const skillCategories = [
-  { id: "frontend", label: "Frontend", icon: <CodeIcon />, description: "Modern, reactive user interfaces built with the latest frameworks.", skills: ["React", "Next.js", "TypeScript"] },
-  { id: "data", label: "Data", icon: <StorageIcon />, description: "Efficient state management and data flow architecture.", skills: ["Redux", "Zustand"] },
-  { id: "uiux", label: "UI/UX", icon: <BrushIcon />, description: "Clean design systems and smooth motion experiences.", skills: ["MUI", "Framer"] },
-  { id: "testing", label: "Testing", icon: <RuleIcon />, description: "Ensuring high-quality code through robust QA testing.", skills: ["Jest", "Cypress"] },
-  { id: "tooling", label: "Tooling", icon: <BuildIcon />, description: "Streamlined development workflows and deployment.", skills: ["Git", "Docker"] },
+  { id: "frontend", label: "Frontend", icon: <CodeIcon />, description: "Modern, reactive user interfaces built with the latest frameworks.", skills: ["React", "Next.js", "TypeScript"], color: "#8FBCBB" },
+  { id: "data", label: "Data", icon: <StorageIcon />, description: "Efficient state management and data flow architecture.", skills: ["Redux", "Zustand"], color: "#88C0D0" },
+  { id: "uiux", label: "UI/UX", icon: <BrushIcon />, description: "Clean design systems and smooth motion experiences.", skills: ["MUI", "Framer"], color: "#BF616A" },
+  { id: "testing", label: "Testing", icon: <RuleIcon />, description: "Ensuring high-quality code through robust QA testing.", skills: ["Jest", "Cypress"], color: "#D08770" },
+  { id: "tooling", label: "Tooling", icon: <BuildIcon />, description: "Streamlined development workflows and deployment.", skills: ["Git", "Docker"], color: "#EBCB8B" },
 ];
+
 const SkillsSection = ({ trigger }: SkillsSectionProps) => {
   const theme = useTheme();
   const [activeFilters, setActiveFilters] = useState<string[]>(
     skillCategories.map((c) => c.id)
   );
+
   const toggleFilter = (id: string) => {
     setActiveFilters((prev) =>
       prev.includes(id) ? prev.filter((item) => item !== id) : [...prev, id]
     );
   };
+
   return (
     <Section id="Skills">
       <TextAnimation duration={0.6} trigger={trigger}>
@@ -40,10 +45,14 @@ const SkillsSection = ({ trigger }: SkillsSectionProps) => {
             key={cat.id}
             label={cat.label}
             onClick={() => toggleFilter(cat.id)}
-            icon={activeFilters.includes(cat.id) ? <CheckIcon /> : undefined}
-            color={activeFilters.includes(cat.id) ? "primary" : "default"}
+            icon={activeFilters.includes(cat.id) ? <CheckIcon sx={{ color: "white !important" }} /> : undefined}
             sx={{ 
               ...theme.typography.h4,
+              backgroundColor: activeFilters.includes(cat.id) ? cat.color : "default",
+              "&:hover": {
+                backgroundColor: activeFilters.includes(cat.id) ? cat.color : "default",
+                opacity: 0.9
+              },
               color: activeFilters.includes(cat.id) ? "white": theme.palette.text.primary,
               cursor: "pointer", fontSize: "1rem", py: 2, px: 1, ml: "0 !important" 
             }}
@@ -82,10 +91,12 @@ const SkillsSection = ({ trigger }: SkillsSectionProps) => {
                         ...theme.typography.h4,
                         py: 2, 
                         px: 1, 
-                        bgcolor: "action.hover", 
+                        bgcolor: cat.color,
+                        color: "white", 
                         fontSize: "0.9rem",
                         height: "28px",
-                        ml: "0 !important"
+                        ml: "0 !important",
+                        "&:hover": { bgcolor: cat.color }
                       }} 
                     />
                   ))}
@@ -98,4 +109,5 @@ const SkillsSection = ({ trigger }: SkillsSectionProps) => {
     </Section>
   );
 };
+
 export default SkillsSection;
