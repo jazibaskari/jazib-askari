@@ -92,7 +92,7 @@ const ProjectsSection = ({ trigger }: ProjectsSectionProps) => {
                 textTransform: "none",
                 p: 0,
                 minWidth: 0,
-                color: "text.primary",
+                color: "text.quarternary",
                 transition: "all 0.3s ease",
                 "&:hover": {
                   backgroundColor: "transparent",

@@ -4,6 +4,7 @@ declare module '@mui/material/styles' {
   interface TypeText {
     tertiary?: string;
     grey?: string;
+    quarternary?: string;
   }
 }
 export const getTheme = (mode: PaletteMode) => 
@@ -13,7 +14,7 @@ export const getTheme = (mode: PaletteMode) =>
       ...(mode === 'light'
         ? {
             primary: {
-              main: "#8FBCBB",
+              main: "#55b7b5",
             },
             background: {
               default: "#ffffff",
@@ -22,14 +23,15 @@ export const getTheme = (mode: PaletteMode) =>
             text: {
               primary: "#1a1a1a",
               secondary: "#666666",
-              tertiary:  "#8FBCBB",
+              tertiary:  "#55b7b5",
               grey: "#bfc0c0",  
+              quarternary: "#454b4e",
             },
             divider: "rgba(0, 0, 0, 0.12)",
           }
         : {
             primary: {
-              main: "#8FBCBB",
+              main: "#55b7b5",
             },
             background: {
               default: "#121212",
@@ -38,8 +40,9 @@ export const getTheme = (mode: PaletteMode) =>
             text: {
               primary: "#ffffff",
               secondary: "#b0b0b0",
-              tertiary:  "#8FBCBB", 
+              tertiary:  "#55b7b5", 
               grey: "#bfc0c0", 
+              quarternary: "#ffffff",
             },
             divider: "rgba(255, 255, 255, 0.12)",
           }),

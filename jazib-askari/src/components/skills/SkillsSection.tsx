@@ -67,7 +67,7 @@ const SkillsSection = ({ trigger }: SkillsSectionProps) => {
                   "&:hover": { bgcolor:"action.hover", transform: "translateY(-8px)"},
                 }}
               >
-                <Typography variant="h3" fontWeight="bold" sx={{ mb: 1}}>{cat.label}</Typography>
+                <Typography variant="h3" fontWeight="bold" sx={{ mb: 1, color:"text.quarternary"}}>{cat.label}</Typography>
                 <Typography variant="body2" sx={{ color: "text.grey", mb: 2.5, flex: 1 }}>
                   {cat.description}
                 </Typography>
