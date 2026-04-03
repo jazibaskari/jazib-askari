@@ -123,7 +123,7 @@ const ExperienceSection = ({ trigger }: ExperienceSectionProps) => {
                   }}
                 >
                   <Box sx={{ mb: 2 }}>
-                    <Typography variant="h3" fontWeight="bold" sx={{color: "text.primary"}}>{exp.title}</Typography>
+                    <Typography variant="h3" fontWeight="bold" sx={{color: "text.quarternary"}}>{exp.title}</Typography>
                     <Typography variant="body1" sx={{ color: "text.tertiary", mt: 0.5 }}>
                       {exp.subtitle}
                     </Typography>
