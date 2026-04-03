@@ -2,30 +2,19 @@ import { useState } from "react";
 import Section from "../shared/Section";
 import { Typography, Box, Chip } from "@mui/material";
 import CheckIcon from "@mui/icons-material/Check";
-import CodeIcon from "@mui/icons-material/Code";
-import StorageIcon from "@mui/icons-material/Storage";
-import BrushIcon from "@mui/icons-material/Brush";
-import RuleIcon from "@mui/icons-material/Rule";
-import BuildIcon from "@mui/icons-material/Build";
 import TextAnimation from "../../animations/AnimatedText";
 import { useTheme } from '@mui/material/styles';
+import { skills } from "../../data/skill";
 
 interface SkillsSectionProps {
   trigger: number;
 }
 
-const skillCategories = [
-  { id: "frontend", label: "Frontend", icon: <CodeIcon />, description: "Modern, reactive user interfaces built with the latest frameworks.", skills: ["React", "Next.js", "TypeScript"], color: "#8FBCBB" },
-  { id: "data", label: "Data", icon: <StorageIcon />, description: "Efficient state management and data flow architecture.", skills: ["Redux", "Zustand"], color: "#88C0D0" },
-  { id: "uiux", label: "UI/UX", icon: <BrushIcon />, description: "Clean design systems and smooth motion experiences.", skills: ["MUI", "Framer"], color: "#BF616A" },
-  { id: "testing", label: "Testing", icon: <RuleIcon />, description: "Ensuring high-quality code through robust QA testing.", skills: ["Jest", "Cypress"], color: "#D08770" },
-  { id: "tooling", label: "Tooling", icon: <BuildIcon />, description: "Streamlined development workflows and deployment.", skills: ["Git", "Docker"], color: "#EBCB8B" },
-];
 
 const SkillsSection = ({ trigger }: SkillsSectionProps) => {
   const theme = useTheme();
   const [activeFilters, setActiveFilters] = useState<string[]>(
-    skillCategories.map((c) => c.id)
+    skills.map((c) => c.id)
   );
 
   const toggleFilter = (id: string) => {
@@ -40,7 +29,7 @@ const SkillsSection = ({ trigger }: SkillsSectionProps) => {
         <Typography variant="h2" gutterBottom>Skills</Typography>
       </TextAnimation>
       <Box sx={{ display: "flex", flexWrap: "wrap", gap: 1, mb: 6, width: "100%" }}>
-        {skillCategories.map((cat) => (
+        {skills.map((cat) => (
           <Chip
             key={cat.id}
             label={cat.label}
@@ -60,7 +49,7 @@ const SkillsSection = ({ trigger }: SkillsSectionProps) => {
         ))}
       </Box>
       <Box sx={{ display: "flex", flexWrap: "wrap", gap: 4 }}>
-        {skillCategories.map((cat, catIndex) => {
+        {skills.map((cat, catIndex) => {
           if (!activeFilters.includes(cat.id)) return null;
           return (
             <TextAnimation key={cat.id} trigger={trigger} delay={catIndex * 0.1}>
