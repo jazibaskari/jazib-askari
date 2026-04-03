@@ -106,7 +106,7 @@ const ProjectTabContent = ({ project, trigger }: Props) => {
           minHeight: { xs: "250px", md: "100%" },
           cursor: "pointer",
           "&:hover img": {
-            transform: 'scale(1.1)',
+            transform: 'scale(1.3)',
           }
         }}
       >
