@@ -5,9 +5,12 @@ import TextAnimation from "../../animations/AnimatedText";
 import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import { experiences } from "../../data/expereince";
+import { skills } from "../../data/skill";
+
 interface ExperienceSectionProps {
   trigger: number;
 }
+
 const ExperienceSection = ({ trigger }: ExperienceSectionProps) => {
   const theme = useTheme();
   const containerRef = useRef<HTMLDivElement>(null);
@@ -15,6 +18,15 @@ const ExperienceSection = ({ trigger }: ExperienceSectionProps) => {
   const [canScrollRight, setCanScrollRight] = useState(true);
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
   const isTablet = useMediaQuery(theme.breakpoints.between("sm", "md"));
+
+  const getTagColor = (tagName: string) => {
+    const category = skills.find((cat) => 
+      cat.skills.some((s) => s.toLowerCase() === tagName.toLowerCase()) || 
+      cat.label.toLowerCase() === tagName.toLowerCase()
+    );
+    return category ? category.color : "action.hover";
+  };
+
   const checkScroll = () => {
     if (containerRef.current) {
       const { scrollLeft, scrollWidth, clientWidth } = containerRef.current;
@@ -22,6 +34,7 @@ const ExperienceSection = ({ trigger }: ExperienceSectionProps) => {
       setCanScrollRight(scrollLeft < scrollWidth - clientWidth - 10);
     }
   };
+
   const scroll = (direction: "left" | "right") => {
     if (containerRef.current) {
       const container = containerRef.current;
@@ -39,6 +52,7 @@ const ExperienceSection = ({ trigger }: ExperienceSectionProps) => {
       });
     }
   };
+
   useEffect(() => {
     const ref = containerRef.current;
     if (ref) {
@@ -51,6 +65,7 @@ const ExperienceSection = ({ trigger }: ExperienceSectionProps) => {
       };
     }
   }, []);
+
   return (
     <Section id="Experience">
       <TextAnimation duration={0.6} trigger={trigger}>
@@ -135,21 +150,28 @@ const ExperienceSection = ({ trigger }: ExperienceSectionProps) => {
                     {exp.description}
                   </Typography>
                   <Box sx={{ display: "flex", flexWrap: "wrap", gap: 1 }}>
-                    {exp.tags.map((tag) => (
-                      <Chip 
-                        key={tag} 
-                        label={tag} 
-                        sx={{ 
-                          ...theme.typography.h4, 
-                          bgcolor: "action.hover",     
-                          py: 2, 
-                          px: 1, 
-                          fontSize: "0.9rem", 
-                          height: "28px", 
-                          ml: "0 !important" 
-                        }} 
-                      />
-                    ))}
+                    {exp.tags.map((tag) => {
+                      const bgColor = getTagColor(tag);
+                      return (
+                        <Chip 
+                          key={tag} 
+                          label={tag} 
+                          sx={{ 
+                            ...theme.typography.h4, 
+                            bgcolor: bgColor,
+                            color: bgColor === "action.hover" ? "text.primary" : "white",     
+                            py: 2, 
+                            px: 1, 
+                            fontSize: "0.9rem", 
+                            height: "28px", 
+                            ml: "0 !important",
+                            "&:hover": {
+                                bgcolor: bgColor
+                            }
+                          }} 
+                        />
+                      );
+                    })}
                   </Box>
                 </Box>
               </TextAnimation>
@@ -160,4 +182,5 @@ const ExperienceSection = ({ trigger }: ExperienceSectionProps) => {
     </Section>
   );
 };
+
 export default ExperienceSection;
