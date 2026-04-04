@@ -7,6 +7,7 @@ declare module '@mui/material/styles' {
     quarternary?: string;
   }
 }
+
 export const getTheme = (mode: PaletteMode) => 
   createTheme({
     palette: {
@@ -14,7 +15,7 @@ export const getTheme = (mode: PaletteMode) =>
       ...(mode === 'light'
         ? {
             primary: {
-              main: "#55b7b5",
+              main: "#5ec2de",
             },
             background: {
               default: "#ffffff",
@@ -23,15 +24,15 @@ export const getTheme = (mode: PaletteMode) =>
             text: {
               primary: "#1a1a1a",
               secondary: "#666666",
-              tertiary:  "#55b7b5",
+              tertiary:  "#5ec2de",
               grey: "#bfc0c0",  
-              quarternary: "#454b4e",
+              quarternary: "#5ec2de",
             },
             divider: "rgba(0, 0, 0, 0.12)",
           }
         : {
             primary: {
-              main: "#55b7b5",
+              main: "#5ec2de",
             },
             background: {
               default: "#121212",
@@ -40,7 +41,7 @@ export const getTheme = (mode: PaletteMode) =>
             text: {
               primary: "#ffffff",
               secondary: "#b0b0b0",
-              tertiary:  "#55b7b5", 
+              tertiary:  "#5ec2de", 
               grey: "#bfc0c0", 
               quarternary: "#ffffff",
             },
