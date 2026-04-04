@@ -3,19 +3,26 @@ import Section from "../shared/Section";
 import { Typography, Box, Stack } from "@mui/material";
 import TextAnimation from "../../animations/AnimatedText";
 import { motion, AnimatePresence } from "framer-motion";
+
 interface AboutSectionProps {
   trigger: number;
 }
+
 const words = ["developing", "designing", "creating"];
+
 const AboutSection = ({ trigger }: AboutSectionProps) => {
   const [index, setIndex] = useState(0);
+
   useEffect(() => {
     const interval = setInterval(() => {
       setIndex((prev) => (prev + 1) % words.length);
     }, 3000);
     return () => clearInterval(interval);
   }, []);
+
+  const longestWord = words.reduce((a, b) => (a.length > b.length ? a : b));
   const statColor = "#bfc0c0";
+
   return (
     <Section id="About">
       <Box
@@ -34,51 +41,60 @@ const AboutSection = ({ trigger }: AboutSectionProps) => {
               component="h2" 
               sx={{ 
                 fontWeight: 'bold', 
-                display: 'flex', 
-                alignItems: 'baseline', 
-                flexWrap: 'wrap',
-                mb: 2
+                mb: 2,
+                lineHeight: 1.2
               }}
             >
-              Find me&nbsp;
               <Box 
                 component="span" 
                 sx={{ 
-                  position: "relative", 
-                  display: "inline-grid", 
-                  color: "text.tertiary",
+                  display: "inline-block", 
+                  whiteSpace: "nowrap",
+                  verticalAlign: "baseline"
                 }}
               >
-                <Typography
-                  variant="h2" 
+                Find me&nbsp;
+                <Box 
                   component="span" 
                   sx={{ 
-                    fontWeight: 'bold', 
-                    visibility: 'hidden', 
-                    height: 0, 
-                    display: 'block' 
+                    position: "relative", 
+                    display: "inline-grid", 
+                    color: "text.tertiary",
+                    verticalAlign: "baseline"
                   }}
                 >
-                  {words[index]}
-                </Typography>
-                <AnimatePresence mode="wait">
-                  <motion.span
-                    key={words[index]}
-                    initial={{ opacity: 0, y: 10 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: -10 }}
-                    transition={{ duration: 0.4, ease: "easeOut" }}
-                    style={{ 
-                      gridArea: "1 / 1", 
-                      display: "block" 
+                  <Typography
+                    variant="h2" 
+                    component="span" 
+                    sx={{ 
+                      fontWeight: 'bold', 
+                      visibility: 'hidden', 
+                      height: 0, 
+                      display: 'block' 
                     }}
                   >
-                    {words[index]}
-                  </motion.span>
-                </AnimatePresence>
+                    {longestWord}
+                  </Typography>
+                  <AnimatePresence mode="wait">
+                    <motion.span
+                      key={words[index]}
+                      initial={{ opacity: 0, y: 10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: -10 }}
+                      transition={{ duration: 0.4, ease: "easeOut" }}
+                      style={{ 
+                        gridArea: "1 / 1", 
+                        display: "block" 
+                      }}
+                    >
+                      {words[index]}
+                    </motion.span>
+                  </AnimatePresence>
+                </Box>
               </Box>
             </Typography>
           </TextAnimation>
+
           <TextAnimation duration={0.1} trigger={trigger}>
             <Typography 
               variant="body1" 
@@ -92,6 +108,7 @@ const AboutSection = ({ trigger }: AboutSectionProps) => {
             </Typography>
           </TextAnimation>
         </Box>
+
         <TextAnimation duration={1.5} trigger={trigger} delay={0.3}>
           <Stack 
             direction="row" 
@@ -144,4 +161,5 @@ const AboutSection = ({ trigger }: AboutSectionProps) => {
     </Section>
   );
 };
+
 export default AboutSection;
