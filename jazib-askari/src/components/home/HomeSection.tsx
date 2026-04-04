@@ -8,7 +8,7 @@ interface HomeSectionProps {
   trigger: number;
 }
 const HomeSection = ({ trigger }: HomeSectionProps) => {
-  const iconColor = "#55b7b5"; 
+  const iconColor = "#5ec2de"; 
   return (
     <Section id="Home" isHome={true}>
       <TextAnimation duration={0.6} trigger={trigger}>
@@ -19,7 +19,7 @@ const HomeSection = ({ trigger }: HomeSectionProps) => {
         <Stack direction="row" spacing={1} sx={{ ml: -1.5 }}> 
         <TextAnimation duration={0.3} trigger={trigger}>
           <IconButton 
-            href="https://github.com/yourusername" 
+            href="https://github.com/jazibaskari" 
             target="_blank"
             sx={{ color: iconColor }}
           >
@@ -28,7 +28,7 @@ const HomeSection = ({ trigger }: HomeSectionProps) => {
           </TextAnimation>
           <TextAnimation duration={0.6} trigger={trigger}>
           <IconButton 
-            href="https://linkedin.com/in/yourusername" 
+            href="linkedin.com/in/jaz-a-5064209b" 
             target="_blank"
             sx={{ color: iconColor }}
           >
@@ -37,7 +37,7 @@ const HomeSection = ({ trigger }: HomeSectionProps) => {
           </TextAnimation>
           <TextAnimation duration={1.2} trigger={trigger}>
           <IconButton 
-            href="mailto:your.email@example.com" 
+            href="mailto:jazibaskari@hotmail.co.uk" 
             sx={{ color: iconColor }}
           >
             <MailOutlineIcon />

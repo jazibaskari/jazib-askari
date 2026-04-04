@@ -10,7 +10,6 @@ interface SkillsSectionProps {
   trigger: number;
 }
 
-
 const SkillsSection = ({ trigger }: SkillsSectionProps) => {
   const theme = useTheme();
   const [activeFilters, setActiveFilters] = useState<string[]>(
@@ -48,20 +47,31 @@ const SkillsSection = ({ trigger }: SkillsSectionProps) => {
           />
         ))}
       </Box>
-      <Box sx={{ display: "flex", flexWrap: "wrap", gap: 4 }}>
+      <Box 
+        sx={{ 
+          display: "grid", 
+          gridTemplateColumns: { 
+            xs: "100%", 
+            sm: "repeat(auto-fill, 400px)" 
+          }, 
+          gap: 4,
+          alignItems: "stretch"
+        }}
+      >
         {skills.map((cat, catIndex) => {
           if (!activeFilters.includes(cat.id)) return null;
           return (
             <TextAnimation key={cat.id} trigger={trigger} delay={catIndex * 0.1}>
               <Box
                 sx={{
-                  width: { xs: "100%", sm: "400px" }, 
-                  height: "300px", 
+                  height: "100%",
+                  width: "100%",
                   borderRadius: "28px", 
                   backgroundColor: "background.paper",
                   display: "flex", 
                   flexDirection: "column", 
                   p: 4,
+                  pb: "30px",
                   boxSizing: "border-box", 
                   transition: "0.3s",
                   "&:hover": { bgcolor:"action.hover", transform: "translateY(-8px)"},

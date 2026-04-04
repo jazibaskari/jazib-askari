@@ -100,6 +100,7 @@ const ExperienceSection = ({ trigger }: ExperienceSectionProps) => {
           scrollSnapType: "x mandatory", 
           pt: 2, 
           pb: 4,
+          alignItems: "stretch",
           "::-webkit-scrollbar": { display: "none" },
           msOverflowStyle: "none",
           scrollbarWidth: "none",
@@ -111,6 +112,7 @@ const ExperienceSection = ({ trigger }: ExperienceSectionProps) => {
             sx={{ 
               scrollSnapAlign: "start", 
               flexShrink: 0,
+              display: "flex",
               width: { 
                 xs: "100%", 
                 sm: "calc((100% - 24px) / 2)", 
@@ -118,17 +120,17 @@ const ExperienceSection = ({ trigger }: ExperienceSectionProps) => {
               },
             }}
           >
-            <Box sx={{ width: "100%" }}>
-              <TextAnimation trigger={trigger} delay={index * 0.1}>
+            <Box sx={{ width: "100%", display: "flex" }}>
+              <TextAnimation trigger={trigger} delay={index * 0.1} style={{ width: "100%", display: "flex" }}>
                 <Box
                   sx={{
                     width: "100%",
-                    height: "400px", 
                     borderRadius: "28px",
                     backgroundColor: "background.paper",
                     display: "flex",
                     flexDirection: "column",
                     p: 4,
+                    pb: "30px",
                     boxSizing: "border-box",
                     transition: "0.3s ease-in-out",
                     "&:hover": {
