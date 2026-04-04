@@ -35,21 +35,21 @@ const Footer = () => {
         </Typography>
         <Stack direction="row" spacing={1}>
           <IconButton
-            href="https://github.com/yourusername"
+            href="https://github.com/jazibaskari"
             target="_blank"
             sx={{ color: iconColor, "&:hover": { color: "text.grey" } }}
           >
             <GitHubIcon fontSize="small" />
           </IconButton>
           <IconButton
-            href="https://linkedin.com/in/yourusername"
+            href="linkedin.com/in/jaz-a-5064209b"
             target="_blank"
             sx={{ color: iconColor, "&:hover": { color: "text.grey" } }}
           >
             <LinkedInIcon fontSize="small" />
           </IconButton>
           <IconButton
-            href="mailto:your.email@example.com"
+            href="mailto:jazibaskari@hotmail.co.uk" 
             sx={{ color: iconColor, "&:hover": { color: "text.grey" } }}
           >
             <MailOutlineIcon fontSize="small" />
