@@ -1,18 +1,18 @@
 import { useState, useContext } from "react";
 import { Box } from "@mui/system";
-import { 
-  Button, 
-  IconButton, 
-  Drawer, 
-  List, 
-  ListItem, 
-  useTheme 
+import {
+  Button,
+  IconButton,
+  Drawer,
+  List,
+  ListItem,
+  useTheme,
 } from "@mui/material";
-import MenuIcon from '@mui/icons-material/Menu';
-import Brightness4Icon from '@mui/icons-material/Brightness4'; 
-import Brightness7Icon from '@mui/icons-material/Brightness7'; 
+import MenuIcon from "@mui/icons-material/Menu";
+import Brightness4Icon from "@mui/icons-material/Brightness4";
+import Brightness7Icon from "@mui/icons-material/Brightness7";
 import { ColourModeContext } from "../../context/ColourModeContext";
-const allSections = ["Home", "About", "Skills", "Experience", "Projects"];
+const allSections = ["Home", "About", "Experience", "Projects"];
 interface NavbarProps {
   onNavClick?: () => void;
 }
@@ -29,12 +29,13 @@ const Navbar = ({ onNavClick }: NavbarProps) => {
     } else {
       const el = document.getElementById(id);
       if (el) {
-        const elementPosition = el.getBoundingClientRect().top + window.pageYOffset;
-        const offset = 80; 
+        const elementPosition =
+          el.getBoundingClientRect().top + window.pageYOffset;
+        const offset = 80;
         const offsetPosition = elementPosition - offset;
         window.scrollTo({
           top: offsetPosition,
-          behavior: "smooth"
+          behavior: "smooth",
         });
       }
     }
@@ -47,7 +48,7 @@ const Navbar = ({ onNavClick }: NavbarProps) => {
     fontWeight: 500,
     fontSize: "0.95rem",
     transition: "0.2s",
-    "&:hover": { bgcolor: "action.hover" }
+    "&:hover": { bgcolor: "action.hover" },
   };
   return (
     <Box
@@ -64,13 +65,13 @@ const Navbar = ({ onNavClick }: NavbarProps) => {
     >
       <Box sx={{ display: { xs: "none", md: "flex" }, gap: 1 }}>
         {allSections.map((s) => (
-          <Button 
-            key={s} 
+          <Button
+            key={s}
             onClick={() => handleScroll(s)}
-            sx={{ 
+            sx={{
               ...commonButtonStyle,
               px: 2,
-              minWidth: "auto" 
+              minWidth: "auto",
             }}
           >
             {s}
@@ -79,7 +80,11 @@ const Navbar = ({ onNavClick }: NavbarProps) => {
       </Box>
       <Box sx={{ display: "flex", alignItems: "center" }}>
         <IconButton onClick={colourMode.toggleColourMode} color="inherit">
-          {theme.palette.mode === 'dark' ? <Brightness7Icon /> : <Brightness4Icon />}
+          {theme.palette.mode === "dark" ? (
+            <Brightness7Icon />
+          ) : (
+            <Brightness4Icon />
+          )}
         </IconButton>
         <Box sx={{ display: { xs: "flex", md: "none" }, ml: 1 }}>
           <IconButton
@@ -97,11 +102,11 @@ const Navbar = ({ onNavClick }: NavbarProps) => {
         onClose={handleDrawerToggle}
         sx={{
           display: { xs: "block", md: "none" },
-          "& .MuiDrawer-paper": { 
-            boxSizing: "border-box", 
-            width: 180, 
+          "& .MuiDrawer-paper": {
+            boxSizing: "border-box",
+            width: 180,
             bgcolor: "background.default",
-            backgroundImage: "none"
+            backgroundImage: "none",
           },
         }}
       >
@@ -109,15 +114,15 @@ const Navbar = ({ onNavClick }: NavbarProps) => {
           <List disablePadding>
             {allSections.map((s) => (
               <ListItem key={s} disablePadding>
-                <Button 
+                <Button
                   onClick={() => handleScroll(s)}
-                  sx={{ 
+                  sx={{
                     ...commonButtonStyle,
                     width: "100%",
-                    justifyContent: "flex-end", 
-                    px: 3, 
-                    py: 2, 
-                    borderRadius: 0, 
+                    justifyContent: "flex-end",
+                    px: 3,
+                    py: 2,
+                    borderRadius: 0,
                   }}
                 >
                   {s}
