@@ -13,7 +13,7 @@ const ProjectDetailPage = () => {
   }
   return (
     <Box>
-      <Typography variant="h2" gutterBottom>
+      <Typography variant="h3" gutterBottom>
         {project.title}
       </Typography>
     </Box>

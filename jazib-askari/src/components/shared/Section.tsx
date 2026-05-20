@@ -1,10 +1,13 @@
 import { Box } from "@mui/system";
 import type { ReactNode } from "react";
+
 interface SectionProps {
   id: string;
   children: ReactNode;
+  noPaddingTop?: boolean;
 }
-const Section = ({ id, children }: SectionProps) => (
+
+const Section = ({ id, children, noPaddingTop }: SectionProps) => (
   <Box
     component="section"
     id={id}
@@ -14,13 +17,13 @@ const Section = ({ id, children }: SectionProps) => (
       display: "flex",
       flexDirection: "column",
       boxSizing: "border-box",
-      px: { xs: 2, sm: 6, md: "100px" },
+      px: 0,
       justifyContent: "flex-start",
-      pt: { xs: 4, md: 6 },
-      scrollMarginTop: "80px",
+      pt: noPaddingTop ? 0 : { xs: 4, md: 6 },
     }}
   >
     {children}
   </Box>
 );
+
 export default Section;

@@ -13,7 +13,6 @@ interface Props {
 const ProjectTabContent = ({ project, trigger }: Props) => {
   const theme = useTheme();
 
-  // Reusable custom styles for the animated filling underline link
   const animatedLinkStyles = {
     display: "inline-flex",
     alignItems: "center",
@@ -25,7 +24,6 @@ const ProjectTabContent = ({ project, trigger }: Props) => {
     fontSize: "1.05rem",
     fontWeight: 500,
     cursor: "pointer",
-    // The faint background track underline
     "&::after": {
       content: '""',
       position: "absolute",
@@ -33,13 +31,12 @@ const ProjectTabContent = ({ project, trigger }: Props) => {
       left: 0,
       width: "100%",
       height: "1px",
-      bgcolor:
-        theme.palette.mode === "dark"
-          ? "rgba(255, 255, 255, 0.2)"
-          : "rgba(0, 0, 0, 0.15)",
+      // bgcolor:
+      //   theme.palette.mode === "dark"
+      //     ? "rgba(255, 255, 255, 0.2)"
+      //     : "rgba(0, 0, 0, 0.15)",
       transition: "opacity 0.3s ease",
     },
-    // The animated fill underline layer
     "&::before": {
       content: '""',
       position: "absolute",
@@ -53,7 +50,6 @@ const ProjectTabContent = ({ project, trigger }: Props) => {
       transition: "transform 0.35s cubic-bezier(0.4, 0, 0.2, 1)",
       zIndex: 1,
     },
-    // Trigger the scale fill on hover
     "&:hover::before": {
       transform: "scaleX(1)",
     },
@@ -68,18 +64,53 @@ const ProjectTabContent = ({ project, trigger }: Props) => {
         gap: 3,
       }}
     >
-      {/* CONTENT BOX */}
+      {/* Image */}
       <Box
         sx={{
           width: "100%",
-          bgcolor: "background.paper",
-          p: 4,
+          borderRadius: "24px",
+          overflow: "hidden",
+          display: "flex",
+          position: "relative",
+          cursor: "pointer",
+          "&:hover img": {
+            transform: "scale(1.05)",
+          },
+        }}
+      >
+        <TextAnimation
+          key={project.id}
+          duration={1.2}
+          trigger={trigger}
+          style={{ width: "100%" }}
+        >
+          <Box
+            component="img"
+            src={theme.palette.mode === "dark" ? PortfolioDark : PortfolioLight}
+            alt={project.title}
+            sx={{
+              width: "100%",
+              height: "auto",
+              maxHeight: { xs: "300px", md: "450px" },
+              objectFit: "cover",
+              display: "block",
+              transition: "transform 0.6s cubic-bezier(0.4, 0, 0.2, 1)",
+            }}
+          />
+        </TextAnimation>
+      </Box>
+      {/* Text */}
+      <Box
+        sx={{
+          width: "100%",
+          // bgcolor: "background.paper",
+          // p: 4,
           display: "flex",
           flexDirection: "column",
           borderRadius: "24px",
         }}
       >
-        {/* Animated Links Row */}
+        {/* Buttons */}
         <Stack direction="row" spacing={4} sx={{ mb: 4 }}>
           {project.githubUrl && (
             <Box
@@ -139,42 +170,6 @@ const ProjectTabContent = ({ project, trigger }: Props) => {
             />
           ))}
         </Box>
-      </Box>
-
-      {/* IMAGE BOX */}
-      <Box
-        sx={{
-          width: "100%",
-          borderRadius: "24px",
-          overflow: "hidden",
-          display: "flex",
-          position: "relative",
-          cursor: "pointer",
-          "&:hover img": {
-            transform: "scale(1.05)",
-          },
-        }}
-      >
-        <TextAnimation
-          key={project.id}
-          duration={1.2}
-          trigger={trigger}
-          style={{ width: "100%" }}
-        >
-          <Box
-            component="img"
-            src={theme.palette.mode === "dark" ? PortfolioDark : PortfolioLight}
-            alt={project.title}
-            sx={{
-              width: "100%",
-              height: "auto",
-              maxHeight: { xs: "300px", md: "450px" },
-              objectFit: "cover",
-              display: "block",
-              transition: "transform 0.6s cubic-bezier(0.4, 0, 0.2, 1)",
-            }}
-          />
-        </TextAnimation>
       </Box>
     </Box>
   );

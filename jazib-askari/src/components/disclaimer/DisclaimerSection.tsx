@@ -1,35 +1,26 @@
 import { Box, Typography } from "@mui/material";
+import Section from "../shared/Section";
 
-const Footer = () => {
+const DisclaimerSection = () => {
   return (
-    <Box
-      component="footer"
-      sx={{
-        py: 6,
-        px: { xs: 4, md: "100px" },
-        bgcolor: "background.paper",
-      }}
-    >
+    <Section id="Disclaimer">
       <Box
+        component="footer"
         sx={{
-          display: "flex",
-          flexDirection: { xs: "column", md: "row" },
-          justifyContent: "space-between",
-          alignItems: "center",
-          gap: 3,
+          pb: 2,
         }}
       >
         <Typography
           variant="body1"
           sx={{
-            color: "text.grey",
-            textAlign: { xs: "center", md: "left" },
+            color: "text.secondary",
           }}
         >
-          © Jazib Askari. All rights reserved.
+          © {new Date().getFullYear()} Jazib Askari. Built with React,
+          TypeScript, and Material-UI.
         </Typography>
       </Box>
-    </Box>
+    </Section>
   );
 };
-export default Footer;
+export default DisclaimerSection;

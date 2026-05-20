@@ -11,45 +11,51 @@ interface HomePageProps {
 
 const HomePage = ({ navTrigger }: HomePageProps) => {
   return (
-    <Box sx={{ maxWidth: "1600px", mx: "auto" }}>
+    <Box
+      sx={{
+        maxWidth: "1800px",
+        p: { xs: 4, md: "100px" },
+        boxSizing: "border-box",
+      }}
+    >
       <Box
         sx={{
           display: "flex",
           flexDirection: { xs: "column", md: "row" },
           alignItems: { md: "flex-start" },
+          gap: { md: "200px" },
         }}
       >
         <Box
           sx={{
-            width: { xs: "100%", md: "40%" },
+            width: { xs: "100%", md: "calc(30% - 25px)" },
             position: { md: "sticky" },
-            top: { md: "80px" },
-            height: { md: "calc(100vh - 80px)" },
+            top: { md: "100px" },
+            height: { md: "calc(100vh - 200px)" },
+            flexShrink: 0,
+            overflow: "hidden",
             display: "flex",
             flexDirection: "column",
-            justifyContent: "flex-start",
-            px: { xs: 2, md: 6 },
           }}
         >
           <HomeSection trigger={navTrigger} />
         </Box>
         <Box
           sx={{
-            width: { xs: "100%", md: "60%" },
+            width: { xs: "100%", md: "calc(60% - 25px)" },
             display: "flex",
             flexDirection: "column",
             gap: { xs: 8, md: 12 },
-            px: { xs: 2, md: 6 },
-            pb: { xs: 6, md: 12 },
+            minHeight: { md: "calc(100vh - 200px)" },
           }}
         >
           <AboutSection trigger={navTrigger} />
           <ExperienceSection trigger={navTrigger} />
           <ProjectsSection trigger={navTrigger} />
+          <Box sx={{ mt: "auto" }}>
+            <DisclaimerSection />
+          </Box>
         </Box>
-      </Box>
-      <Box sx={{ width: "100%", position: "relative", zIndex: 10 }}>
-        <DisclaimerSection />
       </Box>
     </Box>
   );

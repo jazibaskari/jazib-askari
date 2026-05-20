@@ -10,7 +10,7 @@ const AboutSection = ({ trigger }: AboutSectionProps) => {
   const statColor = "#bfc0c0";
 
   return (
-    <Section id="About">
+    <Section id="About" noPaddingTop>
       <Box
         sx={{
           display: "flex",
@@ -20,6 +20,38 @@ const AboutSection = ({ trigger }: AboutSectionProps) => {
           width: "100%",
         }}
       >
+        <Box sx={{ width: "100%" }}>
+          <TextAnimation duration={0.1} trigger={trigger}>
+            <Typography
+              variant="body1"
+              sx={{
+                color: "#bfc0c0",
+                lineHeight: 1.8,
+                maxWidth: "800px",
+              }}
+            >
+              I am a product-centric Frontend Engineer based in{" "}
+              <Box
+                component="span"
+                sx={{ fontWeight: "bold", color: "text.primary" }}
+              >
+                Manchester
+              </Box>
+              , with over 4 years of experience leveraging TypeScript to build
+              responsive, scalable React applications. Having engineered
+              enterprise-scale applications for 300,000+ users at{"  "}
+              <Box
+                component="span"
+                sx={{ fontWeight: "bold", color: "text.primary" }}
+              >
+                PwC
+              </Box>
+              , I thrive in environments that value ownership, data-driven
+              decisions, and maintaining high coding standards to meet the
+              business' bottom line.
+            </Typography>
+          </TextAnimation>
+        </Box>
         <TextAnimation duration={1.5} trigger={trigger} delay={0.3}>
           <Stack
             direction="row"
@@ -86,38 +118,6 @@ const AboutSection = ({ trigger }: AboutSectionProps) => {
             </Stack>
           </Stack>
         </TextAnimation>
-        <Box sx={{ width: "100%" }}>
-          <TextAnimation duration={0.1} trigger={trigger}>
-            <Typography
-              variant="body1"
-              sx={{
-                color: "#bfc0c0",
-                lineHeight: 1.8,
-                maxWidth: "800px",
-              }}
-            >
-              I am a product-centric Frontend Engineer{" "}
-              <Box
-                component="span"
-                sx={{ fontWeight: "bold", color: "text.primary" }}
-              >
-                based in Manchester
-              </Box>
-              , with over 4 years of experience leveraging TypeScript to build
-              responsive, scalable React applications. Having engineered
-              enterprise-scale applications for 300,000+ users at{"  "}
-              <Box
-                component="span"
-                sx={{ fontWeight: "bold", color: "text.primary" }}
-              >
-                PwC
-              </Box>
-              , I thrive in environments that value ownership, data-driven
-              decisions, and maintaining high coding standards to meet the
-              business' bottom line.
-            </Typography>
-          </TextAnimation>
-        </Box>
       </Box>
     </Section>
   );
