@@ -257,7 +257,14 @@ const ExperienceSection = ({ trigger }: ExperienceSectionProps) => {
   return (
     <Section id="Experience">
       <TextAnimation duration={0.6} trigger={trigger}>
-        <Typography variant="h2">Experience</Typography>
+        <Typography
+          variant="h3"
+          sx={{
+            fontWeight: "bold",
+          }}
+        >
+          Experience
+        </Typography>
       </TextAnimation>
       <Box sx={{ display: "flex", flexDirection: "column" }}>
         {displayedExperiences.map((exp, index) => (

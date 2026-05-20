@@ -16,8 +16,7 @@ const Section = ({ id, children }: SectionProps) => (
       boxSizing: "border-box",
       px: { xs: 2, sm: 6, md: "100px" },
       justifyContent: "flex-start",
-      pb: { xs: 8, md: 12 },
-      pt: { xs: 8, md: 12 },
+      pt: { xs: 4, md: 6 },
       scrollMarginTop: "80px",
     }}
   >

@@ -20,7 +20,13 @@ const ProjectsSection = ({ trigger }: ProjectsSectionProps) => {
     <Section id="Projects">
       <Box>
         <TextAnimation duration={0.6} trigger={trigger}>
-          <Typography variant="h2" gutterBottom sx={{ pl: 0 }}>
+          <Typography
+            variant="h3"
+            gutterBottom
+            sx={{
+              fontWeight: "bold",
+            }}
+          >
             Projects
           </Typography>
         </TextAnimation>

@@ -16,6 +16,7 @@ const HomePage = ({ navTrigger }: HomePageProps) => {
         sx={{
           display: "flex",
           flexDirection: { xs: "column", md: "row" },
+          alignItems: { md: "flex-start" },
         }}
       >
         <Box
@@ -27,9 +28,7 @@ const HomePage = ({ navTrigger }: HomePageProps) => {
             display: "flex",
             flexDirection: "column",
             justifyContent: "flex-start",
-            gap: { xs: 8, md: 12 },
             px: { xs: 2, md: 6 },
-            pb: { xs: 6, md: 12 },
           }}
         >
           <HomeSection trigger={navTrigger} />
@@ -39,8 +38,9 @@ const HomePage = ({ navTrigger }: HomePageProps) => {
             width: { xs: "100%", md: "60%" },
             display: "flex",
             flexDirection: "column",
-            gap: { xs: 1, md: 1 },
-            pb: { xs: 2, md: 2 },
+            gap: { xs: 8, md: 12 },
+            px: { xs: 2, md: 6 },
+            pb: { xs: 6, md: 12 },
           }}
         >
           <AboutSection trigger={navTrigger} />
@@ -48,7 +48,7 @@ const HomePage = ({ navTrigger }: HomePageProps) => {
           <ProjectsSection trigger={navTrigger} />
         </Box>
       </Box>
-      <Box>
+      <Box sx={{ width: "100%", position: "relative", zIndex: 10 }}>
         <DisclaimerSection />
       </Box>
     </Box>
