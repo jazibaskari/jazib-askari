@@ -12,7 +12,7 @@ import MenuIcon from "@mui/icons-material/Menu";
 import Brightness4Icon from "@mui/icons-material/Brightness4";
 import Brightness7Icon from "@mui/icons-material/Brightness7";
 import { ColourModeContext } from "../../context/ColourModeContext";
-const allSections = ["Home", "About", "Experience", "Projects"];
+const allSections = ["About", "Experience", "Projects"];
 interface NavbarProps {
   onNavClick?: () => void;
 }
@@ -24,21 +24,18 @@ const Navbar = ({ onNavClick }: NavbarProps) => {
     setMobileOpen(!mobileOpen);
   };
   const handleScroll = (id: string) => {
-    if (id === "Home") {
-      window.scrollTo({ top: 0, behavior: "smooth" });
-    } else {
-      const el = document.getElementById(id);
-      if (el) {
-        const elementPosition =
-          el.getBoundingClientRect().top + window.pageYOffset;
-        const offset = 80;
-        const offsetPosition = elementPosition - offset;
-        window.scrollTo({
-          top: offsetPosition,
-          behavior: "smooth",
-        });
-      }
+    const el = document.getElementById(id);
+    if (el) {
+      const elementPosition =
+        el.getBoundingClientRect().top + window.pageYOffset;
+      const offset = 80;
+      const offsetPosition = elementPosition - offset;
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: "smooth",
+      });
     }
+
     setMobileOpen(false);
     if (onNavClick) onNavClick();
   };

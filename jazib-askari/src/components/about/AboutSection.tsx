@@ -1,26 +1,12 @@
-import { useState, useEffect } from "react";
 import Section from "../shared/Section";
 import { Typography, Box, Stack } from "@mui/material";
 import TextAnimation from "../../animations/AnimatedText";
-import { motion, AnimatePresence } from "framer-motion";
 
 interface AboutSectionProps {
   trigger: number;
 }
 
-const words = ["developing", "designing", "creating"];
-
 const AboutSection = ({ trigger }: AboutSectionProps) => {
-  const [index, setIndex] = useState(0);
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setIndex((prev) => (prev + 1) % words.length);
-    }, 3000);
-    return () => clearInterval(interval);
-  }, []);
-
-  const longestWord = words.reduce((a, b) => (a.length > b.length ? a : b));
   const statColor = "#bfc0c0";
 
   return (
@@ -44,57 +30,8 @@ const AboutSection = ({ trigger }: AboutSectionProps) => {
                 mb: 2,
                 lineHeight: 1.2,
               }}
-            >
-              <Box
-                component="span"
-                sx={{
-                  display: "inline-block",
-                  whiteSpace: "nowrap",
-                  verticalAlign: "baseline",
-                }}
-              >
-                Find me&nbsp;
-                <Box
-                  component="span"
-                  sx={{
-                    position: "relative",
-                    display: "inline-grid",
-                    color: "text.tertiary",
-                    verticalAlign: "baseline",
-                  }}
-                >
-                  <Typography
-                    variant="h2"
-                    component="span"
-                    sx={{
-                      fontWeight: "bold",
-                      visibility: "hidden",
-                      height: 0,
-                      display: "block",
-                    }}
-                  >
-                    {longestWord}
-                  </Typography>
-                  <AnimatePresence mode="wait">
-                    <motion.span
-                      key={words[index]}
-                      initial={{ opacity: 0, y: 10 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      exit={{ opacity: 0, y: -10 }}
-                      transition={{ duration: 0.4, ease: "easeOut" }}
-                      style={{
-                        gridArea: "1 / 1",
-                        display: "block",
-                      }}
-                    >
-                      {words[index]}
-                    </motion.span>
-                  </AnimatePresence>
-                </Box>
-              </Box>
-            </Typography>
+            ></Typography>
           </TextAnimation>
-
           <TextAnimation duration={0.1} trigger={trigger}>
             <Typography
               variant="body1"
@@ -104,12 +41,25 @@ const AboutSection = ({ trigger }: AboutSectionProps) => {
                 maxWidth: "800px",
               }}
             >
-              I am a product-centric Frontend Developer with over 4 years of
-              experience leveraging TypeScript to build responsive, scalable
-              React applications. Having engineered enterprise-scale
-              applications for 300,000+ users at PwC, I thrive in environments
-              that value ownership, data-driven decisions, and maintaining high
-              coding standards to meet the business' bottom line.
+              I am a product-centric Frontend Engineer{" "}
+              <Box
+                component="span"
+                sx={{ fontWeight: "bold", color: "text.primary" }}
+              >
+                based in Manchester
+              </Box>
+              , with over 4 years of experience leveraging TypeScript to build
+              responsive, scalable React applications. Having engineered
+              enterprise-scale applications for 300,000+ users at{"  "}
+              <Box
+                component="span"
+                sx={{ fontWeight: "bold", color: "text.primary" }}
+              >
+                PwC
+              </Box>
+              , I thrive in environments that value ownership, data-driven
+              decisions, and maintaining high coding standards to meet the
+              business' bottom line.
             </Typography>
           </TextAnimation>
         </Box>

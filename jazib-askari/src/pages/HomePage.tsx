@@ -27,8 +27,10 @@ const HomePage = ({ navTrigger }: HomePageProps) => {
           height: { md: "calc(100vh - 80px)" },
           display: "flex",
           flexDirection: "column",
-          justifyContent: "center",
+          justifyContent: "flex-start",
+          gap: { xs: 8, md: 12 },
           px: { xs: 2, md: 6 },
+          pb: { xs: 6, md: 12 },
         }}
       >
         <HomeSection trigger={navTrigger} />
@@ -38,9 +40,8 @@ const HomePage = ({ navTrigger }: HomePageProps) => {
           width: { xs: "100%", md: "60%" },
           display: "flex",
           flexDirection: "column",
-          gap: { xs: 8, md: 12 },
-          px: { xs: 2, md: 6 },
-          pb: { xs: 6, md: 12 },
+          gap: { xs: 1, md: 1 },
+          pb: { xs: 2, md: 2 },
         }}
       >
         <AboutSection trigger={navTrigger} />

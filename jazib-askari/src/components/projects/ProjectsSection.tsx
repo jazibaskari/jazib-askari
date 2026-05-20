@@ -18,7 +18,7 @@ const ProjectsSection = ({ trigger }: ProjectsSectionProps) => {
   };
   return (
     <Section id="Projects">
-      <Box sx={{ width: "100%" }}>
+      <Box>
         <TextAnimation duration={0.6} trigger={trigger}>
           <Typography variant="h2" gutterBottom sx={{ pl: 0 }}>
             Projects
@@ -33,15 +33,15 @@ const ProjectsSection = ({ trigger }: ProjectsSectionProps) => {
               scrollButtons="auto"
               aria-label="project tabs"
               sx={{
-                '& .MuiTabs-flexContainer': {
-                  justifyContent: 'flex-start',
-                }
+                "& .MuiTabs-flexContainer": {
+                  justifyContent: "flex-start",
+                },
               }}
             >
               {projects.map((p, index) => (
                 <Tab
                   key={p.id}
-                  label={p.subtitle} 
+                  label={p.subtitle}
                   id={`project-tab-${index}`}
                   aria-controls={`project-tabpanel-${index}`}
                   sx={(theme) => ({
@@ -50,9 +50,9 @@ const ProjectsSection = ({ trigger }: ProjectsSectionProps) => {
                     fontSize: "1.1rem",
                     minWidth: 0,
                     p: 0,
-                    mr: 4, 
-                    alignItems: 'flex-start',
-                    textAlign: 'left',
+                    mr: 4,
+                    alignItems: "flex-start",
+                    textAlign: "left",
                   })}
                 />
               ))}
@@ -66,21 +66,21 @@ const ProjectsSection = ({ trigger }: ProjectsSectionProps) => {
                 id={`project-tabpanel-${index}`}
                 aria-labelledby={`project-tab-${index}`}
                 key={p.id}
-                style={{ 
-                  width: "100%", 
-                  display: value === index ? "block" : "none" 
+                style={{
+                  width: "100%",
+                  display: value === index ? "block" : "none",
                 }}
               >
                 <ProjectTabContent project={p} trigger={trigger + value} />
               </div>
             ))}
           </Box>
-          <Box 
-            sx={{ 
-              width: "100%", 
-              display: "flex", 
-              justifyContent: "flex-start", 
-              mt: 2 
+          <Box
+            sx={{
+              width: "100%",
+              display: "flex",
+              justifyContent: "flex-start",
+              mt: 2,
             }}
           >
             <Button
@@ -88,7 +88,7 @@ const ProjectsSection = ({ trigger }: ProjectsSectionProps) => {
               endIcon={<ArrowForwardIcon />}
               onClick={() => navigate("/projects")}
               sx={(theme) => ({
-                ...theme.typography.body1, 
+                ...theme.typography.body1,
                 textTransform: "none",
                 p: 0,
                 minWidth: 0,
@@ -98,7 +98,7 @@ const ProjectsSection = ({ trigger }: ProjectsSectionProps) => {
                   backgroundColor: "transparent",
                   color: "text.tertiary",
                   "& .MuiButton-endIcon": {
-                    transform: "translateX(6px)", 
+                    transform: "translateX(6px)",
                   },
                 },
               })}

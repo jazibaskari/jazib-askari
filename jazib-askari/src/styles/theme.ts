@@ -1,6 +1,6 @@
-import { createTheme, type PaletteMode } from '@mui/material/styles';
-import { typography } from './designTokens';
-declare module '@mui/material/styles' {
+import { createTheme, type PaletteMode } from "@mui/material/styles";
+import { typography } from "./designTokens";
+declare module "@mui/material/styles" {
   interface TypeText {
     tertiary?: string;
     grey?: string;
@@ -8,11 +8,11 @@ declare module '@mui/material/styles' {
   }
 }
 
-export const getTheme = (mode: PaletteMode) => 
+export const getTheme = (mode: PaletteMode) =>
   createTheme({
     palette: {
       mode,
-      ...(mode === 'light'
+      ...(mode === "light"
         ? {
             primary: {
               main: "#5ec2de",
@@ -24,8 +24,8 @@ export const getTheme = (mode: PaletteMode) =>
             text: {
               primary: "#1a1a1a",
               secondary: "#666666",
-              tertiary:  "#5ec2de",
-              grey: "#bfc0c0",  
+              tertiary: "#5ec2de",
+              grey: "#bfc0c0",
               quarternary: "#5ec2de",
             },
             divider: "rgba(0, 0, 0, 0.12)",
@@ -41,8 +41,8 @@ export const getTheme = (mode: PaletteMode) =>
             text: {
               primary: "#ffffff",
               secondary: "#b0b0b0",
-              tertiary:  "#5ec2de", 
-              grey: "#bfc0c0", 
+              tertiary: "#5ec2de",
+              grey: "#bfc0c0",
               quarternary: "#ffffff",
             },
             divider: "rgba(255, 255, 255, 0.12)",
@@ -71,6 +71,11 @@ export const getTheme = (mode: PaletteMode) =>
         fontSize: typography.sizes.h4,
         lineHeight: typography.lineHeights.h4,
       },
+      h5: {
+        fontFamily: typography.families.regular,
+        fontSize: typography.sizes.h4,
+        lineHeight: typography.lineHeights.h4,
+      },
       body1: {
         fontFamily: typography.families.regular,
         fontSize: typography.sizes.body,
@@ -79,7 +84,7 @@ export const getTheme = (mode: PaletteMode) =>
       button: {
         fontFamily: typography.families.medium,
         fontWeight: 500,
-        textTransform: 'none',
+        textTransform: "none",
         fontSize: typography.sizes.button,
       },
     },
@@ -87,7 +92,7 @@ export const getTheme = (mode: PaletteMode) =>
       MuiPaper: {
         styleOverrides: {
           root: {
-            backgroundImage: 'none', 
+            backgroundImage: "none",
           },
         },
       },
