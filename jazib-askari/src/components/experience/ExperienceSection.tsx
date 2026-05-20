@@ -1,6 +1,13 @@
 import { useState, useRef, useLayoutEffect, useEffect } from "react";
 import Section from "../shared/Section";
-import { Typography, Box, Stack, Chip, IconButton, useMediaQuery, useTheme } from "@mui/material";
+import {
+  Typography,
+  Box,
+  Stack,
+  Chip,
+  IconButton,
+  useTheme,
+} from "@mui/material";
 import TextAnimation from "../../animations/AnimatedText";
 import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
@@ -10,7 +17,9 @@ import { experiences } from "../../data/expereince";
 import { skills } from "../../data/skill";
 import type { Experience } from "../../types/experience";
 
-interface ExperienceSectionProps { trigger: number; }
+interface ExperienceSectionProps {
+  trigger: number;
+}
 
 interface ExperienceCardProps {
   exp: Experience;
@@ -19,26 +28,31 @@ interface ExperienceCardProps {
   getTagColor: (tag: string) => string;
 }
 
-const ExperienceCard = ({ exp, trigger, index, getTagColor }: ExperienceCardProps) => {
+const ExperienceCard = ({
+  exp,
+  trigger,
+  index,
+  getTagColor,
+}: ExperienceCardProps) => {
   const theme = useTheme();
   const shadowRef = useRef<HTMLDivElement>(null);
   const [page, setPage] = useState(0);
   const [maxPage, setMaxPage] = useState(0);
 
   // Chip height
-  const rowHeight = 28; 
+  const rowHeight = 28;
   const gap = 8;
   const rowsPerPage = 3;
   // Total height of 3 chip rows + 2 gaps
-  const visibleHeight = (rowHeight * rowsPerPage) + (gap * (rowsPerPage - 1));
+  const visibleHeight = rowHeight * rowsPerPage + gap * (rowsPerPage - 1);
   const arrowBoxHeight = 40;
 
   useLayoutEffect(() => {
     const calculate = () => {
       if (shadowRef.current) {
         const fullHeight = shadowRef.current.scrollHeight;
-        // Total pages = Total Height / (Height of 3 chip rows + 1 gap, to account for the space between pages)
-        const calculatedMax = Math.ceil((fullHeight + gap) / (visibleHeight + gap)) - 1;
+        const calculatedMax =
+          Math.ceil((fullHeight + gap) / (visibleHeight + gap)) - 1;
         setMaxPage(calculatedMax > 0 ? calculatedMax : 0);
       }
     };
@@ -54,29 +68,34 @@ const ExperienceCard = ({ exp, trigger, index, getTagColor }: ExperienceCardProp
     setPage((prev) => (prev >= maxPage ? 0 : prev + 1));
   };
 
-  const renderChips = () => exp.tags.map((tag: string) => {
-    const bgColor = getTagColor(tag);
-    return (
-      <Chip
-        key={tag}
-        label={tag}
-        sx={{
-          ...theme.typography.h4,
-          bgcolor: bgColor,
-          color: bgColor === "action.hover" ? "text.primary" : "white",
-          px: 1,
-          fontSize: "0.85rem",
-          height: `${rowHeight}px`,
-          ml: "0 !important",
-          "&:hover": { bgcolor: bgColor }
-        }}
-      />
-    );
-  });
+  const renderChips = () =>
+    exp.tags.map((tag: string) => {
+      const bgColor = getTagColor(tag);
+      return (
+        <Chip
+          key={tag}
+          label={tag}
+          sx={{
+            ...theme.typography.h4,
+            bgcolor: bgColor,
+            color: bgColor === "action.hover" ? "text.primary" : "white",
+            px: 1,
+            fontSize: "0.85rem",
+            height: `${rowHeight}px`,
+            ml: "0 !important",
+            "&:hover": { bgcolor: bgColor },
+          }}
+        />
+      );
+    });
 
   return (
     <Box sx={{ width: "100%", display: "flex" }}>
-      <TextAnimation trigger={trigger} delay={index * 0.1} style={{ width: "100%", display: "flex" }}>
+      <TextAnimation
+        trigger={trigger}
+        delay={index * 0.1}
+        style={{ width: "100%", display: "flex" }}
+      >
         <Box
           sx={{
             width: "100%",
@@ -95,18 +114,39 @@ const ExperienceCard = ({ exp, trigger, index, getTagColor }: ExperienceCardProp
           }}
         >
           <Box sx={{ mb: 2 }}>
-            <Typography variant="h3" fontWeight="bold" sx={{ color: "text.quarternary" }}>{exp.title}</Typography>
-            <Typography variant="body1" sx={{ color: "text.tertiary", mt: 0.5 }}>
+            <Typography
+              variant="h3"
+              fontWeight="bold"
+              sx={{ color: "text.quarternary" }}
+            >
+              {exp.title}
+            </Typography>
+            <Typography
+              variant="body1"
+              sx={{ color: "text.tertiary", mt: 0.5 }}
+            >
               {exp.subtitle}
             </Typography>
-            <Typography variant="body2" sx={{ color: "text.primary", textTransform: "uppercase", fontWeight: 600, display: "block", mt: 0.5 }}>
+            <Typography
+              variant="body2"
+              sx={{
+                color: "text.primary",
+                textTransform: "uppercase",
+                fontWeight: 600,
+                display: "block",
+                mt: 0.5,
+              }}
+            >
               {exp.dates}
             </Typography>
           </Box>
-          <Typography variant="body1" sx={{ color: "text.secondary", lineHeight: 1.7, flex: 1, mb: 3 }}>
+          <Typography
+            variant="body1"
+            sx={{ color: "text.secondary", lineHeight: 1.7, flex: 1, mb: 3 }}
+          >
             {exp.description}
           </Typography>
-          
+
           <Box sx={{ position: "relative", width: "100%", overflow: "hidden" }}>
             <Box
               ref={shadowRef}
@@ -118,12 +158,18 @@ const ExperienceCard = ({ exp, trigger, index, getTagColor }: ExperienceCardProp
                 visibility: "hidden",
                 width: "100%",
                 zIndex: -1,
-                alignContent: "flex-start"
+                alignContent: "flex-start",
               }}
             >
               {renderChips()}
             </Box>
-            <Box sx={{ height: `${visibleHeight}px`, overflow: "hidden", width: "100%" }}>
+            <Box
+              sx={{
+                height: `${visibleHeight}px`,
+                overflow: "hidden",
+                width: "100%",
+              }}
+            >
               <Box
                 sx={{
                   display: "flex",
@@ -138,13 +184,21 @@ const ExperienceCard = ({ exp, trigger, index, getTagColor }: ExperienceCardProp
                 {renderChips()}
               </Box>
             </Box>
-            
-            <Box sx={{ display: "flex", justifyContent: "center", mt: 1, height: `${arrowBoxHeight}px`, alignItems: "center" }}>
+
+            <Box
+              sx={{
+                display: "flex",
+                justifyContent: "center",
+                mt: 1,
+                height: `${arrowBoxHeight}px`,
+                alignItems: "center",
+              }}
+            >
               {maxPage > 0 && (
-                <IconButton 
+                <IconButton
                   onClick={handleVerticalScroll}
-                  sx={{ 
-                    border: "1px solid", 
+                  sx={{
+                    border: "1px solid",
                     borderColor: "divider",
                     p: 0.5,
                   }}
@@ -165,17 +219,15 @@ const ExperienceCard = ({ exp, trigger, index, getTagColor }: ExperienceCardProp
 };
 
 const ExperienceSection = ({ trigger }: ExperienceSectionProps) => {
-  const theme = useTheme();
   const containerRef = useRef<HTMLDivElement>(null);
   const [canScrollLeft, setCanScrollLeft] = useState(false);
   const [canScrollRight, setCanScrollRight] = useState(true);
-  const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
-  const isTablet = useMediaQuery(theme.breakpoints.between("sm", "md"));
 
   const getTagColor = (tagName: string) => {
-    const category = skills.find((cat) =>
-      cat.skills.some((s) => s.toLowerCase() === tagName.toLowerCase()) ||
-      cat.label.toLowerCase() === tagName.toLowerCase()
+    const category = skills.find(
+      (cat) =>
+        cat.skills.some((s) => s.toLowerCase() === tagName.toLowerCase()) ||
+        cat.label.toLowerCase() === tagName.toLowerCase()
     );
     return category ? category.color : "action.hover";
   };
@@ -195,8 +247,7 @@ const ExperienceSection = ({ trigger }: ExperienceSectionProps) => {
       if (!card) return;
       const cardGap = 24;
       const cardWidth = card.offsetWidth;
-      const scrollMultiplier = isMobile ? 1 : isTablet ? 2 : 3;
-      const scrollDistance = (cardWidth + cardGap) * scrollMultiplier;
+      const scrollDistance = cardWidth + cardGap;
       container.scrollBy({
         left: direction === "left" ? -scrollDistance : scrollDistance,
         behavior: "smooth",
@@ -220,15 +271,30 @@ const ExperienceSection = ({ trigger }: ExperienceSectionProps) => {
   return (
     <Section id="Experience">
       <TextAnimation duration={0.6} trigger={trigger}>
-        <Box sx={{ display: "flex", justifyContent: "space-between", alignItems: "flex-end", mb: 4 }}>
+        <Box
+          sx={{
+            display: "flex",
+            justifyContent: "space-between",
+            alignItems: "flex-end",
+            mb: 4,
+          }}
+        >
           <Typography variant="h2" sx={{ mb: 0 }}>
             Experience
           </Typography>
           <Stack direction="row" spacing={1}>
-            <IconButton onClick={() => scroll("left")} disabled={!canScrollLeft} sx={{ border: "1px solid", borderColor: "divider" }}>
+            <IconButton
+              onClick={() => scroll("left")}
+              disabled={!canScrollLeft}
+              sx={{ border: "1px solid", borderColor: "divider" }}
+            >
               <ArrowBackIosNewIcon fontSize="small" />
             </IconButton>
-            <IconButton onClick={() => scroll("right")} disabled={!canScrollRight} sx={{ border: "1px solid", borderColor: "divider" }}>
+            <IconButton
+              onClick={() => scroll("right")}
+              disabled={!canScrollRight}
+              sx={{ border: "1px solid", borderColor: "divider" }}
+            >
               <ArrowForwardIosIcon fontSize="small" />
             </IconButton>
           </Stack>
@@ -256,14 +322,15 @@ const ExperienceSection = ({ trigger }: ExperienceSectionProps) => {
               scrollSnapAlign: "start",
               flexShrink: 0,
               display: "flex",
-              width: {
-                xs: "100%",
-                sm: "calc((100% - 24px) / 2)",
-                md: "calc((100% - 48px) / 3)"
-              },
+              width: "100%",
             }}
           >
-            <ExperienceCard exp={exp} trigger={trigger} index={index} getTagColor={getTagColor} />
+            <ExperienceCard
+              exp={exp}
+              trigger={trigger}
+              index={index}
+              getTagColor={getTagColor}
+            />
           </Box>
         ))}
       </Box>
