@@ -1,113 +1,196 @@
-import { useState, useRef, useLayoutEffect, useEffect } from "react";
+import { useState, useRef, useLayoutEffect } from "react";
 import Section from "../shared/Section";
-import { Typography, Box, Stack, Chip, IconButton, useMediaQuery, useTheme } from "@mui/material";
+import { Typography, Box, Chip, IconButton, Button } from "@mui/material";
 import TextAnimation from "../../animations/AnimatedText";
-import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
-import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
-import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
-import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
-import { experiences } from "../../data/expereince";
+import ArrowDownwardIcon from "@mui/icons-material/ArrowDownward";
+import ArrowUpwardIcon from "@mui/icons-material/ArrowUpward";
+import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
+import ArrowOutwardIcon from "@mui/icons-material/ArrowOutward";
+import { useNavigate } from "react-router-dom";
+import { experiences } from "../../data/experience";
 import { skills } from "../../data/skill";
 import type { Experience } from "../../types/experience";
 
-interface ExperienceSectionProps { trigger: number; }
+interface ExperienceSectionProps {
+  trigger: number;
+}
 
 interface ExperienceCardProps {
-  exp: Experience;
+  exp: Experience & { location?: string; website?: string };
   trigger: number;
   index: number;
   getTagColor: (tag: string) => string;
 }
 
-const ExperienceCard = ({ exp, trigger, index, getTagColor }: ExperienceCardProps) => {
-  const theme = useTheme();
+const ExperienceItem = ({
+  exp,
+  trigger,
+  index,
+  getTagColor,
+}: ExperienceCardProps) => {
   const shadowRef = useRef<HTMLDivElement>(null);
   const [page, setPage] = useState(0);
   const [maxPage, setMaxPage] = useState(0);
 
-  // Chip height
-  const rowHeight = 28; 
+  const rowHeight = 28;
   const gap = 8;
   const rowsPerPage = 3;
-  // Total height of 3 chip rows + 2 gaps
-  const visibleHeight = (rowHeight * rowsPerPage) + (gap * (rowsPerPage - 1));
-  const arrowBoxHeight = 40;
+  const visibleHeight = rowHeight * rowsPerPage + gap * (rowsPerPage - 1);
+  const arrowBoxHeight = 48;
 
   useLayoutEffect(() => {
     const calculate = () => {
       if (shadowRef.current) {
         const fullHeight = shadowRef.current.scrollHeight;
-        // Total pages = Total Height / (Height of 3 chip rows + 1 gap, to account for the space between pages)
-        const calculatedMax = Math.ceil((fullHeight + gap) / (visibleHeight + gap)) - 1;
+        const calculatedMax =
+          Math.ceil((fullHeight + gap) / (visibleHeight + gap)) - 1;
         setMaxPage(calculatedMax > 0 ? calculatedMax : 0);
       }
     };
-
     const resizeObserver = new ResizeObserver(calculate);
     if (shadowRef.current) resizeObserver.observe(shadowRef.current);
     calculate();
-
     return () => resizeObserver.disconnect();
   }, [visibleHeight, exp.tags]);
 
-  const handleVerticalScroll = () => {
-    setPage((prev) => (prev >= maxPage ? 0 : prev + 1));
-  };
+  const renderChips = () =>
+    exp.tags.map((tag: string) => {
+      const baseColor = getTagColor(tag);
 
-  const renderChips = () => exp.tags.map((tag: string) => {
-    const bgColor = getTagColor(tag);
-    return (
-      <Chip
-        key={tag}
-        label={tag}
-        sx={{
-          ...theme.typography.h4,
-          bgcolor: bgColor,
-          color: bgColor === "action.hover" ? "text.primary" : "white",
-          px: 1,
-          fontSize: "0.85rem",
-          height: `${rowHeight}px`,
-          ml: "0 !important",
-          "&:hover": { bgcolor: bgColor }
-        }}
-      />
-    );
-  });
+      return (
+        <Chip
+          key={tag}
+          label={
+            <Typography
+              variant="h6"
+              sx={{ fontWeight: "medium", fontSize: "0.85rem", lineHeight: 1 }}
+            >
+              {tag}
+            </Typography>
+          }
+          sx={{
+            bgcolor: "background.paper",
+            color: baseColor,
+            px: 1,
+            height: `${rowHeight}px`,
+            ml: "0 !important",
+          }}
+        />
+      );
+    });
+
+  const displayWebsite =
+    exp.website ||
+    `www.${exp.subtitle.toLowerCase().replace(/[^a-z0-9]/g, "")}.com`;
 
   return (
-    <Box sx={{ width: "100%", display: "flex" }}>
-      <TextAnimation trigger={trigger} delay={index * 0.1} style={{ width: "100%", display: "flex" }}>
+    <TextAnimation trigger={trigger} delay={index * 0.15}>
+      <Typography
+        variant="h4"
+        sx={{ color: "text.primary", mb: { xs: 3, md: 4 } }}
+      >
+        {exp.subtitle}
+      </Typography>
+      <Box
+        sx={{
+          display: "flex",
+          flexDirection: { xs: "column", md: "row" },
+          gap: { xs: 4, md: 6 },
+          width: "100%",
+        }}
+      >
         <Box
           sx={{
-            width: "100%",
-            borderRadius: "28px",
-            backgroundColor: "background.paper",
+            width: { xs: "100%", md: "35%" },
             display: "flex",
             flexDirection: "column",
-            p: 4,
-            pb: 2,
-            boxSizing: "border-box",
-            transition: "0.3s ease-in-out",
-            "&:hover": {
-              transform: "translateY(-8px)",
-              backgroundColor: "action.hover",
-            },
+            gap: 1,
           }}
         >
-          <Box sx={{ mb: 2 }}>
-            <Typography variant="h3" fontWeight="bold" sx={{ color: "text.quarternary" }}>{exp.title}</Typography>
-            <Typography variant="body1" sx={{ color: "text.tertiary", mt: 0.5 }}>
-              {exp.subtitle}
-            </Typography>
-            <Typography variant="body2" sx={{ color: "text.primary", textTransform: "uppercase", fontWeight: 600, display: "block", mt: 0.5 }}>
-              {exp.dates}
-            </Typography>
+          <Typography
+            variant="body1"
+            sx={{ color: "text.primary", fontWeight: 500 }}
+          >
+            {exp.dates}
+          </Typography>
+          <Typography variant="body1" sx={{ color: "text.secondary" }}>
+            {exp.title}
+          </Typography>
+
+          <Box
+            component="a"
+            href={
+              displayWebsite.startsWith("http")
+                ? displayWebsite
+                : `https://${displayWebsite}`
+            }
+            target="_blank"
+            rel="noopener noreferrer"
+            sx={{
+              color: "text.secondary",
+              textDecoration: "none",
+              display: "inline-flex",
+              alignItems: "center",
+              width: "fit-content",
+              fontSize: "1rem",
+              mt: 0.5,
+              position: "relative",
+              pb: "4px",
+              "&:hover": { color: "text.primary" },
+              "&::after": {
+                content: '""',
+                position: "absolute",
+                bottom: 0,
+                left: 0,
+                width: "100%",
+                height: "3px",
+                bgcolor: "background.paper",
+                transition: "opacity 0.3s ease",
+              },
+              "&::before": {
+                content: '""',
+                position: "absolute",
+                bottom: 0,
+                left: 0,
+                width: "100%",
+                height: "3px",
+                bgcolor: "text.primary",
+                transform: "scaleX(0)",
+                transformOrigin: "left",
+                transition: "transform 0.35s cubic-bezier(0.4, 0, 0.2, 1)",
+                zIndex: 1,
+              },
+              "&:hover::before": {
+                transform: "scaleX(1)",
+              },
+            }}
+          >
+            <Box component="span">{displayWebsite}</Box>
+            <ArrowOutwardIcon sx={{ fontSize: "0.95rem", ml: "5px" }} />
           </Box>
-          <Typography variant="body1" sx={{ color: "text.secondary", lineHeight: 1.7, flex: 1, mb: 3 }}>
+        </Box>
+        <Box
+          sx={{
+            width: { xs: "100%", md: "65%" },
+            display: "flex",
+            flexDirection: "column",
+            gap: 3,
+            mb: "20px",
+          }}
+        >
+          <Typography
+            variant="body1"
+            sx={{
+              color: "text.secondary",
+              lineHeight: 1.8,
+              fontSize: "1.05rem",
+              whiteSpace: "pre-line",
+            }}
+          >
             {exp.description}
           </Typography>
-          
-          <Box sx={{ position: "relative", width: "100%", overflow: "hidden" }}>
+
+          <Box sx={{ position: "relative", width: "100%" }}>
             <Box
               ref={shadowRef}
               sx={{
@@ -118,19 +201,21 @@ const ExperienceCard = ({ exp, trigger, index, getTagColor }: ExperienceCardProp
                 visibility: "hidden",
                 width: "100%",
                 zIndex: -1,
-                alignContent: "flex-start"
               }}
             >
               {renderChips()}
             </Box>
-            <Box sx={{ height: `${visibleHeight}px`, overflow: "hidden", width: "100%" }}>
+            <Box
+              sx={{
+                height: maxPage > 0 ? `${visibleHeight}px` : "auto",
+                overflow: "hidden",
+              }}
+            >
               <Box
                 sx={{
                   display: "flex",
                   flexWrap: "wrap",
                   gap: `${gap}px`,
-                  width: "100%",
-                  alignContent: "flex-start",
                   transition: "transform 0.6s cubic-bezier(0.4, 0, 0.2, 1)",
                   transform: `translateY(-${page * (visibleHeight + gap)}px)`,
                 }}
@@ -138,134 +223,131 @@ const ExperienceCard = ({ exp, trigger, index, getTagColor }: ExperienceCardProp
                 {renderChips()}
               </Box>
             </Box>
-            
-            <Box sx={{ display: "flex", justifyContent: "center", mt: 1, height: `${arrowBoxHeight}px`, alignItems: "center" }}>
-              {maxPage > 0 && (
-                <IconButton 
-                  onClick={handleVerticalScroll}
-                  sx={{ 
-                    border: "1px solid", 
-                    borderColor: "divider",
-                    p: 0.5,
+
+            {maxPage > 0 && (
+              <Box
+                sx={{
+                  display: "flex",
+                  justifyContent: "center",
+                  mt: 1,
+                  height: `${arrowBoxHeight}px`,
+                  alignItems: "center",
+                }}
+              >
+                <IconButton
+                  disableRipple
+                  onClick={() => setPage((p) => (p >= maxPage ? 0 : p + 1))}
+                  sx={{
+                    width: "30px",
+                    height: "30px",
+                    p: 0,
+                    "&:hover": {},
                   }}
                 >
                   {page < maxPage ? (
-                    <KeyboardArrowDownIcon fontSize="small" />
+                    <ArrowDownwardIcon fontSize="small" />
                   ) : (
-                    <KeyboardArrowUpIcon fontSize="small" />
+                    <ArrowUpwardIcon fontSize="small" />
                   )}
                 </IconButton>
-              )}
-            </Box>
+              </Box>
+            )}
           </Box>
         </Box>
-      </TextAnimation>
-    </Box>
+      </Box>
+    </TextAnimation>
   );
 };
 
 const ExperienceSection = ({ trigger }: ExperienceSectionProps) => {
-  const theme = useTheme();
-  const containerRef = useRef<HTMLDivElement>(null);
-  const [canScrollLeft, setCanScrollLeft] = useState(false);
-  const [canScrollRight, setCanScrollRight] = useState(true);
-  const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
-  const isTablet = useMediaQuery(theme.breakpoints.between("sm", "md"));
+  const navigate = useNavigate();
 
   const getTagColor = (tagName: string) => {
-    const category = skills.find((cat) =>
-      cat.skills.some((s) => s.toLowerCase() === tagName.toLowerCase()) ||
-      cat.label.toLowerCase() === tagName.toLowerCase()
+    const category = skills.find(
+      (cat) =>
+        cat.skills.some((s) => s.toLowerCase() === tagName.toLowerCase()) ||
+        cat.label.toLowerCase() === tagName.toLowerCase()
     );
     return category ? category.color : "action.hover";
   };
-
-  const checkScroll = () => {
-    if (containerRef.current) {
-      const { scrollLeft, scrollWidth, clientWidth } = containerRef.current;
-      setCanScrollLeft(scrollLeft > 10);
-      setCanScrollRight(scrollLeft < scrollWidth - clientWidth - 10);
-    }
-  };
-
-  const scroll = (direction: "left" | "right") => {
-    if (containerRef.current) {
-      const container = containerRef.current;
-      const card = container.firstElementChild as HTMLElement;
-      if (!card) return;
-      const cardGap = 24;
-      const cardWidth = card.offsetWidth;
-      const scrollMultiplier = isMobile ? 1 : isTablet ? 2 : 3;
-      const scrollDistance = (cardWidth + cardGap) * scrollMultiplier;
-      container.scrollBy({
-        left: direction === "left" ? -scrollDistance : scrollDistance,
-        behavior: "smooth",
-      });
-    }
-  };
-
-  useEffect(() => {
-    const ref = containerRef.current;
-    if (ref) {
-      ref.addEventListener("scroll", checkScroll);
-      checkScroll();
-      window.addEventListener("resize", checkScroll);
-      return () => {
-        ref.removeEventListener("scroll", checkScroll);
-        window.removeEventListener("resize", checkScroll);
-      };
-    }
-  }, []);
+  const displayedExperiences = experiences.slice(0, 6);
 
   return (
-    <Section id="Experience">
-      <TextAnimation duration={0.6} trigger={trigger}>
-        <Box sx={{ display: "flex", justifyContent: "space-between", alignItems: "flex-end", mb: 4 }}>
-          <Typography variant="h2" sx={{ mb: 0 }}>
-            Experience
-          </Typography>
-          <Stack direction="row" spacing={1}>
-            <IconButton onClick={() => scroll("left")} disabled={!canScrollLeft} sx={{ border: "1px solid", borderColor: "divider" }}>
-              <ArrowBackIosNewIcon fontSize="small" />
-            </IconButton>
-            <IconButton onClick={() => scroll("right")} disabled={!canScrollRight} sx={{ border: "1px solid", borderColor: "divider" }}>
-              <ArrowForwardIosIcon fontSize="small" />
-            </IconButton>
-          </Stack>
+    <Section id="experience">
+      <Box sx={{ mb: 4 }}>
+        <TextAnimation duration={0.6} trigger={trigger}>
+          <Typography variant="h3">experience</Typography>
+        </TextAnimation>
+
+        <Box sx={{ display: "flex", flexWrap: "wrap", gap: 1, mt: 2 }}>
+          {skills.map((category) => (
+            <Chip
+              key={category.label}
+              label={
+                <Typography
+                  variant="h6"
+                  sx={{
+                    fontWeight: "medium",
+                    fontSize: "0.85rem",
+                    lineHeight: 1,
+                  }}
+                >
+                  {category.label}
+                </Typography>
+              }
+              sx={{
+                bgcolor: "background.paper",
+                color: category.color,
+                height: "28px",
+              }}
+            />
+          ))}
         </Box>
-      </TextAnimation>
-      <Box
-        ref={containerRef}
-        sx={{
-          display: "flex",
-          gap: 3,
-          overflowX: "auto",
-          scrollSnapType: "x mandatory",
-          pt: 2,
-          pb: 4,
-          alignItems: "stretch",
-          "::-webkit-scrollbar": { display: "none" },
-          msOverflowStyle: "none",
-          scrollbarWidth: "none",
-        }}
-      >
-        {experiences.map((exp, index) => (
-          <Box
-            key={exp.id}
-            sx={{
-              scrollSnapAlign: "start",
-              flexShrink: 0,
-              display: "flex",
-              width: {
-                xs: "100%",
-                sm: "calc((100% - 24px) / 2)",
-                md: "calc((100% - 48px) / 3)"
-              },
-            }}
-          >
-            <ExperienceCard exp={exp} trigger={trigger} index={index} getTagColor={getTagColor} />
+      </Box>
+
+      <Box sx={{ display: "flex", flexDirection: "column" }}>
+        {displayedExperiences.map((exp, index) => (
+          <Box key={exp.id} sx={{ pt: { xs: 6, md: 4 } }}>
+            <ExperienceItem
+              exp={exp}
+              trigger={trigger}
+              index={index}
+              getTagColor={getTagColor}
+            />
           </Box>
         ))}
+      </Box>
+      <Box
+        sx={{
+          width: "100%",
+          display: "flex",
+          justifyContent: "flex-start",
+          mt: 4,
+        }}
+      >
+        <Button
+          variant="text"
+          endIcon={<ArrowForwardIcon />}
+          onClick={() => navigate("/projects")}
+          sx={(theme) => ({
+            ...theme.typography.body1,
+            textTransform: "none",
+            py: 2,
+            minWidth: 0,
+            color: "text.primary",
+            transition: "color 0.35s cubic-bezier(0.4, 0, 0.2, 1)",
+            "&:hover": {
+              backgroundColor: "transparent",
+              color: "text.tertiary",
+              "& .MuiButton-endIcon": {
+                transform: "translateX(6px)",
+                transition: "transform 0.3s ease",
+              },
+            },
+          })}
+        >
+          View Curriculum Vitae
+        </Button>
       </Box>
     </Section>
   );

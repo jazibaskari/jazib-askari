@@ -1,54 +1,32 @@
-import { useState, useContext } from "react";
+import { useState } from "react";
 import { Box } from "@mui/system";
-import { 
-  Button, 
-  IconButton, 
-  Drawer, 
-  List, 
-  ListItem, 
-  useTheme 
-} from "@mui/material";
-import MenuIcon from '@mui/icons-material/Menu';
-import Brightness4Icon from '@mui/icons-material/Brightness4'; 
-import Brightness7Icon from '@mui/icons-material/Brightness7'; 
-import { ColourModeContext } from "../../context/ColourModeContext";
-const allSections = ["Home", "About", "Skills", "Experience", "Projects"];
+import { Button, IconButton, Drawer, List, ListItem } from "@mui/material";
+import MenuIcon from "@mui/icons-material/Menu";
+
+const allSections = ["about", "experience", "projects"];
+
 interface NavbarProps {
   onNavClick?: () => void;
 }
+
 const Navbar = ({ onNavClick }: NavbarProps) => {
   const [mobileOpen, setMobileOpen] = useState(false);
-  const theme = useTheme();
-  const colourMode = useContext(ColourModeContext);
+
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
   };
+
   const handleScroll = (id: string) => {
-    if (id === "Home") {
-      window.scrollTo({ top: 0, behavior: "smooth" });
-    } else {
-      const el = document.getElementById(id);
-      if (el) {
-        const elementPosition = el.getBoundingClientRect().top + window.pageYOffset;
-        const offset = 80; 
-        const offsetPosition = elementPosition - offset;
-        window.scrollTo({
-          top: offsetPosition,
-          behavior: "smooth"
-        });
-      }
+    const el = document.getElementById(id);
+    if (el) {
+      const elementPosition =
+        el.getBoundingClientRect().top + window.pageYOffset;
+      window.scrollTo({ top: elementPosition - 80, behavior: "smooth" });
     }
     setMobileOpen(false);
     if (onNavClick) onNavClick();
   };
-  const commonButtonStyle = {
-    color: "text.primary",
-    textTransform: "none",
-    fontWeight: 500,
-    fontSize: "0.95rem",
-    transition: "0.2s",
-    "&:hover": { bgcolor: "action.hover" }
-  };
+
   return (
     <Box
       sx={{
@@ -56,68 +34,37 @@ const Navbar = ({ onNavClick }: NavbarProps) => {
         top: 0,
         zIndex: 1000,
         display: "flex",
-        justifyContent: "space-between",
+        justifyContent: "flex-end",
         alignItems: "center",
-        p: 2,
         bgcolor: "background.default",
       }}
     >
-      <Box sx={{ display: { xs: "none", md: "flex" }, gap: 1 }}>
-        {allSections.map((s) => (
-          <Button 
-            key={s} 
-            onClick={() => handleScroll(s)}
-            sx={{ 
-              ...commonButtonStyle,
-              px: 2,
-              minWidth: "auto" 
-            }}
-          >
-            {s}
-          </Button>
-        ))}
-      </Box>
-      <Box sx={{ display: "flex", alignItems: "center" }}>
-        <IconButton onClick={colourMode.toggleColourMode} color="inherit">
-          {theme.palette.mode === 'dark' ? <Brightness7Icon /> : <Brightness4Icon />}
+      <Box sx={{ display: { xs: "flex", md: "none" } }}>
+        <IconButton color="inherit" onClick={handleDrawerToggle}>
+          <MenuIcon />
         </IconButton>
-        <Box sx={{ display: { xs: "flex", md: "none" }, ml: 1 }}>
-          <IconButton
-            color="inherit"
-            aria-label="open drawer"
-            onClick={handleDrawerToggle}
-          >
-            <MenuIcon />
-          </IconButton>
-        </Box>
       </Box>
+
       <Drawer
         anchor="right"
         open={mobileOpen}
         onClose={handleDrawerToggle}
         sx={{
           display: { xs: "block", md: "none" },
-          "& .MuiDrawer-paper": { 
-            boxSizing: "border-box", 
-            width: 180, 
-            bgcolor: "background.default",
-            backgroundImage: "none"
-          },
+          "& .MuiDrawer-paper": { width: 180, bgcolor: "background.default" },
         }}
       >
         <Box sx={{ pt: 4 }}>
           <List disablePadding>
             {allSections.map((s) => (
               <ListItem key={s} disablePadding>
-                <Button 
+                <Button
                   onClick={() => handleScroll(s)}
-                  sx={{ 
-                    ...commonButtonStyle,
+                  sx={{
                     width: "100%",
-                    justifyContent: "flex-end", 
-                    px: 3, 
-                    py: 2, 
-                    borderRadius: 0, 
+                    justifyContent: "flex-end",
+                    px: 3,
+                    py: 2,
                   }}
                 >
                   {s}
@@ -130,4 +77,5 @@ const Navbar = ({ onNavClick }: NavbarProps) => {
     </Box>
   );
 };
+
 export default Navbar;

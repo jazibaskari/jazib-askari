@@ -1,132 +1,195 @@
-import { Box, Typography, Stack, Chip, IconButton, Tooltip } from "@mui/material";
-import GitHubIcon from "@mui/icons-material/GitHub";
-import LaunchIcon from "@mui/icons-material/Launch";
+import { Box, Typography, Stack, Chip } from "@mui/material";
 import type { Project } from "../../types/project";
-import { useTheme } from '@mui/material/styles';
+import { useTheme } from "@mui/material/styles";
 import TextAnimation from "../../animations/AnimatedText";
 import PortfolioLight from "../../assets/images/PortfolioLight.png";
 import PortfolioDark from "../../assets/images/PortfolioDark.png";
+import ArrowOutwardIcon from "@mui/icons-material/ArrowOutward";
+import { skills } from "../../data/skill";
+
 interface Props {
   project: Project;
   trigger: number;
 }
+
 const ProjectTabContent = ({ project, trigger }: Props) => {
   const theme = useTheme();
+
+  const getTagColor = (tagName: string) => {
+    const category = skills.find(
+      (cat) =>
+        cat.skills.some((s) => s.toLowerCase() === tagName.toLowerCase()) ||
+        cat.label.toLowerCase() === tagName.toLowerCase()
+    );
+    return category ? category.color : "action.hover";
+  };
+
+  const animatedLinkStyles = {
+    display: "inline-flex",
+    alignItems: "center",
+    gap: "4px",
+    color: "text.primary",
+    textDecoration: "none",
+    position: "relative",
+    pb: "6px",
+    fontSize: "1.05rem",
+    fontWeight: 500,
+    cursor: "pointer",
+    "&::after": {
+      content: '""',
+      position: "absolute",
+      bottom: 0,
+      left: 0,
+      width: "100%",
+      height: "3px",
+      bgcolor: "background.paper",
+      transition: "opacity 0.3s ease",
+    },
+    "&::before": {
+      content: '""',
+      position: "absolute",
+      bottom: 0,
+      left: 0,
+      width: "100%",
+      height: "3px",
+      bgcolor: "text.primary",
+      transform: "scaleX(0)",
+      transformOrigin: "left",
+      transition: "transform 0.35s cubic-bezier(0.4, 0, 0.2, 1)",
+      zIndex: 1,
+    },
+    "&:hover::before": {
+      transform: "scaleX(1)",
+    },
+  };
+
   return (
-    <Box 
-      sx={{ 
-        display: "flex", 
-        flexDirection: { xs: "column", md: "row" }, 
-        width: "100%", 
-        alignItems: "stretch", 
-        gap: { xs: 2, md: 4 } 
+    <Box
+      sx={{
+        display: "flex",
+        flexDirection: "column",
+        width: "100%",
+        gap: 3,
       }}
     >
+      {/* Image */}
       <Box
         sx={{
-          flex: 1,
-          bgcolor: "background.paper",
-          p: 4, 
+          width: "100%",
+          borderRadius: "24px",
+          overflow: "hidden",
+          display: "flex",
+          position: "relative",
+          cursor: "pointer",
+          "&:hover img": {
+            transform: "scale(1.05)",
+          },
+        }}
+      >
+        <TextAnimation
+          key={project.id}
+          duration={1.2}
+          trigger={trigger}
+          style={{ width: "100%" }}
+        >
+          <Box
+            component="img"
+            src={theme.palette.mode === "dark" ? PortfolioDark : PortfolioLight}
+            alt={project.title}
+            sx={{
+              width: "100%",
+              height: "auto",
+              maxHeight: { xs: "300px", md: "450px" },
+              objectFit: "cover",
+              display: "block",
+              transition: "transform 0.6s cubic-bezier(0.4, 0, 0.2, 1)",
+            }}
+          />
+        </TextAnimation>
+      </Box>
+
+      {/* Text */}
+      <Box
+        sx={{
+          width: "100%",
           display: "flex",
           flexDirection: "column",
           borderRadius: "24px",
         }}
       >
-        <Stack direction="row" spacing={2} sx={{ mb: 3 }}>
+        {/* Buttons */}
+        <Stack direction="row" spacing={4} sx={{ mb: 4 }}>
           {project.githubUrl && (
-            <Tooltip title="View Code">
-              <IconButton
-                href={project.githubUrl}
-                target="_blank"
-                sx={{
-                  bgcolor: "action.hover",
-                  width: 44, height: 44,
-                  "&:hover": { bgcolor:"primary.main", transform: "translateY(-2px)", color: "white" },
-                  transition: "all 0.3s ease",
-                }}
-              >
-                <GitHubIcon />
-              </IconButton>
-            </Tooltip>
+            <Box
+              component="a"
+              href={project.githubUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              sx={animatedLinkStyles}
+            >
+              GitHub{" "}
+              <ArrowOutwardIcon sx={{ fontSize: "0.95rem", ml: "1px" }} />
+            </Box>
           )}
           {project.liveUrl && (
-            <Tooltip title="Live Preview">
-              <IconButton
-                href={project.liveUrl}
-                target="_blank"
-                sx={{
-                  bgcolor: "action.hover",
-                  width: 44, height: 44,
-                  "&:hover": { bgcolor:"primary.main", transform: "translateY(-2px)", color: "white" },
-                  transition: "all 0.3s ease",
-                }}
-              >
-                <LaunchIcon />
-              </IconButton>
-            </Tooltip>
+            <Box
+              component="a"
+              href={project.liveUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              sx={animatedLinkStyles}
+            >
+              Launch{" "}
+              <ArrowOutwardIcon sx={{ fontSize: "0.95rem", ml: "1px" }} />
+            </Box>
           )}
         </Stack>
+
         <Typography
           variant="body1"
           sx={{
             color: "text.secondary",
             lineHeight: 1.8,
             fontSize: "1.1rem",
-            mb: 4,
-            flex: 1,
+            mb: 3,
           }}
         >
           {project.summary}
         </Typography>
+
         <Box sx={{ display: "flex", flexWrap: "wrap", gap: 1 }}>
-          {project.skills?.map((skill) => (
-            <Chip
-              key={skill}
-              label={skill}
-              sx={{
-                ...theme.typography.h4,
-                py: 2, 
-                px: 1, 
-                bgcolor: "action.hover",
-                fontSize: "0.9rem",
-                height: "28px",
-                ml: "0 !important"
-              }}
-            />
-          ))}
+          {project.skills?.map((skill) => {
+            const bgColor = getTagColor(skill);
+
+            return (
+              <Chip
+                key={skill}
+                label={
+                  <Typography
+                    variant="h6"
+                    sx={{
+                      fontWeight: "medium",
+                      fontSize: "0.85rem",
+                      lineHeight: 1,
+                    }}
+                  >
+                    {skill}
+                  </Typography>
+                }
+                sx={{
+                  bgcolor: bgColor,
+                  color: "background.paper",
+                  px: 1,
+                  height: "28px",
+                  ml: "0 !important",
+                }}
+              />
+            );
+          })}
         </Box>
-      </Box>
-      <Box 
-        sx={{ 
-          flex: 1, 
-          borderRadius: "24px", 
-          overflow: "hidden", 
-          display: "flex",
-          position: "relative",
-          minHeight: { xs: "250px", md: "100%" },
-          cursor: "pointer",
-          "&:hover img": {
-            transform: 'scale(1.3)',
-          }
-        }}
-      >
-        <TextAnimation key={project.id} duration={1.2} trigger={trigger}>
-          <Box
-            component="img"
-            src={theme.palette.mode === 'dark' ? PortfolioDark : PortfolioLight} 
-            alt={project.title}
-            sx={{
-              width: "100%",
-              height: "100%", 
-              maxHeight: { xs: "300px", md: "400px" },
-              objectFit: "cover",
-              display: "block",
-              transition: 'transform 0.6s cubic-bezier(0.4, 0, 0.2, 1)', 
-            }}
-          />
-        </TextAnimation>
       </Box>
     </Box>
   );
 };
+
 export default ProjectTabContent;

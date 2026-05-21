@@ -7,22 +7,24 @@ import TextAnimation from "../../animations/AnimatedText";
 import ProjectTabContent from "./ProjectTabContent";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import { useNavigate } from "react-router-dom";
+
 interface ProjectsSectionProps {
   trigger: number;
 }
+
 const ProjectsSection = ({ trigger }: ProjectsSectionProps) => {
   const [value, setValue] = useState(0);
   const navigate = useNavigate();
+
   const handleChange = (_event: SyntheticEvent, newValue: number) => {
     setValue(newValue);
   };
+
   return (
-    <Section id="Projects">
-      <Box sx={{ width: "100%" }}>
+    <Section id="projects">
+      <Box>
         <TextAnimation duration={0.6} trigger={trigger}>
-          <Typography variant="h2" gutterBottom sx={{ pl: 0 }}>
-            Projects
-          </Typography>
+          <Typography variant="h3">projects</Typography>
         </TextAnimation>
         <Box sx={{ width: "100%", mt: 4 }}>
           <Box sx={{ mb: 3 }}>
@@ -33,15 +35,16 @@ const ProjectsSection = ({ trigger }: ProjectsSectionProps) => {
               scrollButtons="auto"
               aria-label="project tabs"
               sx={{
-                '& .MuiTabs-flexContainer': {
-                  justifyContent: 'flex-start',
-                }
+                "& .MuiTabs-flexContainer": {
+                  justifyContent: "flex-start",
+                },
+                "& .MuiTabs-indicator": { display: "none" },
               }}
             >
               {projects.map((p, index) => (
                 <Tab
                   key={p.id}
-                  label={p.subtitle} 
+                  label={p.subtitle}
                   id={`project-tab-${index}`}
                   aria-controls={`project-tabpanel-${index}`}
                   sx={(theme) => ({
@@ -50,9 +53,40 @@ const ProjectsSection = ({ trigger }: ProjectsSectionProps) => {
                     fontSize: "1.1rem",
                     minWidth: 0,
                     p: 0,
-                    mr: 4, 
-                    alignItems: 'flex-start',
-                    textAlign: 'left',
+                    mr: 4,
+                    pb: "6px",
+                    alignItems: "flex-start",
+                    textAlign: "left",
+                    position: "relative",
+                    color: "text.secondary",
+                    backgroundColor: "transparent",
+                    outline: 0,
+                    "&.Mui-selected": {
+                      color: "text.primary",
+                    },
+                    "&::before": {
+                      content: '""',
+                      position: "absolute",
+                      bottom: 0,
+                      left: 0,
+                      width: "100%",
+                      height: "3px",
+                      bgcolor: "text.tertiary",
+                      transform: "scaleX(0)",
+                      transformOrigin: "left",
+                      transition:
+                        "transform 0.35s cubic-bezier(0.4, 0, 0.2, 1)",
+                      willChange: "transform",
+                      backfaceVisibility: "hidden",
+                      zIndex: 1,
+                    },
+                    "&:not(.Mui-selected):hover::before": {
+                      transform: "scaleX(1)",
+                    },
+                    "&.Mui-selected::before": {
+                      transform: "scaleX(1)",
+                      bgcolor: "text.tertiary",
+                    },
                   })}
                 />
               ))}
@@ -66,21 +100,21 @@ const ProjectsSection = ({ trigger }: ProjectsSectionProps) => {
                 id={`project-tabpanel-${index}`}
                 aria-labelledby={`project-tab-${index}`}
                 key={p.id}
-                style={{ 
-                  width: "100%", 
-                  display: value === index ? "block" : "none" 
+                style={{
+                  width: "100%",
+                  display: value === index ? "block" : "none",
                 }}
               >
                 <ProjectTabContent project={p} trigger={trigger + value} />
               </div>
             ))}
           </Box>
-          <Box 
-            sx={{ 
-              width: "100%", 
-              display: "flex", 
-              justifyContent: "flex-start", 
-              mt: 2 
+          <Box
+            sx={{
+              width: "100%",
+              display: "flex",
+              justifyContent: "flex-start",
+              mt: 2,
             }}
           >
             <Button
@@ -88,17 +122,18 @@ const ProjectsSection = ({ trigger }: ProjectsSectionProps) => {
               endIcon={<ArrowForwardIcon />}
               onClick={() => navigate("/projects")}
               sx={(theme) => ({
-                ...theme.typography.body1, 
+                ...theme.typography.body1,
                 textTransform: "none",
-                p: 0,
+                py: 2,
                 minWidth: 0,
-                color: "text.quarternary",
-                transition: "all 0.3s ease",
+                color: "text.primary",
+                transition: "color 0.35s cubic-bezier(0.4, 0, 0.2, 1)",
                 "&:hover": {
                   backgroundColor: "transparent",
                   color: "text.tertiary",
                   "& .MuiButton-endIcon": {
-                    transform: "translateX(6px)", 
+                    transform: "translateX(6px)",
+                    transition: "transform 0.3s ease",
                   },
                 },
               })}
@@ -111,4 +146,5 @@ const ProjectsSection = ({ trigger }: ProjectsSectionProps) => {
     </Section>
   );
 };
+
 export default ProjectsSection;

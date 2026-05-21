@@ -1,162 +1,119 @@
-import { useState, useEffect } from "react";
 import Section from "../shared/Section";
 import { Typography, Box, Stack } from "@mui/material";
 import TextAnimation from "../../animations/AnimatedText";
-import { motion, AnimatePresence } from "framer-motion";
 
 interface AboutSectionProps {
   trigger: number;
 }
 
-const words = ["developing", "designing", "creating"];
-
 const AboutSection = ({ trigger }: AboutSectionProps) => {
-  const [index, setIndex] = useState(0);
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setIndex((prev) => (prev + 1) % words.length);
-    }, 3000);
-    return () => clearInterval(interval);
-  }, []);
-
-  const longestWord = words.reduce((a, b) => (a.length > b.length ? a : b));
   const statColor = "#bfc0c0";
 
   return (
-    <Section id="About">
+    <Section id="about" noPaddingTop>
       <Box
         sx={{
           display: "flex",
-          flexDirection: { xs: "column", md: "row" },
-          alignItems: "center",
-          gap: { xs: 6, md: 10 },
+          flexDirection: "column",
+          alignItems: "flex-start",
+          gap: { xs: 4, md: 6 },
           width: "100%",
         }}
       >
-        <Box sx={{ flex: 1.2 }}>
+        <TextAnimation duration={0.6} trigger={trigger}>
+          <Typography variant="h3">about</Typography>
+        </TextAnimation>
+        <Box sx={{ width: "100%" }}>
           <TextAnimation duration={0.1} trigger={trigger}>
-            <Typography 
-              variant="h2" 
-              component="h2" 
-              sx={{ 
-                fontWeight: 'bold', 
-                mb: 2,
-                lineHeight: 1.2
-              }}
-            >
-              <Box 
-                component="span" 
-                sx={{ 
-                  display: "inline-block", 
-                  whiteSpace: "nowrap",
-                  verticalAlign: "baseline"
-                }}
-              >
-                Find me&nbsp;
-                <Box 
-                  component="span" 
-                  sx={{ 
-                    position: "relative", 
-                    display: "inline-grid", 
-                    color: "text.tertiary",
-                    verticalAlign: "baseline"
-                  }}
-                >
-                  <Typography
-                    variant="h2" 
-                    component="span" 
-                    sx={{ 
-                      fontWeight: 'bold', 
-                      visibility: 'hidden', 
-                      height: 0, 
-                      display: 'block' 
-                    }}
-                  >
-                    {longestWord}
-                  </Typography>
-                  <AnimatePresence mode="wait">
-                    <motion.span
-                      key={words[index]}
-                      initial={{ opacity: 0, y: 10 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      exit={{ opacity: 0, y: -10 }}
-                      transition={{ duration: 0.4, ease: "easeOut" }}
-                      style={{ 
-                        gridArea: "1 / 1", 
-                        display: "block" 
-                      }}
-                    >
-                      {words[index]}
-                    </motion.span>
-                  </AnimatePresence>
-                </Box>
-              </Box>
-            </Typography>
-          </TextAnimation>
-
-          <TextAnimation duration={0.1} trigger={trigger}>
-            <Typography 
-              variant="body1" 
-              sx={{ 
-                color: "#bfc0c0", 
+            <Typography
+              variant="body1"
+              sx={{
+                color: "#bfc0c0",
                 lineHeight: 1.8,
-                maxWidth: "800px" 
+                maxWidth: "800px",
               }}
             >
-              I am a product-centric Frontend Developer with over 4 years of experience leveraging TypeScript to build responsive, scalable React applications. Having engineered enterprise-scale applications for 300,000+ users at PwC, I thrive in environments that value ownership, data-driven decisions, and maintaining high coding standards to meet the business' bottom line.
+              I am a product-centric Frontend Engineer based in{" "}
+              <Box component="span" sx={{ color: "text.primary" }}>
+                Manchester
+              </Box>
+              , with over 4 years of experience leveraging TypeScript to build
+              responsive, scalable React applications. Having engineered
+              enterprise-scale applications for 300,000+ users at{"  "}
+              <Box component="span" sx={{ color: "text.primary" }}>
+                PwC
+              </Box>
+              , I thrive in environments that value ownership, data-driven
+              decisions, and maintaining high coding standards to meet the
+              business' bottom line.
             </Typography>
           </TextAnimation>
         </Box>
 
-        <TextAnimation duration={1.5} trigger={trigger} delay={0.3}>
-          <Stack 
-            direction="row" 
-            spacing={{ xs: 4, md: 8 }} 
-            sx={{ 
-              flex: 1, 
-              justifyContent: "center", 
-              alignItems: "center", 
-              width: "100%",
-              minWidth: { md: "450px" }
-            }}
-          >
-            <Stack direction="row" spacing={1} alignItems="center">
-              <Typography variant="h1" sx={{ fontWeight: 'bold' }}>10</Typography>
-              <Typography 
-                variant="h2" 
-                sx={{ 
-                  fontWeight: 'bold', 
-                  color: "text.tertiary", 
-                  lineHeight: 1,
-                  mt: -1 
-                }}
-              >
-                +
-              </Typography>
-              <Typography variant="body1" sx={{ color: statColor, fontWeight: 500, lineHeight: 1.2, ml: 1 }}>
-                Years of <br /> experience
-              </Typography>
+        <Box sx={{ width: "100%", maxWidth: "800px" }}>
+          <TextAnimation duration={1.5} trigger={trigger} delay={0.3}>
+            <Stack
+              direction="row"
+              spacing={{ xs: 4, md: 8 }}
+              sx={{
+                justifyContent: "center",
+                alignItems: "center",
+                width: "100%",
+              }}
+            >
+              <Stack direction="row" spacing={1} alignItems="center">
+                <Typography variant="h3">10</Typography>
+                <Typography
+                  variant="h2"
+                  sx={{
+                    fontWeight: "medium",
+                    color: "#5ccfe6",
+                    lineHeight: 1,
+                    mt: -1,
+                  }}
+                >
+                  +
+                </Typography>
+                <Typography
+                  variant="body1"
+                  sx={{
+                    color: statColor,
+                    fontWeight: 500,
+                    lineHeight: 1.2,
+                    ml: 1,
+                  }}
+                >
+                  Years of <br /> experience
+                </Typography>
+              </Stack>
+              <Stack direction="row" spacing={1} alignItems="center">
+                <Typography variant="h3">30k</Typography>
+                <Typography
+                  variant="h2"
+                  sx={{
+                    fontWeight: "medium",
+                    color: "#5ccfe6",
+                    lineHeight: 1,
+                    mt: -1,
+                  }}
+                >
+                  +
+                </Typography>
+                <Typography
+                  variant="body1"
+                  sx={{
+                    color: statColor,
+                    fontWeight: 500,
+                    lineHeight: 1.2,
+                    ml: 1,
+                  }}
+                >
+                  Users <br /> reached
+                </Typography>
+              </Stack>
             </Stack>
-            <Stack direction="row" spacing={1} alignItems="center">
-              <Typography variant="h1" sx={{ fontWeight: 'bold' }}>30k</Typography>
-              <Typography 
-                variant="h2" 
-                sx={{ 
-                  fontWeight: 'bold', 
-                  color: "text.tertiary", 
-                  lineHeight: 1,
-                  mt: -1
-                }}
-              >
-                +
-              </Typography>
-              <Typography variant="body1" sx={{ color: statColor, fontWeight: 500, lineHeight: 1.2, ml: 1 }}>
-                Users <br /> reached
-              </Typography>
-            </Stack>
-          </Stack>
-        </TextAnimation>
+          </TextAnimation>
+        </Box>
       </Box>
     </Section>
   );
