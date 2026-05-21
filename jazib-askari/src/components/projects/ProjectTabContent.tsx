@@ -165,22 +165,24 @@ const ProjectTabContent = ({ project, trigger }: Props) => {
             return (
               <Chip
                 key={skill}
-                label={skill}
+                label={
+                  <Typography
+                    variant="h6"
+                    sx={{
+                      fontWeight: "medium",
+                      fontSize: "0.85rem",
+                      lineHeight: 1,
+                    }}
+                  >
+                    {skill}
+                  </Typography>
+                }
                 sx={{
-                  bgcolor: bgColor,
-                  color: ["#2c2c2c", "#40403d", "#2C2C2C", "#40403D"].includes(
-                    bgColor
-                  )
-                    ? "text.quarternary"
-                    : "#2c2c2c",
+                  bgcolor: isHex ? alpha(bgColor, 0.8) : bgColor,
+                  color: "white",
                   px: 1,
                   height: "28px",
-                  fontSize: "0.85rem",
-                  fontWeight: "medium",
                   ml: "0 !important",
-                  "&:hover": {
-                    bgcolor: isHex ? alpha(bgColor, 0.8) : bgColor,
-                  },
                 }}
               />
             );

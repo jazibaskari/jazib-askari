@@ -119,7 +119,7 @@ const HomeSection = ({ trigger }: HomeSectionProps) => {
                   height: "1px",
                   width: activeSection === item ? "64px" : "32px",
                   backgroundColor:
-                    activeSection === item ? "text.primary" : "text.secondary",
+                    activeSection === item ? "#5ccfe6" : "text.secondary",
                   transition: "all 0.3s ease",
                   mr: 2,
                 }}
@@ -127,8 +127,7 @@ const HomeSection = ({ trigger }: HomeSectionProps) => {
               <Typography
                 variant="h5"
                 sx={{
-                  color:
-                    activeSection === item ? "text.primary" : "text.secondary",
+                  color: activeSection === item ? "#5ccfe6" : "text.secondary",
                   fontWeight: "medium",
                 }}
               >

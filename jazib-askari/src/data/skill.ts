@@ -22,7 +22,8 @@ export const skills: Skill[] = [
     label: "UI/UX",
     description: "Clean design systems and smooth motion experiences.",
     skills: ["Figma", "CSS", "Sass", "Tailwind", "MaterialUI", "Framer Motion"],
-    color: "#ffd580",
+    // color: "#ffd580",
+    color: "#ffc54f",
   },
   {
     id: "tooling",
@@ -56,8 +57,7 @@ export const skills: Skill[] = [
       "Axios",
       "Authentication (OAuth, JWT)",
     ],
-    // color: "action.hover",
-    color: "#2c2c2c",
+    color: "#f19ab2",
   },
   {
     id: "testing",
@@ -71,13 +71,14 @@ export const skills: Skill[] = [
       "Cypress",
       "Postman",
     ],
-    color: "#fbbb77",
+    color: "#eaa051",
   },
   {
-    id: "extras",
-    label: "Extras",
+    id: "backend",
+    label: "Backend",
     description: "Ensuring high-quality code through robust QA testing.",
     skills: ["Python", "3D Slicer"],
-    color: "#40403d",
+    // color: "#8fdcd0",
+    color: "#7496d1",
   },
 ];

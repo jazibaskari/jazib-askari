@@ -19,7 +19,7 @@ export const getTheme = (mode: PaletteMode) =>
             },
             background: {
               default: "#ffffff",
-              paper: "#f7f7f7",
+              paper: "#f9f8f7",
             },
             text: {
               primary: "#1a1a1a",
@@ -79,6 +79,11 @@ export const getTheme = (mode: PaletteMode) =>
         fontFamily: typography.families.regular,
         fontSize: typography.sizes.h4,
         lineHeight: typography.lineHeights.h4,
+      },
+      h6: {
+        fontFamily: typography.families.medium,
+        fontSize: typography.sizes.body,
+        lineHeight: typography.lineHeights.body,
       },
       body1: {
         fontFamily: typography.families.regular,
