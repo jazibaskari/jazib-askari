@@ -53,7 +53,9 @@ const HomeSection = ({ trigger }: HomeSectionProps) => {
     >
       <Box>
         <TextAnimation duration={0.6} trigger={trigger}>
-          <Typography variant="h2">Jazib Askari</Typography>
+          <Typography variant="h2" fontWeight="medium">
+            Jazib Askari
+          </Typography>
         </TextAnimation>
         <TextAnimation duration={0.6} trigger={trigger}>
           <Typography variant="h5" sx={{ mb: 0 }}>

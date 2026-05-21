@@ -7,22 +7,25 @@ import TextAnimation from "../../animations/AnimatedText";
 import ProjectTabContent from "./ProjectTabContent";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import { useNavigate } from "react-router-dom";
+
 interface ProjectsSectionProps {
   trigger: number;
 }
+
 const ProjectsSection = ({ trigger }: ProjectsSectionProps) => {
   const [value, setValue] = useState(0);
   const navigate = useNavigate();
+
   const handleChange = (_event: SyntheticEvent, newValue: number) => {
     setValue(newValue);
   };
+
   return (
     <Section id="Projects">
       <Box>
         <TextAnimation duration={0.6} trigger={trigger}>
           <Typography
             variant="h3"
-            gutterBottom
             sx={{
               fontWeight: "bold",
             }}
@@ -42,6 +45,7 @@ const ProjectsSection = ({ trigger }: ProjectsSectionProps) => {
                 "& .MuiTabs-flexContainer": {
                   justifyContent: "flex-start",
                 },
+                "& .MuiTabs-indicator": { display: "none" },
               }}
             >
               {projects.map((p, index) => (
@@ -57,8 +61,43 @@ const ProjectsSection = ({ trigger }: ProjectsSectionProps) => {
                     minWidth: 0,
                     p: 0,
                     mr: 4,
+                    pb: "6px",
                     alignItems: "flex-start",
                     textAlign: "left",
+                    position: "relative",
+                    color: "text.secondary",
+                    "&.Mui-selected": {
+                      color: "text.primary",
+                    },
+                    "&::after": {
+                      content: '""',
+                      position: "absolute",
+                      bottom: 0,
+                      left: 0,
+                      width: "100%",
+                      height: "3px",
+                      bgcolor: "background.paper",
+                    },
+                    "&::before": {
+                      content: '""',
+                      position: "absolute",
+                      bottom: 0,
+                      left: 0,
+                      width: "100%",
+                      height: "3px",
+                      bgcolor: "text.tertiary",
+                      transform: "scaleX(0)",
+                      transformOrigin: "left",
+                      transition:
+                        "transform 0.35s cubic-bezier(0.4, 0, 0.2, 1)",
+                      zIndex: 1,
+                    },
+                    "&:hover::before": {
+                      transform: "scaleX(1)",
+                    },
+                    "&.Mui-selected::before": {
+                      transform: "scaleX(1)",
+                    },
                   })}
                 />
               ))}
@@ -98,13 +137,14 @@ const ProjectsSection = ({ trigger }: ProjectsSectionProps) => {
                 textTransform: "none",
                 p: 0,
                 minWidth: 0,
-                color: "text.quarternary",
-                transition: "all 0.3s ease",
+                color: "text.primary",
+                transition: "color 0.35s cubic-bezier(0.4, 0, 0.2, 1)",
                 "&:hover": {
                   backgroundColor: "transparent",
                   color: "text.tertiary",
                   "& .MuiButton-endIcon": {
                     transform: "translateX(6px)",
+                    transition: "transform 0.3s ease",
                   },
                 },
               })}
@@ -117,4 +157,5 @@ const ProjectsSection = ({ trigger }: ProjectsSectionProps) => {
     </Section>
   );
 };
+
 export default ProjectsSection;

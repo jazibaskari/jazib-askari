@@ -4,6 +4,7 @@ import { useTheme } from "@mui/material/styles";
 import TextAnimation from "../../animations/AnimatedText";
 import PortfolioLight from "../../assets/images/PortfolioLight.png";
 import PortfolioDark from "../../assets/images/PortfolioDark.png";
+import ArrowOutwardIcon from "@mui/icons-material/ArrowOutward";
 
 interface Props {
   project: Project;
@@ -30,11 +31,8 @@ const ProjectTabContent = ({ project, trigger }: Props) => {
       bottom: 0,
       left: 0,
       width: "100%",
-      height: "1px",
-      // bgcolor:
-      //   theme.palette.mode === "dark"
-      //     ? "rgba(255, 255, 255, 0.2)"
-      //     : "rgba(0, 0, 0, 0.15)",
+      height: "3px",
+      bgcolor: "background.paper",
       transition: "opacity 0.3s ease",
     },
     "&::before": {
@@ -43,7 +41,7 @@ const ProjectTabContent = ({ project, trigger }: Props) => {
       bottom: 0,
       left: 0,
       width: "100%",
-      height: "1px",
+      height: "3px",
       bgcolor: "text.primary",
       transform: "scaleX(0)",
       transformOrigin: "left",
@@ -99,12 +97,11 @@ const ProjectTabContent = ({ project, trigger }: Props) => {
           />
         </TextAnimation>
       </Box>
+
       {/* Text */}
       <Box
         sx={{
           width: "100%",
-          // bgcolor: "background.paper",
-          // p: 4,
           display: "flex",
           flexDirection: "column",
           borderRadius: "24px",
@@ -121,9 +118,7 @@ const ProjectTabContent = ({ project, trigger }: Props) => {
               sx={animatedLinkStyles}
             >
               GitHub{" "}
-              <Box component="span" sx={{ fontSize: "1.1rem", ml: 0.5 }}>
-                ↗
-              </Box>
+              <ArrowOutwardIcon sx={{ fontSize: "0.95rem", ml: "1px" }} />
             </Box>
           )}
           {project.liveUrl && (
@@ -135,9 +130,7 @@ const ProjectTabContent = ({ project, trigger }: Props) => {
               sx={animatedLinkStyles}
             >
               Launch{" "}
-              <Box component="span" sx={{ fontSize: "1.1rem", ml: 0.5 }}>
-                ↗
-              </Box>
+              <ArrowOutwardIcon sx={{ fontSize: "0.95rem", ml: "1px" }} />
             </Box>
           )}
         </Stack>

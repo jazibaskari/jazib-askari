@@ -20,6 +20,16 @@ const AboutSection = ({ trigger }: AboutSectionProps) => {
           width: "100%",
         }}
       >
+        <TextAnimation duration={0.6} trigger={trigger}>
+          <Typography
+            variant="h3"
+            sx={{
+              fontWeight: "bold",
+            }}
+          >
+            About
+          </Typography>
+        </TextAnimation>
         <Box sx={{ width: "100%" }}>
           <TextAnimation duration={0.1} trigger={trigger}>
             <Typography
@@ -52,72 +62,75 @@ const AboutSection = ({ trigger }: AboutSectionProps) => {
             </Typography>
           </TextAnimation>
         </Box>
-        <TextAnimation duration={1.5} trigger={trigger} delay={0.3}>
-          <Stack
-            direction="row"
-            spacing={{ xs: 4, md: 8 }}
-            sx={{
-              justifyContent: "flex-start",
-              alignItems: "center",
-              width: "100%",
-            }}
-          >
-            <Stack direction="row" spacing={1} alignItems="center">
-              <Typography variant="h3" sx={{ fontWeight: "bold" }}>
-                10
-              </Typography>
-              <Typography
-                variant="h2"
-                sx={{
-                  fontWeight: "medium",
-                  color: "text.tertiary",
-                  lineHeight: 1,
-                  mt: -1,
-                }}
-              >
-                +
-              </Typography>
-              <Typography
-                variant="body1"
-                sx={{
-                  color: statColor,
-                  fontWeight: 500,
-                  lineHeight: 1.2,
-                  ml: 1,
-                }}
-              >
-                Years of <br /> experience
-              </Typography>
+
+        <Box sx={{ width: "100%", maxWidth: "800px" }}>
+          <TextAnimation duration={1.5} trigger={trigger} delay={0.3}>
+            <Stack
+              direction="row"
+              spacing={{ xs: 4, md: 8 }}
+              sx={{
+                justifyContent: "center",
+                alignItems: "center",
+                width: "100%",
+              }}
+            >
+              <Stack direction="row" spacing={1} alignItems="center">
+                <Typography variant="h3" sx={{ fontWeight: "bold" }}>
+                  10
+                </Typography>
+                <Typography
+                  variant="h2"
+                  sx={{
+                    fontWeight: "medium",
+                    color: "text.tertiary",
+                    lineHeight: 1,
+                    mt: -1,
+                  }}
+                >
+                  +
+                </Typography>
+                <Typography
+                  variant="body1"
+                  sx={{
+                    color: statColor,
+                    fontWeight: 500,
+                    lineHeight: 1.2,
+                    ml: 1,
+                  }}
+                >
+                  Years of <br /> experience
+                </Typography>
+              </Stack>
+              <Stack direction="row" spacing={1} alignItems="center">
+                <Typography variant="h3" sx={{ fontWeight: "bold" }}>
+                  30k
+                </Typography>
+                <Typography
+                  variant="h2"
+                  sx={{
+                    fontWeight: "medium",
+                    color: "text.tertiary",
+                    lineHeight: 1,
+                    mt: -1,
+                  }}
+                >
+                  +
+                </Typography>
+                <Typography
+                  variant="body1"
+                  sx={{
+                    color: statColor,
+                    fontWeight: 500,
+                    lineHeight: 1.2,
+                    ml: 1,
+                  }}
+                >
+                  Users <br /> reached
+                </Typography>
+              </Stack>
             </Stack>
-            <Stack direction="row" spacing={1} alignItems="center">
-              <Typography variant="h3" sx={{ fontWeight: "bold" }}>
-                30k
-              </Typography>
-              <Typography
-                variant="h2"
-                sx={{
-                  fontWeight: "medium",
-                  color: "text.tertiary",
-                  lineHeight: 1,
-                  mt: -1,
-                }}
-              >
-                +
-              </Typography>
-              <Typography
-                variant="body1"
-                sx={{
-                  color: statColor,
-                  fontWeight: 500,
-                  lineHeight: 1.2,
-                  ml: 1,
-                }}
-              >
-                Users <br /> reached
-              </Typography>
-            </Stack>
-          </Stack>
-        </TextAnimation>
+          </TextAnimation>
+        </Box>
       </Box>
     </Section>
   );

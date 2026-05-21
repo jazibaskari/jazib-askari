@@ -12,6 +12,7 @@ import TextAnimation from "../../animations/AnimatedText";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
+import ArrowOutwardIcon from "@mui/icons-material/ArrowOutward";
 import { useNavigate } from "react-router-dom";
 import { experiences } from "../../data/experience";
 import { skills } from "../../data/skill";
@@ -80,6 +81,7 @@ const ExperienceItem = ({
         />
       );
     });
+
   const displayWebsite =
     exp.website ||
     `www.${exp.subtitle.toLowerCase().replace(/[^a-z0-9]/g, "")}.com`;
@@ -118,6 +120,7 @@ const ExperienceItem = ({
           <Typography variant="body1" sx={{ color: "text.secondary" }}>
             {exp.title}
           </Typography>
+
           <Box
             component="a"
             href={
@@ -135,21 +138,39 @@ const ExperienceItem = ({
               width: "fit-content",
               fontSize: "1rem",
               mt: 0.5,
+              position: "relative",
+              pb: "4px",
               "&:hover": { color: "text.primary" },
+              "&::after": {
+                content: '""',
+                position: "absolute",
+                bottom: 0,
+                left: 0,
+                width: "100%",
+                height: "3px",
+                bgcolor: "background.paper",
+                transition: "opacity 0.3s ease",
+              },
+              "&::before": {
+                content: '""',
+                position: "absolute",
+                bottom: 0,
+                left: 0,
+                width: "100%",
+                height: "3px",
+                bgcolor: "text.primary",
+                transform: "scaleX(0)",
+                transformOrigin: "left",
+                transition: "transform 0.35s cubic-bezier(0.4, 0, 0.2, 1)",
+                zIndex: 1,
+              },
+              "&:hover::before": {
+                transform: "scaleX(1)",
+              },
             }}
           >
-            <Box
-              component="span"
-              sx={{ textDecoration: "underline", textUnderlineOffset: "4px" }}
-            >
-              {displayWebsite}
-            </Box>
-            <Box
-              component="span"
-              sx={{ ml: "6px", transform: "translateY(-1px)" }}
-            >
-              ↗
-            </Box>
+            <Box component="span">{displayWebsite}</Box>
+            <ArrowOutwardIcon sx={{ fontSize: "0.95rem", ml: "5px" }} />
           </Box>
         </Box>
         <Box
@@ -218,13 +239,16 @@ const ExperienceItem = ({
                 }}
               >
                 <IconButton
+                  disableRipple
                   onClick={() => setPage((p) => (p >= maxPage ? 0 : p + 1))}
                   sx={{
-                    border: "1px solid",
-                    borderColor: "divider",
-                    width: "40px",
-                    height: "40px",
+                    width: "30px",
+                    height: "30px",
                     p: 0,
+                    // backgroundColor: "background.paper",
+                    "&:hover": {
+                      // backgroundColor: "background.paper",
+                    },
                   }}
                 >
                   {page < maxPage ? (
@@ -293,16 +317,21 @@ const ExperienceSection = ({ trigger }: ExperienceSectionProps) => {
         <Button
           variant="text"
           endIcon={<ArrowForwardIcon />}
-          onClick={() => navigate("/cv")}
+          onClick={() => navigate("/projects")}
           sx={(theme) => ({
             ...theme.typography.body1,
             textTransform: "none",
             p: 0,
-            color: "text.quarternary",
+            minWidth: 0,
+            color: "text.primary",
+            transition: "color 0.35s cubic-bezier(0.4, 0, 0.2, 1)",
             "&:hover": {
               backgroundColor: "transparent",
               color: "text.tertiary",
-              "& .MuiButton-endIcon": { transform: "translateX(6px)" },
+              "& .MuiButton-endIcon": {
+                transform: "translateX(6px)",
+                transition: "transform 0.3s ease",
+              },
             },
           })}
         >
