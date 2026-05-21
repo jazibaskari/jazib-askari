@@ -47,6 +47,7 @@ const ProjectsSection = ({ trigger }: ProjectsSectionProps) => {
                   label={p.subtitle}
                   id={`project-tab-${index}`}
                   aria-controls={`project-tabpanel-${index}`}
+                  disableRipple
                   sx={(theme) => ({
                     ...theme.typography.body1,
                     textTransform: "none",

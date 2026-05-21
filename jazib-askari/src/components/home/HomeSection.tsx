@@ -31,8 +31,6 @@ const HomeSection = ({ trigger }: HomeSectionProps) => {
   const linkButtonStyle = (theme: any) => ({
     ...theme.typography.body1,
     textTransform: "none",
-    fontSize: "1.05rem",
-    fontWeight: 500,
     color: "text.primary",
     mt: 2,
     padding: 0,
@@ -195,6 +193,7 @@ const HomeSection = ({ trigger }: HomeSectionProps) => {
             variant="text"
             onClick={colourMode.toggleColourMode}
             sx={linkButtonStyle}
+            disableRipple
           >
             {theme.palette.mode === "dark"
               ? "Let there be light"
