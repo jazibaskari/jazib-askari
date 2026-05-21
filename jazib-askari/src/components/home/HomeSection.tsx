@@ -1,4 +1,4 @@
-import { useState, useEffect, useContext } from "react";
+import { useState, useEffect, useContext, useRef } from "react";
 import { Box, Typography, Stack, IconButton, useTheme } from "@mui/material";
 import TextAnimation from "../../animations/AnimatedText";
 import GitHubIcon from "@mui/icons-material/GitHub";
@@ -20,24 +20,47 @@ const HomeSection = ({ trigger }: HomeSectionProps) => {
   const colourMode = useContext(ColourModeContext);
   const iconColor = "text.secondary";
 
+  const isManualScroll = useRef(false);
+  const timeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+
   useEffect(() => {
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) setActiveSection(entry.target.id);
-      });
-    });
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (isManualScroll.current) return;
+
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setActiveSection(entry.target.id);
+          }
+        });
+      },
+      {
+        rootMargin: "-90px 0px -50% 0px",
+      }
+    );
+
     const sections = document.querySelectorAll("section[id]");
     sections.forEach((section) => observer.observe(section));
-    return () => observer.disconnect();
+
+    return () => {
+      observer.disconnect();
+      if (timeoutRef.current) clearTimeout(timeoutRef.current);
+    };
   }, []);
 
   const handleScroll = (id: string) => {
     const el = document.getElementById(id);
     if (el) {
+      isManualScroll.current = true;
+      setActiveSection(id);
       window.scrollTo({
         top: el.getBoundingClientRect().top + window.pageYOffset - 100,
         behavior: "smooth",
       });
+      if (timeoutRef.current) clearTimeout(timeoutRef.current);
+      timeoutRef.current = setTimeout(() => {
+        isManualScroll.current = false;
+      }, 800);
     }
   };
 
