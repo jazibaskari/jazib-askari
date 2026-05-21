@@ -1,11 +1,16 @@
 import { useState, useEffect, useContext, useRef } from "react";
-import { Box, Typography, Stack, IconButton, useTheme } from "@mui/material";
+import {
+  Box,
+  Typography,
+  Stack,
+  IconButton,
+  useTheme,
+  Button,
+} from "@mui/material";
 import TextAnimation from "../../animations/AnimatedText";
 import GitHubIcon from "@mui/icons-material/GitHub";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
 import MailOutlineIcon from "@mui/icons-material/MailOutline";
-import Brightness4Icon from "@mui/icons-material/Brightness4";
-import Brightness7Icon from "@mui/icons-material/Brightness7";
 import { ColourModeContext } from "../../context/ColourModeContext";
 
 interface HomeSectionProps {
@@ -22,6 +27,52 @@ const HomeSection = ({ trigger }: HomeSectionProps) => {
 
   const isManualScroll = useRef(false);
   const timeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  const linkButtonStyle = (theme: any) => ({
+    ...theme.typography.body1,
+    textTransform: "none",
+    fontSize: "1.05rem",
+    fontWeight: 500,
+    color: "text.primary",
+    mt: 2,
+    padding: 0,
+    minWidth: 0,
+    justifyContent: "flex-start",
+    position: "relative",
+    pb: "6px",
+    background: "none",
+    border: "none",
+    cursor: "pointer",
+    "&:hover": {
+      backgroundColor: "transparent",
+    },
+    "&::after": {
+      content: '""',
+      position: "absolute",
+      bottom: 0,
+      left: 0,
+      width: "100%",
+      height: "3px",
+      bgcolor: "background.paper",
+      transition: "opacity 0.3s ease",
+    },
+    "&::before": {
+      content: '""',
+      position: "absolute",
+      bottom: 0,
+      left: 0,
+      width: "100%",
+      height: "3px",
+      bgcolor: "text.primary",
+      transform: "scaleX(0)",
+      transformOrigin: "left",
+      transition: "transform 0.35s cubic-bezier(0.4, 0, 0.2, 1)",
+      zIndex: 1,
+    },
+    "&:hover::before": {
+      transform: "scaleX(1)",
+    },
+  });
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -92,7 +143,6 @@ const HomeSection = ({ trigger }: HomeSectionProps) => {
           </TextAnimation>
         </TextAnimation>
 
-        {/* Navigation */}
         <Box
           sx={{
             display: { xs: "none", md: "flex" },
@@ -138,19 +188,21 @@ const HomeSection = ({ trigger }: HomeSectionProps) => {
         </Box>
       </Box>
 
-      {/* Icon Stack */}
-      <Box sx={{ mt: "auto", pb: 2 }}>
-        <Stack direction="row" spacing={1}>
-          <IconButton
+      {/* Footer Area */}
+      <Box sx={{ mt: "auto", pb: { xs: 10, md: 2 } }}>
+        <Box sx={{ mb: 3 }}>
+          <Button
+            variant="text"
             onClick={colourMode.toggleColourMode}
-            sx={{ color: iconColor, "&:hover": { color: "text.primary" } }}
+            sx={linkButtonStyle}
           >
-            {theme.palette.mode === "dark" ? (
-              <Brightness7Icon />
-            ) : (
-              <Brightness4Icon />
-            )}
-          </IconButton>
+            {theme.palette.mode === "dark"
+              ? "Let there be light"
+              : "I prefer the dark"}
+          </Button>
+        </Box>
+
+        <Stack direction="row" spacing={3} alignItems="center">
           <IconButton
             href="https://github.com/jazibaskari"
             target="_blank"
