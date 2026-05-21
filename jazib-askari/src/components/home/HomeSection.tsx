@@ -12,7 +12,7 @@ interface HomeSectionProps {
   trigger: number;
 }
 
-const navItems = ["About", "Experience", "Projects"];
+const navItems = ["about", "experience", "projects"];
 
 const HomeSection = ({ trigger }: HomeSectionProps) => {
   const [activeSection, setActiveSection] = useState("");
@@ -77,12 +77,12 @@ const HomeSection = ({ trigger }: HomeSectionProps) => {
       <Box>
         <TextAnimation duration={0.6} trigger={trigger}>
           <Typography variant="h2" fontWeight="medium">
-            Jazib Askari
+            jazib askari
           </Typography>
         </TextAnimation>
         <TextAnimation duration={0.6} trigger={trigger}>
           <Typography variant="h5" sx={{ mb: 0 }}>
-            Frontend Engineer
+            frontend engineer
           </Typography>
           <TextAnimation duration={0.6} trigger={trigger}>
             <Typography variant="body1" sx={{ mb: 0, color: "#bfc0c0", pt: 2 }}>
@@ -141,7 +141,17 @@ const HomeSection = ({ trigger }: HomeSectionProps) => {
 
       {/* Icon Stack */}
       <Box sx={{ mt: "auto", pb: 2 }}>
-        <Stack direction="row" spacing={1} sx={{ ml: -1.5 }}>
+        <Stack direction="row" spacing={1}>
+          <IconButton
+            onClick={colourMode.toggleColourMode}
+            sx={{ color: iconColor, "&:hover": { color: "text.primary" } }}
+          >
+            {theme.palette.mode === "dark" ? (
+              <Brightness7Icon />
+            ) : (
+              <Brightness4Icon />
+            )}
+          </IconButton>
           <IconButton
             href="https://github.com/jazibaskari"
             target="_blank"
@@ -161,16 +171,6 @@ const HomeSection = ({ trigger }: HomeSectionProps) => {
             sx={{ color: iconColor, "&:hover": { color: "text.primary" } }}
           >
             <MailOutlineIcon />
-          </IconButton>
-          <IconButton
-            onClick={colourMode.toggleColourMode}
-            sx={{ color: iconColor, "&:hover": { color: "text.primary" } }}
-          >
-            {theme.palette.mode === "dark" ? (
-              <Brightness7Icon />
-            ) : (
-              <Brightness4Icon />
-            )}
           </IconButton>
         </Stack>
       </Box>

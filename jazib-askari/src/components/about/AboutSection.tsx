@@ -10,7 +10,7 @@ const AboutSection = ({ trigger }: AboutSectionProps) => {
   const statColor = "#bfc0c0";
 
   return (
-    <Section id="About" noPaddingTop>
+    <Section id="about" noPaddingTop>
       <Box
         sx={{
           display: "flex",
@@ -21,14 +21,7 @@ const AboutSection = ({ trigger }: AboutSectionProps) => {
         }}
       >
         <TextAnimation duration={0.6} trigger={trigger}>
-          <Typography
-            variant="h3"
-            sx={{
-              fontWeight: "bold",
-            }}
-          >
-            About
-          </Typography>
+          <Typography variant="h3">about</Typography>
         </TextAnimation>
         <Box sx={{ width: "100%" }}>
           <TextAnimation duration={0.1} trigger={trigger}>
@@ -41,19 +34,13 @@ const AboutSection = ({ trigger }: AboutSectionProps) => {
               }}
             >
               I am a product-centric Frontend Engineer based in{" "}
-              <Box
-                component="span"
-                sx={{ fontWeight: "bold", color: "text.primary" }}
-              >
+              <Box component="span" sx={{ color: "text.primary" }}>
                 Manchester
               </Box>
               , with over 4 years of experience leveraging TypeScript to build
               responsive, scalable React applications. Having engineered
               enterprise-scale applications for 300,000+ users at{"  "}
-              <Box
-                component="span"
-                sx={{ fontWeight: "bold", color: "text.primary" }}
-              >
+              <Box component="span" sx={{ color: "text.primary" }}>
                 PwC
               </Box>
               , I thrive in environments that value ownership, data-driven
@@ -75,14 +62,12 @@ const AboutSection = ({ trigger }: AboutSectionProps) => {
               }}
             >
               <Stack direction="row" spacing={1} alignItems="center">
-                <Typography variant="h3" sx={{ fontWeight: "bold" }}>
-                  10
-                </Typography>
+                <Typography variant="h3">10</Typography>
                 <Typography
                   variant="h2"
                   sx={{
                     fontWeight: "medium",
-                    color: "text.tertiary",
+                    color: "#5ccfe6",
                     lineHeight: 1,
                     mt: -1,
                   }}
@@ -102,14 +87,12 @@ const AboutSection = ({ trigger }: AboutSectionProps) => {
                 </Typography>
               </Stack>
               <Stack direction="row" spacing={1} alignItems="center">
-                <Typography variant="h3" sx={{ fontWeight: "bold" }}>
-                  30k
-                </Typography>
+                <Typography variant="h3">30k</Typography>
                 <Typography
                   variant="h2"
                   sx={{
                     fontWeight: "medium",
-                    color: "text.tertiary",
+                    color: "#5ccfe6",
                     lineHeight: 1,
                     mt: -1,
                   }}

@@ -21,17 +21,10 @@ const ProjectsSection = ({ trigger }: ProjectsSectionProps) => {
   };
 
   return (
-    <Section id="Projects">
+    <Section id="projects">
       <Box>
         <TextAnimation duration={0.6} trigger={trigger}>
-          <Typography
-            variant="h3"
-            sx={{
-              fontWeight: "bold",
-            }}
-          >
-            Projects
-          </Typography>
+          <Typography variant="h3">projects</Typography>
         </TextAnimation>
         <Box sx={{ width: "100%", mt: 4 }}>
           <Box sx={{ mb: 3 }}>
@@ -66,17 +59,10 @@ const ProjectsSection = ({ trigger }: ProjectsSectionProps) => {
                     textAlign: "left",
                     position: "relative",
                     color: "text.secondary",
+                    backgroundColor: "transparent",
+                    outline: 0,
                     "&.Mui-selected": {
                       color: "text.primary",
-                    },
-                    "&::after": {
-                      content: '""',
-                      position: "absolute",
-                      bottom: 0,
-                      left: 0,
-                      width: "100%",
-                      height: "3px",
-                      bgcolor: "background.paper",
                     },
                     "&::before": {
                       content: '""',
@@ -90,13 +76,16 @@ const ProjectsSection = ({ trigger }: ProjectsSectionProps) => {
                       transformOrigin: "left",
                       transition:
                         "transform 0.35s cubic-bezier(0.4, 0, 0.2, 1)",
+                      willChange: "transform",
+                      backfaceVisibility: "hidden",
                       zIndex: 1,
                     },
-                    "&:hover::before": {
+                    "&:not(.Mui-selected):hover::before": {
                       transform: "scaleX(1)",
                     },
                     "&.Mui-selected::before": {
                       transform: "scaleX(1)",
+                      bgcolor: "text.tertiary",
                     },
                   })}
                 />
@@ -135,7 +124,7 @@ const ProjectsSection = ({ trigger }: ProjectsSectionProps) => {
               sx={(theme) => ({
                 ...theme.typography.body1,
                 textTransform: "none",
-                p: 0,
+                py: 2,
                 minWidth: 0,
                 color: "text.primary",
                 transition: "color 0.35s cubic-bezier(0.4, 0, 0.2, 1)",

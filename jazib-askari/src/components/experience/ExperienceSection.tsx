@@ -1,16 +1,17 @@
 import { useState, useRef, useLayoutEffect } from "react";
 import Section from "../shared/Section";
+import { alpha } from "@mui/material/styles";
 import {
   Typography,
   Box,
   Chip,
   IconButton,
   Button,
-  useTheme,
+  // useTheme,
 } from "@mui/material";
 import TextAnimation from "../../animations/AnimatedText";
-import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
-import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
+import ArrowDownwardIcon from "@mui/icons-material/ArrowDownward";
+import ArrowUpwardIcon from "@mui/icons-material/ArrowUpward";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import ArrowOutwardIcon from "@mui/icons-material/ArrowOutward";
 import { useNavigate } from "react-router-dom";
@@ -35,7 +36,7 @@ const ExperienceItem = ({
   index,
   getTagColor,
 }: ExperienceCardProps) => {
-  const theme = useTheme();
+  // const theme = useTheme();
   const shadowRef = useRef<HTMLDivElement>(null);
   const [page, setPage] = useState(0);
   const [maxPage, setMaxPage] = useState(0);
@@ -64,19 +65,23 @@ const ExperienceItem = ({
   const renderChips = () =>
     exp.tags.map((tag: string) => {
       const bgColor = getTagColor(tag);
+      const isHex = bgColor.startsWith("#");
+      const darkColors = ["#2c2c2c", "#40403d", "#2C2C2C", "#40403D"];
+      const isDark = darkColors.includes(bgColor.toLowerCase());
+
       return (
         <Chip
           key={tag}
           label={tag}
           sx={{
-            ...theme.typography.h4,
             bgcolor: bgColor,
-            color: bgColor === "action.hover" ? "text.primary" : "white",
+            color: isDark ? "text.quarternary" : "#2c2c2c",
             px: 1,
-            fontSize: "0.85rem",
             height: `${rowHeight}px`,
+            fontSize: "0.85rem",
+            fontWeight: "medium",
             ml: "0 !important",
-            "&:hover": { bgcolor: bgColor },
+            "&:hover": { bgcolor: isHex ? alpha(bgColor, 0.8) : bgColor },
           }}
         />
       );
@@ -90,7 +95,6 @@ const ExperienceItem = ({
     <TextAnimation trigger={trigger} delay={index * 0.15}>
       <Typography
         variant="h4"
-        fontWeight="bold"
         sx={{ color: "text.primary", mb: { xs: 3, md: 4 } }}
       >
         {exp.subtitle}
@@ -245,16 +249,13 @@ const ExperienceItem = ({
                     width: "30px",
                     height: "30px",
                     p: 0,
-                    // backgroundColor: "background.paper",
-                    "&:hover": {
-                      // backgroundColor: "background.paper",
-                    },
+                    "&:hover": {},
                   }}
                 >
                   {page < maxPage ? (
-                    <KeyboardArrowDownIcon fontSize="small" />
+                    <ArrowDownwardIcon fontSize="small" />
                   ) : (
-                    <KeyboardArrowUpIcon fontSize="small" />
+                    <ArrowUpwardIcon fontSize="small" />
                   )}
                 </IconButton>
               </Box>
@@ -268,6 +269,7 @@ const ExperienceItem = ({
 
 const ExperienceSection = ({ trigger }: ExperienceSectionProps) => {
   const navigate = useNavigate();
+
   const getTagColor = (tagName: string) => {
     const category = skills.find(
       (cat) =>
@@ -279,17 +281,34 @@ const ExperienceSection = ({ trigger }: ExperienceSectionProps) => {
   const displayedExperiences = experiences.slice(0, 6);
 
   return (
-    <Section id="Experience">
-      <TextAnimation duration={0.6} trigger={trigger}>
-        <Typography
-          variant="h3"
-          sx={{
-            fontWeight: "bold",
-          }}
-        >
-          Experience
-        </Typography>
-      </TextAnimation>
+    <Section id="experience">
+      <Box sx={{ mb: 4 }}>
+        <TextAnimation duration={0.6} trigger={trigger}>
+          <Typography variant="h3">experience</Typography>
+        </TextAnimation>
+
+        <Box sx={{ display: "flex", flexWrap: "wrap", gap: 1, mt: 2 }}>
+          {skills.map((category) => {
+            const darkColors = ["#2c2c2c", "#40403d", "#2C2C2C", "#40403D"];
+            const isDark = darkColors.includes(category.color.toLowerCase());
+
+            return (
+              <Chip
+                key={category.label}
+                label={category.label}
+                sx={{
+                  bgcolor: category.color,
+                  color: isDark ? "text.quarternary" : "#2c2c2c",
+                  fontSize: "0.85rem",
+                  fontWeight: "medium",
+                  height: "28px",
+                }}
+              />
+            );
+          })}
+        </Box>
+      </Box>
+
       <Box sx={{ display: "flex", flexDirection: "column" }}>
         {displayedExperiences.map((exp, index) => (
           <Box
@@ -312,6 +331,7 @@ const ExperienceSection = ({ trigger }: ExperienceSectionProps) => {
           width: "100%",
           display: "flex",
           justifyContent: "flex-start",
+          mt: 4,
         }}
       >
         <Button
@@ -321,7 +341,7 @@ const ExperienceSection = ({ trigger }: ExperienceSectionProps) => {
           sx={(theme) => ({
             ...theme.typography.body1,
             textTransform: "none",
-            p: 0,
+            py: 2,
             minWidth: 0,
             color: "text.primary",
             transition: "color 0.35s cubic-bezier(0.4, 0, 0.2, 1)",

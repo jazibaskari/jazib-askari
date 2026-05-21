@@ -1,10 +1,11 @@
 import { Box, Typography, Stack, Chip } from "@mui/material";
 import type { Project } from "../../types/project";
-import { useTheme } from "@mui/material/styles";
+import { useTheme, alpha } from "@mui/material/styles";
 import TextAnimation from "../../animations/AnimatedText";
 import PortfolioLight from "../../assets/images/PortfolioLight.png";
 import PortfolioDark from "../../assets/images/PortfolioDark.png";
 import ArrowOutwardIcon from "@mui/icons-material/ArrowOutward";
+import { skills } from "../../data/skill";
 
 interface Props {
   project: Project;
@@ -13,6 +14,15 @@ interface Props {
 
 const ProjectTabContent = ({ project, trigger }: Props) => {
   const theme = useTheme();
+
+  const getTagColor = (tagName: string) => {
+    const category = skills.find(
+      (cat) =>
+        cat.skills.some((s) => s.toLowerCase() === tagName.toLowerCase()) ||
+        cat.label.toLowerCase() === tagName.toLowerCase()
+    );
+    return category ? category.color : "action.hover";
+  };
 
   const animatedLinkStyles = {
     display: "inline-flex",
@@ -141,27 +151,40 @@ const ProjectTabContent = ({ project, trigger }: Props) => {
             color: "text.secondary",
             lineHeight: 1.8,
             fontSize: "1.1rem",
-            mb: 4,
+            mb: 3,
           }}
         >
           {project.summary}
         </Typography>
+
         <Box sx={{ display: "flex", flexWrap: "wrap", gap: 1 }}>
-          {project.skills?.map((skill) => (
-            <Chip
-              key={skill}
-              label={skill}
-              sx={{
-                ...theme.typography.h4,
-                py: 2,
-                px: 1,
-                bgcolor: "action.hover",
-                fontSize: "0.9rem",
-                height: "28px",
-                ml: "0 !important",
-              }}
-            />
-          ))}
+          {project.skills?.map((skill) => {
+            const bgColor = getTagColor(skill);
+            const isHex = bgColor.startsWith("#");
+
+            return (
+              <Chip
+                key={skill}
+                label={skill}
+                sx={{
+                  bgcolor: bgColor,
+                  color: ["#2c2c2c", "#40403d", "#2C2C2C", "#40403D"].includes(
+                    bgColor
+                  )
+                    ? "text.quarternary"
+                    : "#2c2c2c",
+                  px: 1,
+                  height: "28px",
+                  fontSize: "0.85rem",
+                  fontWeight: "medium",
+                  ml: "0 !important",
+                  "&:hover": {
+                    bgcolor: isHex ? alpha(bgColor, 0.8) : bgColor,
+                  },
+                }}
+              />
+            );
+          })}
         </Box>
       </Box>
     </Box>

@@ -3,7 +3,7 @@ import { Box } from "@mui/system";
 import { Button, IconButton, Drawer, List, ListItem } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
 
-const allSections = ["About", "Experience", "Projects"];
+const allSections = ["about", "experience", "projects"];
 
 interface NavbarProps {
   onNavClick?: () => void;
