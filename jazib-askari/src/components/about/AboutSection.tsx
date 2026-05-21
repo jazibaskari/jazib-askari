@@ -1,6 +1,16 @@
+import { useState, useEffect } from "react";
 import Section from "../shared/Section";
-import { Typography, Box, Stack } from "@mui/material";
+import { Typography, Box, Stack, ButtonBase } from "@mui/material";
 import TextAnimation from "../../animations/AnimatedText";
+
+import {
+  doc,
+  onSnapshot,
+  updateDoc,
+  increment,
+  setDoc,
+} from "firebase/firestore";
+import { db } from "../../utils/firebase";
 
 interface AboutSectionProps {
   trigger: number;
@@ -8,6 +18,32 @@ interface AboutSectionProps {
 
 const AboutSection = ({ trigger }: AboutSectionProps) => {
   const statColor = "#bfc0c0";
+  const [clickCount, setClickCount] = useState<number | null>(null);
+
+  useEffect(() => {
+    const docRef = doc(db, "stats", "pageClicks");
+    const unsubscribe = onSnapshot(docRef, (docSnap) => {
+      if (docSnap.exists()) {
+        setClickCount(docSnap.data().count);
+      } else {
+        setDoc(docRef, { count: 0 });
+        setClickCount(0);
+      }
+    });
+    return () => unsubscribe();
+  }, []);
+
+  const handlePlusClick = async () => {
+    setClickCount((prev) => (prev !== null ? prev + 1 : 1));
+    const docRef = doc(db, "stats", "pageClicks");
+    try {
+      await updateDoc(docRef, {
+        count: increment(1),
+      });
+    } catch (error) {
+      console.error("Error updating document: ", error);
+    }
+  };
 
   return (
     <Section id="about" noPaddingTop>
@@ -56,7 +92,7 @@ const AboutSection = ({ trigger }: AboutSectionProps) => {
               direction="row"
               spacing={{ xs: 4, md: 8 }}
               sx={{
-                justifyContent: "center",
+                justifyContent: "flex-start",
                 alignItems: "center",
                 width: "100%",
               }}
@@ -86,6 +122,7 @@ const AboutSection = ({ trigger }: AboutSectionProps) => {
                   Years of <br /> experience
                 </Typography>
               </Stack>
+
               <Stack direction="row" spacing={1} alignItems="center">
                 <Typography variant="h3">30k</Typography>
                 <Typography
@@ -109,6 +146,54 @@ const AboutSection = ({ trigger }: AboutSectionProps) => {
                   }}
                 >
                   Users <br /> reached
+                </Typography>
+              </Stack>
+              <Stack
+                direction="row"
+                spacing={1}
+                alignItems="center"
+                sx={{ display: { xs: "none", md: "flex" } }}
+              >
+                <Typography
+                  variant="h3"
+                  sx={{
+                    minWidth: "80px",
+                    textAlign: "right",
+                    fontVariantNumeric: "tabular-nums",
+                  }}
+                >
+                  {clickCount !== null ? clickCount : "..."}
+                </Typography>
+
+                <ButtonBase
+                  onClick={handlePlusClick}
+                  disableRipple
+                  sx={{ p: 0, m: 0, display: "inline-flex" }}
+                >
+                  <Typography
+                    variant="h2"
+                    sx={{
+                      fontWeight: "medium",
+                      color: "#5ccfe6",
+                      lineHeight: 1,
+                      mt: -1,
+                      cursor: "default",
+                    }}
+                  >
+                    +
+                  </Typography>
+                </ButtonBase>
+
+                <Typography
+                  variant="body1"
+                  sx={{
+                    color: statColor,
+                    fontWeight: 500,
+                    lineHeight: 1.2,
+                    ml: 1,
+                  }}
+                >
+                  Page <br /> clicks
                 </Typography>
               </Stack>
             </Stack>

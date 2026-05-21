@@ -177,8 +177,8 @@ const ProjectTabContent = ({ project, trigger }: Props) => {
                   </Typography>
                 }
                 sx={{
-                  bgcolor: bgColor,
-                  color: "background.paper",
+                  bgcolor: "background.paper",
+                  color: bgColor,
                   px: 1,
                   height: "28px",
                   ml: "0 !important",

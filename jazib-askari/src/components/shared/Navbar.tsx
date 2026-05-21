@@ -61,6 +61,7 @@ const Navbar = ({ onNavClick }: NavbarProps) => {
                 <Button
                   onClick={() => handleScroll(s)}
                   sx={{
+                    color: "text.primary",
                     width: "100%",
                     justifyContent: "flex-end",
                     px: 3,
