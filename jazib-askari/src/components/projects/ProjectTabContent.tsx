@@ -1,6 +1,6 @@
 import { Box, Typography, Stack, Chip } from "@mui/material";
 import type { Project } from "../../types/project";
-import { useTheme, alpha } from "@mui/material/styles";
+import { useTheme } from "@mui/material/styles";
 import TextAnimation from "../../animations/AnimatedText";
 import PortfolioLight from "../../assets/images/PortfolioLight.png";
 import PortfolioDark from "../../assets/images/PortfolioDark.png";
@@ -160,7 +160,6 @@ const ProjectTabContent = ({ project, trigger }: Props) => {
         <Box sx={{ display: "flex", flexWrap: "wrap", gap: 1 }}>
           {project.skills?.map((skill) => {
             const bgColor = getTagColor(skill);
-            const isHex = bgColor.startsWith("#");
 
             return (
               <Chip
@@ -178,8 +177,8 @@ const ProjectTabContent = ({ project, trigger }: Props) => {
                   </Typography>
                 }
                 sx={{
-                  bgcolor: isHex ? alpha(bgColor, 0.8) : bgColor,
-                  color: "white",
+                  bgcolor: bgColor,
+                  color: "background.paper",
                   px: 1,
                   height: "28px",
                   ml: "0 !important",
