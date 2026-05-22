@@ -101,6 +101,8 @@ const ProjectTabContent = ({ project, trigger }: Props) => {
               maxHeight: { xs: "300px", md: "450px" },
               objectFit: "cover",
               display: "block",
+              outline: "none",
+              border: "none",
               transition: "transform 0.6s cubic-bezier(0.4, 0, 0.2, 1)",
             }}
           />
