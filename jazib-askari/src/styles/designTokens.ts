@@ -5,10 +5,12 @@ export const spacing = {
   lg: "24px",
   xl: "48px",
 };
+
 export const typography = {
   families: {
     regular: "Europa Regular, sans-serif",
     medium: "Europa Medium, sans-serif",
+    ppNeueMontreal: '"PPNeueMontreal", sans-serif', // <-- Added Montreal token
   },
   sizes: {
     h1: "clamp(3rem, 8vw, 4.5rem)",

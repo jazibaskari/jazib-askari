@@ -1,10 +1,23 @@
 import { createTheme, type PaletteMode } from "@mui/material/styles";
 import { typography } from "./designTokens";
+
 declare module "@mui/material/styles" {
   interface TypeText {
     tertiary?: string;
     grey?: string;
     quarternary?: string;
+  }
+  interface TypographyVariants {
+    body1Montreal: React.CSSProperties;
+  }
+  interface TypographyVariantsOptions {
+    body1Montreal?: React.CSSProperties;
+  }
+}
+
+declare module "@mui/material/Typography" {
+  interface TypographyPropsVariantOverrides {
+    body1Montreal: true;
   }
 }
 
@@ -35,17 +48,12 @@ export const getTheme = (mode: PaletteMode) =>
               main: "#5ec2de",
             },
             background: {
-              // default: "#121212",
-              // default: "#161922",
               default: "#191919",
-              // paper: "#1e1e1e",
-              // paper: "#262a33",
               paper: "#2c2c2c",
             },
             text: {
               primary: "#ffffff",
               secondary: "#b0b0b0",
-              // tertiary: "#5ec2de",
               tertiary: "#5ccfe6",
               grey: "#bfc0c0",
               quarternary: "#b0b0b0",
@@ -89,6 +97,12 @@ export const getTheme = (mode: PaletteMode) =>
         fontFamily: typography.families.regular,
         fontSize: typography.sizes.body,
         lineHeight: typography.lineHeights.body,
+      },
+      body1Montreal: {
+        fontFamily: typography.families.ppNeueMontreal,
+        fontSize: typography.sizes.body,
+        lineHeight: typography.lineHeights.body,
+        fontWeight: 700,
       },
       button: {
         fontFamily: typography.families.medium,
