@@ -146,11 +146,12 @@ const ProjectTabContent = ({ project, trigger }: Props) => {
         </Stack>
 
         <Typography
-          variant="body1"
+          variant="body1Montreal"
           sx={{
             color: "text.secondary",
             lineHeight: 1.8,
             fontSize: "1.1rem",
+            fontWeight: 500,
             mb: 3,
           }}
         >
@@ -166,11 +167,11 @@ const ProjectTabContent = ({ project, trigger }: Props) => {
                 key={skill}
                 label={
                   <Typography
-                    variant="h6"
+                    variant="body1Montreal"
                     sx={{
-                      fontWeight: "medium",
                       fontSize: "0.85rem",
                       lineHeight: 1,
+                      fontWeight: 500,
                     }}
                   >
                     {skill}

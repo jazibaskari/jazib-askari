@@ -130,11 +130,15 @@ const HomeSection = ({ trigger }: HomeSectionProps) => {
           </Typography>
         </TextAnimation>
         <TextAnimation duration={0.6} trigger={trigger}>
-          <Typography variant="h5" sx={{ mb: 0 }}>
+          {/* Added mb:2 and fontWeight:500 for new font */}
+          <Typography variant="h5" sx={{ mb: 2 }}>
             frontend engineer
           </Typography>
           <TextAnimation duration={0.6} trigger={trigger}>
-            <Typography variant="body1" sx={{ mb: 0, color: "#bfc0c0", pt: 2 }}>
+            <Typography
+              variant="body1Montreal"
+              sx={{ mb: 0, color: "#bfc0c0", pt: 2, fontWeight: 500 }}
+            >
               I build responsive, accessible applications for product-centric
               user experiences.
             </Typography>
@@ -201,7 +205,7 @@ const HomeSection = ({ trigger }: HomeSectionProps) => {
           </Button>
         </Box>
 
-        <Stack direction="row" spacing={3} alignItems="center">
+        <Stack direction="row" spacing={0} alignItems="center">
           <IconButton
             href="https://github.com/jazibaskari"
             target="_blank"

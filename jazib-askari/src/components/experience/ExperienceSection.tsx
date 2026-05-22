@@ -62,8 +62,8 @@ const ExperienceItem = ({
           key={tag}
           label={
             <Typography
-              variant="h6"
-              sx={{ fontWeight: "medium", fontSize: "0.85rem", lineHeight: 1 }}
+              variant="body1Montreal"
+              sx={{ fontSize: "0.85rem", lineHeight: 1, fontWeight: 500 }}
             >
               {tag}
             </Typography>
@@ -72,7 +72,8 @@ const ExperienceItem = ({
             bgcolor: "background.paper",
             color: baseColor,
             px: 1,
-            height: `${rowHeight}px`,
+            // height: `${rowHeight}px`,
+            height: "28px",
             ml: "0 !important",
           }}
         />
@@ -179,10 +180,11 @@ const ExperienceItem = ({
           }}
         >
           <Typography
-            variant="body1"
+            variant="body1Montreal"
             sx={{
               color: "text.secondary",
               lineHeight: 1.8,
+              fontWeight: 500,
               fontSize: "1.05rem",
               whiteSpace: "pre-line",
             }}
@@ -278,31 +280,52 @@ const ExperienceSection = ({ trigger }: ExperienceSectionProps) => {
         <TextAnimation duration={0.6} trigger={trigger}>
           <Typography variant="h3">experience</Typography>
         </TextAnimation>
-
-        <Box sx={{ display: "flex", flexWrap: "wrap", gap: 1, mt: 2 }}>
-          {skills.map((category) => (
-            <Chip
-              key={category.label}
-              label={
-                <Typography
-                  variant="h6"
+        <TextAnimation duration={1.5} trigger={trigger}>
+          <Box
+            sx={{
+              display: "grid",
+              gridTemplateColumns: "repeat(3, minmax(140px, 1fr))",
+              gridTemplateRows: "repeat(2, auto)",
+              gap: 2,
+              mt: 2,
+              width: "100%",
+              maxWidth: "520px",
+            }}
+          >
+            {skills.map((category) => (
+              <Box
+                key={category.label}
+                sx={{
+                  display: "flex",
+                  alignItems: "center",
+                  gap: 1.2,
+                }}
+              >
+                <Box
                   sx={{
-                    fontWeight: "medium",
-                    fontSize: "0.85rem",
-                    lineHeight: 1,
+                    width: 12,
+                    height: 12,
+                    borderRadius: "50%",
+                    bgcolor: category.color,
+                    flexShrink: 0,
+                  }}
+                />
+
+                <Typography
+                  variant="body1"
+                  sx={{
+                    fontWeight: 500,
+                    // fontSize: "0.9rem",
+                    // lineHeight: 1,
+                    color: "text.secondary",
                   }}
                 >
                   {category.label}
                 </Typography>
-              }
-              sx={{
-                bgcolor: "background.paper",
-                color: category.color,
-                height: "28px",
-              }}
-            />
-          ))}
-        </Box>
+              </Box>
+            ))}
+          </Box>
+        </TextAnimation>
       </Box>
 
       <Box sx={{ display: "flex", flexDirection: "column" }}>
@@ -332,6 +355,7 @@ const ExperienceSection = ({ trigger }: ExperienceSectionProps) => {
           sx={(theme) => ({
             ...theme.typography.body1,
             textTransform: "none",
+            disableRipple: true,
             py: 2,
             minWidth: 0,
             color: "text.primary",
