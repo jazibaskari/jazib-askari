@@ -284,8 +284,14 @@ const ExperienceSection = ({ trigger }: ExperienceSectionProps) => {
           <Box
             sx={{
               display: "grid",
-              gridTemplateColumns: "repeat(3, minmax(140px, 1fr))",
-              gridTemplateRows: "repeat(2, auto)",
+              gridTemplateColumns: {
+                xs: "repeat(2, minmax(140px, 1fr))",
+                md: "repeat(3, minmax(140px, 1fr))",
+              },
+              gridTemplateRows: {
+                xs: "repeat(3, auto)",
+                md: "repeat(2, auto)",
+              },
               gap: 2,
               mt: 2,
               width: "100%",
