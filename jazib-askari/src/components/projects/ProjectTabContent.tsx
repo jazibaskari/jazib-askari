@@ -1,11 +1,9 @@
 import { Box, Typography, Stack, Chip } from "@mui/material";
 import type { Project } from "../../types/project";
-import { useTheme } from "@mui/material/styles";
 import TextAnimation from "../../animations/AnimatedText";
-import PortfolioLight from "../../assets/images/PortfolioLight.png";
-import PortfolioDark from "../../assets/images/PortfolioDark.png";
 import ArrowOutwardIcon from "@mui/icons-material/ArrowOutward";
 import { skills } from "../../data/skill";
+import ProjectVideo from "../../assets/videos/Portfolio.mp4";
 
 interface Props {
   project: Project;
@@ -13,8 +11,6 @@ interface Props {
 }
 
 const ProjectTabContent = ({ project, trigger }: Props) => {
-  const theme = useTheme();
-
   const getTagColor = (tagName: string) => {
     const category = skills.find(
       (cat) =>
@@ -72,7 +68,7 @@ const ProjectTabContent = ({ project, trigger }: Props) => {
         gap: 3,
       }}
     >
-      {/* Image */}
+      {/* Video */}
       <Box
         sx={{
           width: "100%",
@@ -81,7 +77,7 @@ const ProjectTabContent = ({ project, trigger }: Props) => {
           display: "flex",
           position: "relative",
           cursor: "pointer",
-          "&:hover img": {
+          "&:hover video": {
             transform: "scale(1.05)",
           },
         }}
@@ -93,9 +89,12 @@ const ProjectTabContent = ({ project, trigger }: Props) => {
           style={{ width: "100%" }}
         >
           <Box
-            component="img"
-            src={theme.palette.mode === "dark" ? PortfolioDark : PortfolioLight}
-            alt={project.title}
+            component="video"
+            src={ProjectVideo}
+            autoPlay
+            loop
+            muted
+            playsInline
             sx={{
               width: "100%",
               height: "auto",
