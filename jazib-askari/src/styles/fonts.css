@@ -7,6 +7,13 @@
 @font-face {
   font-family: "Europa Medium";
   src: url("../assets/fonts/Europa_Grotesk_Medium.otf") format("opentype");
-  font-weight: normal; 
+  font-weight: normal;
   font-style: normal;
+}
+@font-face {
+  font-family: "PPNeueMontreal";
+  src: url("../assets/fonts/ppneuemontreal-book.otf") format("opentype");
+  font-weight: normal;
+  font-style: normal;
+  /* font-weight: 600; Book/Regular */
 }

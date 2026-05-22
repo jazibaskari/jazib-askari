@@ -125,6 +125,7 @@ const ProjectsSection = ({ trigger }: ProjectsSectionProps) => {
               sx={(theme) => ({
                 ...theme.typography.body1,
                 textTransform: "none",
+                disableRipple: true,
                 py: 2,
                 minWidth: 0,
                 color: "text.primary",

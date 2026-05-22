@@ -62,9 +62,11 @@ const AboutSection = ({ trigger }: AboutSectionProps) => {
         <Box sx={{ width: "100%" }}>
           <TextAnimation duration={0.1} trigger={trigger}>
             <Typography
-              variant="body1"
+              variant="body1Montreal"
               sx={{
-                color: "#bfc0c0",
+                // color: "#bfc0c0",
+                color: "text.secondary",
+                fontWeight: 500,
                 lineHeight: 1.8,
                 maxWidth: "800px",
               }}
