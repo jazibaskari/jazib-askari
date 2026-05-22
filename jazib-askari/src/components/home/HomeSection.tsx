@@ -214,7 +214,7 @@ const HomeSection = ({ trigger }: HomeSectionProps) => {
             <GitHubIcon />
           </IconButton>
           <IconButton
-            href="linkedin.com/in/jaz-a-5064209b"
+            href="https://www.linkedin.com/in/jaz-a-5064209b/"
             target="_blank"
             sx={{ color: iconColor, "&:hover": { color: "text.primary" } }}
           >
