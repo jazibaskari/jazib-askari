@@ -9,6 +9,7 @@ import {
   Typography,
 } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
+import { alpha } from "@mui/material/styles";
 
 const allSections = ["about", "experience", "projects"];
 
@@ -92,9 +93,9 @@ const Navbar = ({ onNavClick }: NavbarProps) => {
         display: "flex",
         justifyContent: "space-between",
         alignItems: "center",
-        bgcolor: "background.default",
+        bgcolor: (theme) => alpha(theme.palette.background.default, 0.7),
+        backdropFilter: "blur(12px)",
         px: 2,
-        py: 1,
         transition: "all 0.3s ease",
       }}
     >
@@ -127,7 +128,11 @@ const Navbar = ({ onNavClick }: NavbarProps) => {
         onClose={handleDrawerToggle}
         sx={{
           display: { xs: "block", md: "none" },
-          "& .MuiDrawer-paper": { width: 180, bgcolor: "background.default" },
+          "& .MuiDrawer-paper": {
+            width: 180,
+            bgcolor: (theme) => alpha(theme.palette.background.default, 0.8),
+            backdropFilter: "blur(12px)",
+          },
         }}
       >
         <Box sx={{ pt: 4 }}>
@@ -139,8 +144,8 @@ const Navbar = ({ onNavClick }: NavbarProps) => {
                   sx={{
                     color:
                       activeSection === s && !isAtTop
-                        ? "#5ccfe6"
-                        : "text.primary",
+                        ? "text.primary"
+                        : "text.secondary",
                     width: "100%",
                     justifyContent: "flex-end",
                     px: 3,
