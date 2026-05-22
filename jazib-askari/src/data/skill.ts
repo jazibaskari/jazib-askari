@@ -42,7 +42,8 @@ export const skills: Skill[] = [
       "Vercel",
       "Netlify",
     ],
-    color: "#76e4b0",
+    // color: "#76e4b0",
+    color: "#6dd6a4",
   },
   {
     id: "data & state",
