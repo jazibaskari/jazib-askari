@@ -36,9 +36,7 @@ const Navbar = ({ onNavClick }: NavbarProps) => {
           }
         });
       },
-      {
-        rootMargin: "-90px 0px -50% 0px",
-      }
+      { rootMargin: "-90px 0px -50% 0px" }
     );
 
     const sections = document.querySelectorAll("section[id]");
@@ -51,26 +49,18 @@ const Navbar = ({ onNavClick }: NavbarProps) => {
   }, []);
 
   useEffect(() => {
-    const handleScrollVisibility = () => {
-      setIsAtTop(window.scrollY < 50);
-    };
-
+    const handleScrollVisibility = () => setIsAtTop(window.scrollY < 50);
     window.addEventListener("scroll", handleScrollVisibility);
-    handleScrollVisibility();
-
     return () => window.removeEventListener("scroll", handleScrollVisibility);
   }, []);
 
-  const handleDrawerToggle = () => {
-    setMobileOpen(!mobileOpen);
-  };
+  const handleDrawerToggle = () => setMobileOpen(!mobileOpen);
 
   const handleScroll = (id: string) => {
     const el = document.getElementById(id);
     if (el) {
       isManualScroll.current = true;
       setActiveSection(id);
-
       const elementPosition =
         el.getBoundingClientRect().top + window.pageYOffset;
       window.scrollTo({ top: elementPosition - 80, behavior: "smooth" });
@@ -87,10 +77,11 @@ const Navbar = ({ onNavClick }: NavbarProps) => {
   return (
     <Box
       sx={{
+        display: { xs: "flex", md: "none" },
+        height: "80px",
         position: "sticky",
         top: 0,
         zIndex: 1000,
-        display: "flex",
         justifyContent: "space-between",
         alignItems: "center",
         bgcolor: (theme) => alpha(theme.palette.background.default, 0.7),
@@ -99,13 +90,7 @@ const Navbar = ({ onNavClick }: NavbarProps) => {
         transition: "all 0.3s ease",
       }}
     >
-      <Box
-        sx={{
-          display: { xs: "flex", md: "none" },
-          minHeight: "32px",
-          alignItems: "center",
-        }}
-      >
+      <Box sx={{ display: "flex", alignItems: "center" }}>
         <Typography
           variant="h5"
           fontWeight="medium"
@@ -115,8 +100,7 @@ const Navbar = ({ onNavClick }: NavbarProps) => {
         </Typography>
       </Box>
 
-      {/* Menu */}
-      <Box sx={{ display: { xs: "flex", md: "none" } }}>
+      <Box sx={{ display: "flex" }}>
         <IconButton color="inherit" onClick={handleDrawerToggle}>
           <MenuIcon />
         </IconButton>
