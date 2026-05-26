@@ -12,6 +12,16 @@ export const projects: Project[] = [
   },
   {
     id: "2",
+    title: "Finance Dashboard",
+    subtitle: "Budgy",
+    summary:
+      "A secure, responsive personal finance dashboard built with React, TypeScript, and Tailwind CSS that features real-time Monzo transaction syncing, automated budget management, and interactive data visualisation.",
+    skills: ["UI/UX", "Data & Security", "Tooling"],
+    githubUrl: "https://github.com/jazibaskari/budgy",
+    liveUrl: "www.google.com",
+  },
+  {
+    id: "3",
     title: "Desktop RPG Game",
     subtitle: "Sweet Escape",
     summary:

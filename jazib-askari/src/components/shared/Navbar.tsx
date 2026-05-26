@@ -125,6 +125,7 @@ const Navbar = ({ onNavClick }: NavbarProps) => {
               <ListItem key={s} disablePadding>
                 <Button
                   onClick={() => handleScroll(s)}
+                  disableRipple
                   sx={{
                     color:
                       activeSection === s && !isAtTop
