@@ -215,7 +215,7 @@ const HomeSection = ({ trigger }: HomeSectionProps) => {
             sx={linkButtonStyle}
             disableRipple
           >
-            GitHub
+            github
           </Button>
           <Button
             variant="text"
@@ -226,7 +226,7 @@ const HomeSection = ({ trigger }: HomeSectionProps) => {
             sx={linkButtonStyle}
             disableRipple
           >
-            LinkedIn
+            linkedin
           </Button>
           <Button
             variant="text"
@@ -237,7 +237,7 @@ const HomeSection = ({ trigger }: HomeSectionProps) => {
             sx={linkButtonStyle}
             disableRipple
           >
-            Mail
+            mail
           </Button>
           {/* <IconButton
             href="https://github.com/jazibaskari"
