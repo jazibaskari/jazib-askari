@@ -1,16 +1,51 @@
 import { Box, Typography, Stack, Chip } from "@mui/material";
 import type { Project } from "../../types/project";
-import TextAnimation from "../../animations/AnimatedText";
 import ArrowOutwardIcon from "@mui/icons-material/ArrowOutward";
 import { skills } from "../../data/skill";
-import ProjectVideo from "../../assets/videos/Portfolio.mp4";
+import { useRef, useEffect } from "react";
+import { useTheme } from "@mui/material";
 
 interface Props {
   project: Project;
   trigger: number;
 }
 
-const ProjectTabContent = ({ project, trigger }: Props) => {
+const ProjectTabContent = ({ project }: Props) => {
+  const theme = useTheme();
+  const videoRef = useRef<HTMLVideoElement>(null);
+
+  const videoSource =
+    theme.palette.mode === "dark" ? project.videoDark : project.videoLight;
+
+  useEffect(() => {
+    if (videoRef.current) {
+      videoRef.current.currentTime = 0;
+      videoRef.current.play().catch((error) => {
+        console.log("Autoplay prevented:", error);
+      });
+    }
+  }, [project.id]);
+
+  useEffect(() => {
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.code === "Space") {
+        event.preventDefault();
+        if (videoRef.current) {
+          if (videoRef.current.paused) {
+            videoRef.current.play();
+          } else {
+            videoRef.current.pause();
+          }
+        }
+      }
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+    return () => {
+      window.removeEventListener("keydown", handleKeyDown);
+    };
+  }, []);
+
   const getTagColor = (tagName: string) => {
     const category = skills.find(
       (cat) =>
@@ -69,28 +104,21 @@ const ProjectTabContent = ({ project, trigger }: Props) => {
       }}
     >
       {/* Video */}
-      <Box
-        sx={{
-          width: "100%",
-          borderRadius: "24px",
-          overflow: "hidden",
-          display: "flex",
-          position: "relative",
-          cursor: "pointer",
-          "&:hover video": {
-            transform: "scale(1.05)",
-          },
-        }}
-      >
-        <TextAnimation
+      {videoSource && (
+        <Box
           key={project.id}
-          duration={1.2}
-          trigger={trigger}
-          style={{ width: "100%" }}
+          sx={{
+            width: "100%",
+            borderRadius: "24px",
+            overflow: "hidden",
+            display: "flex",
+            position: "relative",
+          }}
         >
           <Box
             component="video"
-            src={ProjectVideo}
+            src={videoSource}
+            ref={videoRef}
             autoPlay
             loop
             muted
@@ -101,14 +129,10 @@ const ProjectTabContent = ({ project, trigger }: Props) => {
               maxHeight: { xs: "300px", md: "450px" },
               objectFit: "cover",
               display: "block",
-              outline: "none",
-              border: "none",
-              transition: "transform 0.6s cubic-bezier(0.4, 0, 0.2, 1)",
             }}
           />
-        </TextAnimation>
-      </Box>
-
+        </Box>
+      )}
       {/* Text */}
       <Box
         sx={{
