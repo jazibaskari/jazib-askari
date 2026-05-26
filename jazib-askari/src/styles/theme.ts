@@ -6,6 +6,7 @@ declare module "@mui/material/styles" {
     tertiary?: string;
     grey?: string;
     quarternary?: string;
+    opp?: string;
   }
   interface TypographyVariants {
     body1Montreal: React.CSSProperties;
@@ -40,6 +41,7 @@ export const getTheme = (mode: PaletteMode) =>
               tertiary: "#5ec2de",
               grey: "#bfc0c0",
               quarternary: "#ffff",
+              opp: "black",
             },
             divider: "rgba(0, 0, 0, 0.12)",
           }
@@ -57,6 +59,7 @@ export const getTheme = (mode: PaletteMode) =>
               tertiary: "#5ccfe6",
               grey: "#bfc0c0",
               quarternary: "#b0b0b0",
+              opp: "white",
             },
             divider: "rgba(255, 255, 255, 0.12)",
           }),
