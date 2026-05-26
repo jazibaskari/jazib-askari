@@ -3,14 +3,14 @@ import {
   Box,
   Typography,
   Stack,
-  IconButton,
+  // IconButton,
   useTheme,
   Button,
 } from "@mui/material";
 import TextAnimation from "../../animations/AnimatedText";
-import GitHubIcon from "@mui/icons-material/GitHub";
-import LinkedInIcon from "@mui/icons-material/LinkedIn";
-import MailOutlineIcon from "@mui/icons-material/MailOutline";
+// import GitHubIcon from "@mui/icons-material/GitHub";
+// import LinkedInIcon from "@mui/icons-material/LinkedIn";
+// import MailOutlineIcon from "@mui/icons-material/MailOutline";
 import { ColourModeContext } from "../../context/ColourModeContext";
 
 interface HomeSectionProps {
@@ -23,7 +23,7 @@ const HomeSection = ({ trigger }: HomeSectionProps) => {
   const [activeSection, setActiveSection] = useState("");
   const theme = useTheme();
   const colourMode = useContext(ColourModeContext);
-  const iconColor = "text.secondary";
+  // const iconColor = "text.secondary";
 
   const isManualScroll = useRef(false);
   const timeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
@@ -205,8 +205,41 @@ const HomeSection = ({ trigger }: HomeSectionProps) => {
           </Button>
         </Box>
 
-        <Stack direction="row" spacing={0} alignItems="center">
-          <IconButton
+        <Stack direction="row" spacing={2} alignItems="center">
+          <Button
+            variant="text"
+            component="a" //
+            href="https://github.com/jazibaskari"
+            target="_blank"
+            rel="noopener noreferrer"
+            sx={linkButtonStyle}
+            disableRipple
+          >
+            GitHub
+          </Button>
+          <Button
+            variant="text"
+            component="a" //
+            href="https://www.linkedin.com/in/jaz-a-5064209b/"
+            target="_blank"
+            rel="noopener noreferrer"
+            sx={linkButtonStyle}
+            disableRipple
+          >
+            LinkedIn
+          </Button>
+          <Button
+            variant="text"
+            component="a" //
+            href="mailto:jazibaskari@hotmail.co.uk"
+            target="_blank"
+            rel="noopener noreferrer"
+            sx={linkButtonStyle}
+            disableRipple
+          >
+            Mail
+          </Button>
+          {/* <IconButton
             href="https://github.com/jazibaskari"
             target="_blank"
             sx={{ color: iconColor, "&:hover": { color: "text.primary" } }}
@@ -225,7 +258,7 @@ const HomeSection = ({ trigger }: HomeSectionProps) => {
             sx={{ color: iconColor, "&:hover": { color: "text.primary" } }}
           >
             <MailOutlineIcon />
-          </IconButton>
+          </IconButton> */}
         </Stack>
       </Box>
     </Box>

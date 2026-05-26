@@ -33,7 +33,9 @@ const ProjectsSection = ({ trigger }: ProjectsSectionProps) => {
     if (scroller) {
       scroller.addEventListener("scroll", checkScrollPosition);
       window.addEventListener("resize", checkScrollPosition);
-      checkScrollPosition();
+      requestAnimationFrame(() => {
+        checkScrollPosition();
+      });
     }
     return () => {
       scroller?.removeEventListener("scroll", checkScrollPosition);
@@ -159,7 +161,9 @@ const ProjectsSection = ({ trigger }: ProjectsSectionProps) => {
                   display: value === index ? "block" : "none",
                 }}
               >
-                <ProjectTabContent project={p} trigger={trigger + value} />
+                {value === index && (
+                  <ProjectTabContent project={p} trigger={trigger + value} />
+                )}
               </div>
             ))}
           </Box>
