@@ -77,7 +77,7 @@ const AboutSection = ({ trigger }: AboutSectionProps) => {
               </Box>
               , with over 4 years of experience leveraging TypeScript to build
               responsive, scalable React applications. Having engineered
-              enterprise-scale applications for 300,000+ users at{"  "}
+              enterprise-scale applications for 30,000+ users at{"  "}
               <Box component="span" sx={{ color: "text.primary" }}>
                 PwC
               </Box>
@@ -100,7 +100,7 @@ const AboutSection = ({ trigger }: AboutSectionProps) => {
               }}
             >
               <Stack direction="row" spacing={1} alignItems="center">
-                <Typography variant="h3">10</Typography>
+                <Typography variant="h3">4</Typography>
                 <Typography
                   variant="h2"
                   sx={{
