@@ -179,7 +179,6 @@ const AboutSection = ({ trigger }: AboutSectionProps) => {
                       color: "#5ccfe6",
                       lineHeight: 1,
                       mt: -1,
-                      cursor: "default",
                     }}
                   >
                     +
