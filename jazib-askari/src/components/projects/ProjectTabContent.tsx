@@ -55,7 +55,7 @@ const ProjectTabContent = ({ project }: Props) => {
     return category ? category.color : "action.hover";
   };
 
-  const animatedLinkStyles = {
+  const linkButtonStyle = {
     display: "inline-flex",
     alignItems: "center",
     gap: "4px",
@@ -150,7 +150,7 @@ const ProjectTabContent = ({ project }: Props) => {
               href={project.githubUrl}
               target="_blank"
               rel="noopener noreferrer"
-              sx={animatedLinkStyles}
+              sx={linkButtonStyle}
             >
               GitHub{" "}
               <ArrowOutwardIcon sx={{ fontSize: "0.95rem", ml: "1px" }} />
@@ -162,7 +162,7 @@ const ProjectTabContent = ({ project }: Props) => {
               href={project.liveUrl}
               target="_blank"
               rel="noopener noreferrer"
-              sx={animatedLinkStyles}
+              sx={linkButtonStyle}
             >
               Launch{" "}
               <ArrowOutwardIcon sx={{ fontSize: "0.95rem", ml: "1px" }} />
