@@ -58,8 +58,8 @@ export const projects: Project[] = [
     summary:
       "A headless script that turns JSON files into instantly-downloadable, high-level software architecture diagrams. This enables repeatable, version-controlled diagram generation with a single source of truth, allowing teams to track architectural changes across their development lifecycle. Enforcing a consistent design system also ensures that no time is wasted manually fiddling with a GUI. ",
     skills: ["UI/UX", "Data & Security", "Tooling"],
-    githubUrl: "https://github.com/jazibaskari",
-    liveUrl: "https://github.com/jazibaskari",
+    githubUrl: "https://github.com/jazibaskari/architext",
+    liveUrl: "https://github.com/jazibaskari/architext",
     videoLight: ArchitextDark,
     videoDark: ArchitextLight,
   },
@@ -70,8 +70,8 @@ export const projects: Project[] = [
     summary:
       "A React and Typescript-based desktop RPG game, featuring a rich storyline with retro pixel graphics. Step into the shoes of a supermarket employee surviving a chaotic night shift after the inventory chutes malfunction. To escape before the boss locks you in overnight, you must catch falling cakes, dodge vegetables, and tackle high-stakes side quests. ",
     skills: ["UI/UX", "Data & Security", "Tooling"],
-    githubUrl: "https://github.com/jazibaskari",
-    liveUrl: "https://github.com/jazibaskari",
+    githubUrl: "https://github.com/jazibaskari/sweet-escape",
+    liveUrl: "https://github.com/jazibaskari/sweet-escape",
     videoLight: SweetEscapeLight,
     videoDark: SweetEscapeDark,
   },
@@ -82,8 +82,8 @@ export const projects: Project[] = [
     summary:
       "An underscore for my 'Sweet Escape' RPG, created using Strudel. It draws inspiration from the delicate arrangements of 'Sparkle' by Tom Howe (featured heavily in the Great British Bake Off series), utilising delayed kalimbas and bells to craft a light yet tension-driven atmosphere.",
     skills: ["Frontend", "Testing"],
-    githubUrl: "https://github.com/jazibaskari",
-    liveUrl: "https://github.com/jazibaskari",
+    githubUrl: "https://github.com/jazibaskari/sweet-escape-underscore",
+    liveUrl: "https://github.com/jazibaskari/sweet-escape-underscore",
     videoLight: SugarRushLight,
     videoDark: SugarRushDark,
   },
