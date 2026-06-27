@@ -9,4 +9,8 @@ export interface Project {
   image?: string;
   videoLight?: string;
   videoDark?: string;
+  ideationText?: string;
+  testingText?: string;
+  date?: Date;
+  readTime?: string;
 }

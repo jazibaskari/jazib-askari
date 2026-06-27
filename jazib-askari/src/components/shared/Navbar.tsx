@@ -10,6 +10,7 @@ import {
 } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
 import { alpha } from "@mui/material/styles";
+import { useLocation } from "react-router-dom";
 
 const allSections = ["about", "experience", "projects"];
 
@@ -22,6 +23,7 @@ const Navbar = ({ onNavClick }: NavbarProps) => {
   const [activeSection, setActiveSection] = useState("");
   const [isAtTop, setIsAtTop] = useState(true);
 
+  const location = useLocation();
   const isManualScroll = useRef(false);
   const timeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
@@ -29,19 +31,14 @@ const Navbar = ({ onNavClick }: NavbarProps) => {
     const observer = new IntersectionObserver(
       (entries) => {
         if (isManualScroll.current) return;
-
         entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            setActiveSection(entry.target.id);
-          }
+          if (entry.isIntersecting) setActiveSection(entry.target.id);
         });
       },
       { rootMargin: "-90px 0px -50% 0px" }
     );
-
     const sections = document.querySelectorAll("section[id]");
     sections.forEach((section) => observer.observe(section));
-
     return () => {
       observer.disconnect();
       if (timeoutRef.current) clearTimeout(timeoutRef.current);
@@ -54,6 +51,9 @@ const Navbar = ({ onNavClick }: NavbarProps) => {
     return () => window.removeEventListener("scroll", handleScrollVisibility);
   }, []);
 
+  const isProjectPage = location.pathname.startsWith("/projects/");
+  if (isProjectPage) return null;
+
   const handleDrawerToggle = () => setMobileOpen(!mobileOpen);
 
   const handleScroll = (id: string) => {
@@ -64,7 +64,6 @@ const Navbar = ({ onNavClick }: NavbarProps) => {
       const elementPosition =
         el.getBoundingClientRect().top + window.pageYOffset;
       window.scrollTo({ top: elementPosition - 80, behavior: "smooth" });
-
       if (timeoutRef.current) clearTimeout(timeoutRef.current);
       timeoutRef.current = setTimeout(() => {
         isManualScroll.current = false;

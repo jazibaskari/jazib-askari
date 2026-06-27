@@ -168,6 +168,13 @@ const ProjectTabContent = ({ project }: Props) => {
               <ArrowOutwardIcon sx={{ fontSize: "0.95rem", ml: "1px" }} />
             </Box>
           )}
+          {/* <Box
+            onClick={() => navigate(`/projects/${project.id}`)}
+            sx={{ ...linkButtonStyle, cursor: "pointer" }}
+          >
+            Case Study{" "}
+            <ArrowOutwardIcon sx={{ fontSize: "0.95rem", ml: "1px" }} />
+          </Box> */}
         </Stack>
 
         <Typography
