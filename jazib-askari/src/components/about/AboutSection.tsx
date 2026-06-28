@@ -82,8 +82,8 @@ const AboutSection = ({ trigger }: AboutSectionProps) => {
                 PwC
               </Box>
               , I thrive in environments that value ownership, data-driven
-              decisions, and maintaining high coding standards to meet the
-              business' bottom line.
+              decisions, and maintaining high coding standards to deliver
+              high-impact outcomes.
             </Typography>
           </TextAnimation>
         </Box>
