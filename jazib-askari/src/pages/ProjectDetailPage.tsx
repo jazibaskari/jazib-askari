@@ -6,7 +6,10 @@ import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 const ProjectDetailPage = () => {
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
-  const project = projects.find((p) => p.id === id);
+
+  const project = projects.find(
+    (p) => p.subtitle.toLowerCase().replace(/\s+/g, "-") === id
+  );
 
   if (!project) {
     return (
@@ -23,7 +26,7 @@ const ProjectDetailPage = () => {
           variant="text"
           disableRipple
           startIcon={<ArrowBackIcon />}
-          onClick={() => navigate("/")}
+          onClick={() => navigate(-1)}
           sx={(theme) => ({
             ...theme.typography.body1,
             textTransform: "none",
@@ -51,7 +54,6 @@ const ProjectDetailPage = () => {
       <Typography
         variant="body1Montreal"
         sx={{
-          // fontSize: "0.95rem",
           color: "#bfc0c0",
           fontWeight: 500,
           mt: 2,
@@ -72,20 +74,19 @@ const ProjectDetailPage = () => {
 
         {`, ${project.readTime}`}
       </Typography>
-      {/* sx={{ mt: 2, mb: 4, lineHeight: 1.6 }} */}
+
       <Typography
         variant="body1Montreal"
         sx={{
           color: "text.secondary",
           fontWeight: 500,
-          // mt: 2,
-          // mb: 4,
           lineHeight: 1.6,
           maxWidth: "800px",
         }}
       >
-        {project.summary}{" "}
+        {project.summary}
       </Typography>
+
       <Box
         sx={{
           height: "3px",
@@ -95,6 +96,7 @@ const ProjectDetailPage = () => {
           mt: 4,
         }}
       />
+
       <Box sx={{ mt: 6 }}>
         <Typography variant="h3" gutterBottom>
           ideation
@@ -106,6 +108,7 @@ const ProjectDetailPage = () => {
           {project.ideationText}
         </Typography>
       </Box>
+
       <Box sx={{ mt: 6 }}>
         <Typography variant="h3" gutterBottom>
           software architecture
@@ -119,6 +122,7 @@ const ProjectDetailPage = () => {
           </Typography>
         </Box>
       </Box>
+
       <Box sx={{ mt: 6 }}>
         <Typography variant="h3" gutterBottom>
           key considerations
@@ -130,25 +134,6 @@ const ProjectDetailPage = () => {
           {project.testingText}
         </Typography>
       </Box>
-      {/* Testing Section */}
-      {/* <Box sx={{ mt: 6 }}>
-        <Typography variant="h4" gutterBottom>
-          Testing
-        </Typography>
-        <Typography variant="body1" sx={{ lineHeight: 1.8 }}>
-          {project.testingText}
-        </Typography>
-      </Box> */}
-
-      {/* Costs and Scaling Section
-      <Box sx={{ mt: 6 }}>
-        <Typography variant="h4" gutterBottom>
-          Costs and Scaling
-        </Typography>
-        <Typography variant="body1" sx={{ lineHeight: 1.8 }}>
-          {project.testingText}
-        </Typography>
-      </Box> */}
     </Container>
   );
 };
