@@ -13,4 +13,5 @@ export interface Project {
   testingText?: string;
   date?: Date;
   readTime?: string;
+  type: string;
 }
