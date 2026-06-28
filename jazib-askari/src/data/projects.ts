@@ -31,6 +31,7 @@ export const projects: Project[] = [
     liveUrl: "https://jazibaskari.com",
     videoLight: PortfolioDark,
     videoDark: PortfolioLight,
+    type: "Personal",
   },
   {
     id: "2",
@@ -50,6 +51,7 @@ export const projects: Project[] = [
     liveUrl: "https://github.com/jazibaskari/budgy",
     videoLight: BudgyDark,
     videoDark: BudgyLight,
+    type: "Personal",
   },
   {
     id: "3",
@@ -62,6 +64,7 @@ export const projects: Project[] = [
     liveUrl: "https://github.com/jazibaskari/architext",
     videoLight: ArchitextDark,
     videoDark: ArchitextLight,
+    type: "Personal",
   },
   {
     id: "4",
@@ -74,6 +77,7 @@ export const projects: Project[] = [
     liveUrl: "https://github.com/jazibaskari/sweet-escape",
     videoLight: SweetEscapeLight,
     videoDark: SweetEscapeDark,
+    type: "Personal",
   },
   {
     id: "5",
@@ -86,5 +90,6 @@ export const projects: Project[] = [
     liveUrl: "https://github.com/jazibaskari/sweet-escape-underscore",
     videoLight: SugarRushLight,
     videoDark: SugarRushDark,
+    type: "Personal",
   },
 ];

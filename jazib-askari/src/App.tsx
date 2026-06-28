@@ -7,6 +7,7 @@ import { ColourModeContext } from "./context/ColourModeContext";
 import Navbar from "./components/shared/Navbar";
 import HomePage from "./pages/HomePage";
 import ProjectDetailPage from "./pages/ProjectDetailPage";
+import ProjectsArchivePage from "./components/projects/ProjectsArchivePage";
 import ScrollToTop from "./utils/scrollToTop";
 const App = () => {
   const [mode, setMode] = useState<"light" | "dark">(
@@ -38,6 +39,7 @@ const App = () => {
           <Navbar onNavClick={handleNavClick} />
           <Routes>
             <Route path="/" element={<HomePage navTrigger={navTrigger} />} />
+            <Route path="/projects" element={<ProjectsArchivePage />} />
             <Route path="/projects/:id" element={<ProjectDetailPage />} />
           </Routes>
         </BrowserRouter>
