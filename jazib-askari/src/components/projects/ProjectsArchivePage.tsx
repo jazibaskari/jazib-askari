@@ -14,10 +14,14 @@ import CheckIcon from "@mui/icons-material/Check";
 import { projects } from "../../data/projects";
 import { skills } from "../../data/skill";
 import TextAnimation from "../../animations/AnimatedText";
+import GitBreadcrumb from "../GitBreadcrumb";
 
 interface ProjectCardProps {
   project: Project;
 }
+
+const defaultColor =
+  skills.find((s) => s.id === "frontend")?.color || "#5ccfe6";
 
 const ProjectCard = ({ project }: ProjectCardProps) => {
   const navigate = useNavigate();
@@ -32,7 +36,6 @@ const ProjectCard = ({ project }: ProjectCardProps) => {
         gap: 2,
       }}
     >
-      {/* Media / Image */}
       <Box
         onClick={() => navigate(`/projects/${projectSlug}`)}
         sx={{
@@ -63,7 +66,6 @@ const ProjectCard = ({ project }: ProjectCardProps) => {
         />
       </Box>
 
-      {/* Text & Content */}
       <Box sx={{ display: "flex", flexDirection: "column", flexGrow: 1 }}>
         <Typography
           variant="h5"
@@ -94,7 +96,6 @@ const ProjectCard = ({ project }: ProjectCardProps) => {
           {project.summary}
         </Typography>
 
-        {/* Project Type & Read Time */}
         <Typography
           variant="body1Montreal"
           sx={{
@@ -117,7 +118,6 @@ const ProjectsArchivePage = () => {
   const navigate = useNavigate();
   const [selectedSkills, setSelectedSkills] = useState<string[]>([]);
 
-  // Map skill name to its theme color
   const getTagColor = (tagName: string) => {
     const category = skills.find(
       (cat) =>
@@ -127,7 +127,6 @@ const ProjectsArchivePage = () => {
     return category ? category.color : "action.hover";
   };
 
-  // Extract unique skills from all projects
   const allSkills = useMemo(() => {
     const skillsSet = new Set<string>();
     projects.forEach((p) => {
@@ -138,7 +137,6 @@ const ProjectsArchivePage = () => {
     return Array.from(skillsSet).sort();
   }, []);
 
-  // Filter projects based on selected skills
   const filteredProjects = useMemo(() => {
     if (selectedSkills.length === 0) return projects;
     return projects.filter((p) =>
@@ -163,7 +161,7 @@ const ProjectsArchivePage = () => {
           minHeight: "100vh",
         }}
       >
-        <Box sx={{ mb: 4, display: "flex", justifyContent: "flex-start" }}>
+        <Box sx={{ mb: 4 }}>
           <Button
             variant="text"
             disableRipple
@@ -189,16 +187,32 @@ const ProjectsArchivePage = () => {
             Go back
           </Button>
         </Box>
+        <Box sx={{ mb: 6, position: "relative" }}>
+          <Box
+            sx={{
+              position: "absolute",
+              top: 0,
+              right: 0,
+              display: { xs: "none", md: "block" },
+            }}
+          >
+            <GitBreadcrumb
+              color={defaultColor}
+              items={[
+                { label: "home", path: "/" },
+                { label: "projects", path: "/projects" },
+              ]}
+            />
+          </Box>
 
-        <Box sx={{ mb: 6 }}>
           <TextAnimation duration={0.6} trigger={1}>
             <Typography variant="h2">projects archive</Typography>
           </TextAnimation>
+
           <Typography variant="h5" sx={{ mb: 4 }}>
             past work, experiments, and open-source contributions
           </Typography>
 
-          {/* Filter Chips */}
           <Box sx={{ display: "flex", flexWrap: "wrap", gap: 1 }}>
             {allSkills.map((skill) => {
               const isSelected = selectedSkills.includes(skill);
@@ -251,7 +265,6 @@ const ProjectsArchivePage = () => {
           </Box>
         </Box>
 
-        {/* Project Grid */}
         <Box
           sx={{
             display: "grid",

@@ -2,6 +2,11 @@ import { Box, Typography, Container, Button } from "@mui/material";
 import { useParams, useNavigate } from "react-router-dom";
 import { projects } from "../data/projects";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
+import GitBreadcrumb from "../components/GitBreadcrumb";
+import { skills } from "../data/skill";
+
+const defaultColor =
+  skills.find((s) => s.id === "frontend")?.color || "#5ccfe6";
 
 const ProjectDetailPage = () => {
   const { id } = useParams<{ id: string }>();
@@ -47,8 +52,30 @@ const ProjectDetailPage = () => {
           Go back
         </Button>
       </Box>
+      <Box sx={{ position: "relative" }}>
+        <Typography variant="h2"> {project.subtitle.toLowerCase()} </Typography>
+        <Box
+          sx={{
+            position: "absolute",
+            top: 0,
+            right: 0,
+            display: { xs: "none", md: "block" },
+          }}
+        >
+          <GitBreadcrumb
+            color={defaultColor}
+            items={[
+              { label: "home", path: "/" },
+              { label: "projects", path: "/projects" },
+              {
+                label: project.subtitle.toLowerCase(),
+                path: `/projects/${id}`,
+              },
+            ]}
+          />
+        </Box>
+      </Box>
 
-      <Typography variant="h2"> {project.subtitle.toLowerCase()} </Typography>
       <Typography variant="h5">{project.title.toLowerCase()}</Typography>
 
       <Typography
@@ -62,7 +89,7 @@ const ProjectDetailPage = () => {
           alignItems: "center",
         }}
       >
-        {project.date instanceof Date
+        {/* {project.date instanceof Date
           ? project.date
               .toLocaleDateString("en-GB", {
                 year: "numeric",
@@ -70,12 +97,13 @@ const ProjectDetailPage = () => {
                 day: "numeric",
               })
               .toLocaleLowerCase()
-          : project.date}
+          : project.date} */}
 
+        {project.type.toLowerCase()}
         {`, ${project.readTime}`}
       </Typography>
 
-      <Typography
+      {/* <Typography
         variant="body1Montreal"
         sx={{
           color: "text.secondary",
@@ -85,7 +113,7 @@ const ProjectDetailPage = () => {
         }}
       >
         {project.summary}
-      </Typography>
+      </Typography> */}
 
       <Box
         sx={{
@@ -98,9 +126,23 @@ const ProjectDetailPage = () => {
       />
 
       <Box sx={{ mt: 6 }}>
-        <Typography variant="h3" gutterBottom>
-          ideation
+        <Typography
+          variant="body1Montreal"
+          sx={{
+            color: "text.secondary",
+            fontWeight: 500,
+            lineHeight: 1.6,
+            maxWidth: "800px",
+          }}
+        >
+          {project.summary}
         </Typography>
+
+        <Box sx={{ mt: 6 }}>
+          <Typography variant="h3" gutterBottom>
+            ideation
+          </Typography>
+        </Box>
         <Typography
           variant="body1Montreal"
           sx={{ lineHeight: 1.8, fontWeight: 500 }}
