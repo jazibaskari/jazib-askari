@@ -1,11 +1,12 @@
 import { useState } from "react";
 import type { SyntheticEvent } from "react";
 import Section from "../shared/Section";
-import { Box, Typography, Tabs, Tab } from "@mui/material";
+import { Box, Typography, Tabs, Tab, Button } from "@mui/material";
 import { projects } from "../../data/projects";
 import TextAnimation from "../../animations/AnimatedText";
 import ProjectTabContent from "./ProjectTabContent";
-// import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
+import { useNavigate } from "react-router-dom";
+import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 
 interface ProjectsSectionProps {
   trigger: number;
@@ -13,7 +14,7 @@ interface ProjectsSectionProps {
 
 const ProjectsSection = ({ trigger }: ProjectsSectionProps) => {
   const [value, setValue] = useState(0);
-
+  const navigate = useNavigate();
   const handleChange = (_event: SyntheticEvent, newValue: number) => {
     setValue(newValue);
   };
@@ -129,7 +130,7 @@ const ProjectsSection = ({ trigger }: ProjectsSectionProps) => {
               mt: 2,
             }}
           >
-            {/* <Button
+            <Button
               variant="text"
               endIcon={<ArrowForwardIcon />}
               onClick={() => navigate("/projects")}
@@ -152,7 +153,7 @@ const ProjectsSection = ({ trigger }: ProjectsSectionProps) => {
               })}
             >
               View All Projects
-            </Button> */}
+            </Button>
           </Box>
         </Box>
       </Box>

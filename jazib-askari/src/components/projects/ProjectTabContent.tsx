@@ -4,6 +4,7 @@ import ArrowOutwardIcon from "@mui/icons-material/ArrowOutward";
 import { skills } from "../../data/skill";
 import { useRef, useEffect } from "react";
 import { useTheme } from "@mui/material";
+import { useNavigate } from "react-router-dom";
 
 interface Props {
   project: Project;
@@ -13,7 +14,7 @@ interface Props {
 const ProjectTabContent = ({ project }: Props) => {
   const theme = useTheme();
   const videoRef = useRef<HTMLVideoElement>(null);
-
+  const navigate = useNavigate();
   const videoSource =
     theme.palette.mode === "dark" ? project.videoDark : project.videoLight;
 
@@ -94,6 +95,8 @@ const ProjectTabContent = ({ project }: Props) => {
     },
   };
 
+  const projectSlug = project.subtitle.toLowerCase().replace(/\s+/g, "-");
+
   return (
     <Box
       sx={{
@@ -168,13 +171,13 @@ const ProjectTabContent = ({ project }: Props) => {
               <ArrowOutwardIcon sx={{ fontSize: "0.95rem", ml: "1px" }} />
             </Box>
           )}
-          {/* <Box
-            onClick={() => navigate(`/projects/${project.id}`)}
+          <Box
+            onClick={() => navigate(`/projects/${projectSlug}`)}
             sx={{ ...linkButtonStyle, cursor: "pointer" }}
           >
             Case Study{" "}
             <ArrowOutwardIcon sx={{ fontSize: "0.95rem", ml: "1px" }} />
-          </Box> */}
+          </Box>
         </Stack>
 
         <Typography
