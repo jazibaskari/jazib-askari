@@ -71,7 +71,7 @@ const AboutSection = ({ trigger }: AboutSectionProps) => {
                 maxWidth: "800px",
               }}
             >
-              I am a product-centric Frontend Engineer based in{" "}
+              I am a Frontend Engineer based in{" "}
               <Box component="span" sx={{ color: "text.primary" }}>
                 Manchester
               </Box>
