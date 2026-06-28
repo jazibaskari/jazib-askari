@@ -51,7 +51,7 @@ const Navbar = ({ onNavClick }: NavbarProps) => {
     return () => window.removeEventListener("scroll", handleScrollVisibility);
   }, []);
 
-  const isProjectPage = location.pathname.startsWith("/projects/");
+  const isProjectPage = location.pathname.startsWith("/projects");
   if (isProjectPage) return null;
 
   const handleDrawerToggle = () => setMobileOpen(!mobileOpen);
