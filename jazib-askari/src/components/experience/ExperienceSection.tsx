@@ -357,7 +357,7 @@ const ExperienceSection = ({ trigger }: ExperienceSectionProps) => {
         <Button
           variant="text"
           endIcon={<ArrowForwardIcon />}
-          onClick={() => navigate("/projects")}
+          onClick={() => navigate("/")}
           sx={(theme) => ({
             ...theme.typography.body1,
             textTransform: "none",
