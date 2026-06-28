@@ -32,7 +32,7 @@ export const experiences: Experience[] = [
     dates: "Mar 2024 — Jun 2024",
     website: "www.pwc.com",
     description:
-      "Orchesrated cross-functional backend and UI/UX teams todeliber a client-facing 'escape room' style React application.",
+      "Orchesrated cross-functional backend and UI/UX teams to deliver a client-facing 'escape room' style React application.",
     tags: [
       "React",
       "TypeScript",

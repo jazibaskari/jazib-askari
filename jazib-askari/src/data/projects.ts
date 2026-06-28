@@ -18,7 +18,7 @@ export const projects: Project[] = [
     date: new Date("2026-03-11"),
     readTime: "15 min read",
     summary:
-      "This portfolio website was built using React, Typescript and Material UI. It features an intentionally clean and minimal design, showcasing my projects, skills, and experience in a digestible way. The website is fully responsive, ensuring a seamless experience across all devices.",
+      "This portfolio website was built using React, Typescript and Material UI. It features a clean and minimal design, showcasing my projects, skills, and experience in an intentional and digestible way. The website is fully responsive, ensuring a seamless experience across all devices.",
     skills: [
       "Frontend",
       "UI/UX",
@@ -56,7 +56,7 @@ export const projects: Project[] = [
     title: "Software Architecture Diagram Generator",
     subtitle: "Architext",
     summary:
-      "A headless script that turns JSON files into instantly-downloadable, high-level software architecture diagrams. This enables repeatable, version-controlled diagram generation with a single source of truth, allowing teams to track architectural changes across their development lifecycle. Enforcing a consistent design system also ensures that no time is wasted manually fiddling with a GUI. ",
+      "A headless script that turns JSON files into instantly-downloadable, high-level software architecture diagrams using a consistent design system. A single source of truth is maintained through repeatable, version-controlled diagram generation, with architectural changes tracked throughout development lifecycles.",
     skills: ["UI/UX", "Data & Security", "Tooling"],
     githubUrl: "https://github.com/jazibaskari/architext",
     liveUrl: "https://github.com/jazibaskari/architext",
@@ -80,7 +80,7 @@ export const projects: Project[] = [
     title: "RPG Underscore",
     subtitle: "Sugar Rush",
     summary:
-      "An underscore for my 'Sweet Escape' RPG, created using Strudel. It draws inspiration from the delicate arrangements of 'Sparkle' by Tom Howe (featured heavily in the Great British Bake Off series), utilising delayed kalimbas and bells to craft a light yet tension-driven atmosphere.",
+      "An underscore for my 'Sweet Escape' RPG, created using Strudel. It draws inspiration from the delicate arrangements of 'Sparkle' by Tom Howe (featured heavily in the Great British Bake Off series), using delayed kalimbas and bells to craft a light yet tension-driven atmosphere.",
     skills: ["Frontend", "Testing"],
     githubUrl: "https://github.com/jazibaskari/sweet-escape-underscore",
     liveUrl: "https://github.com/jazibaskari/sweet-escape-underscore",

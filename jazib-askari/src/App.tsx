@@ -10,7 +10,7 @@ import ProjectDetailPage from "./pages/ProjectDetailPage";
 import ScrollToTop from "./utils/scrollToTop";
 const App = () => {
   const [mode, setMode] = useState<"light" | "dark">(
-    (localStorage.getItem("themeMode") as "light" | "dark") || "light"
+    (localStorage.getItem("themeMode") as "light" | "dark") || "dark"
   );
   const colourMode = useMemo(
     () => ({
