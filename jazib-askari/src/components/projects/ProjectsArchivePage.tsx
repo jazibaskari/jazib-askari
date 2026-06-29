@@ -14,7 +14,8 @@ import CheckIcon from "@mui/icons-material/Check";
 import { projects } from "../../data/projects";
 import { skills } from "../../data/skill";
 import TextAnimation from "../../animations/AnimatedText";
-import GitBreadcrumb from "../GitBreadcrumb";
+import GitBreadcrumb from "../breadcrumb/GitBreadcrumb";
+import GitBreadcrumbHorizontal from "../breadcrumb/GitBreadcrumbHorizontal";
 
 interface ProjectCardProps {
   project: Project;
@@ -157,11 +158,17 @@ const ProjectsArchivePage = () => {
       <Container
         maxWidth="md"
         sx={{
-          py: 8,
-          minHeight: "100vh",
+          py: { xs: 4, md: 8 },
         }}
       >
-        <Box sx={{ mb: 4 }}>
+        <Box
+          sx={{
+            mb: 4,
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "flex-start",
+          }}
+        >
           <Button
             variant="text"
             disableRipple
@@ -186,7 +193,24 @@ const ProjectsArchivePage = () => {
           >
             Go back
           </Button>
+
+          {/* Mobile View */}
+          <Box
+            sx={{
+              display: { xs: "block", md: "none" },
+              pt: { xs: 4 },
+            }}
+          >
+            <GitBreadcrumbHorizontal
+              color={defaultColor}
+              items={[
+                { label: "home", path: "/" },
+                { label: "projects", path: "/projects" },
+              ]}
+            />
+          </Box>
         </Box>
+
         <Box sx={{ mb: 6, position: "relative" }}>
           <Box
             sx={{
@@ -204,10 +228,12 @@ const ProjectsArchivePage = () => {
               ]}
             />
           </Box>
-
-          <TextAnimation duration={0.6} trigger={1}>
-            <Typography variant="h2">projects archive</Typography>
-          </TextAnimation>
+          {/* mt: 2 + 22px  */}
+          <Box sx={{ position: "relative", pt: { xs: "38px" } }}>
+            <TextAnimation duration={0.6} trigger={1}>
+              <Typography variant="h2">project archive</Typography>
+            </TextAnimation>
+          </Box>
 
           <Typography variant="h5" sx={{ mb: 4 }}>
             past work, experiments, and open-source contributions
