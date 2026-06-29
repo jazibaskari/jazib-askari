@@ -6,7 +6,8 @@ export interface Project {
   skills: string[];
   githubUrl?: string;
   liveUrl?: string;
-  image?: string;
+  imageDark?: string;
+  imageLight?: string;
   videoLight?: string;
   videoDark?: string;
   ideationText?: string;

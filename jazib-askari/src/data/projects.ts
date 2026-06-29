@@ -9,6 +9,13 @@ import SugarRushDark from "../assets/videos/SugarRushDark.mp4";
 import SugarRushLight from "../assets/videos/SugarRushLight.mp4";
 import SweetEscapeDark from "../assets/videos/SweetEscapeDark.mp4";
 import SweetEscapeLight from "../assets/videos/SweetEscapeLight.mp4";
+import SweetEscapeImage from "../assets/images/SweetEscapeImage.png";
+import PortfolioImageDark from "../assets/images/PortfolioImageDark.png";
+import PortfolioImageLight from "../assets/images/PortfolioImageLight.png";
+import BudgyImageDark from "../assets/images/BudgyImageDark.png";
+import BudgyImageLight from "../assets/images/BudgyImageLight.png";
+import ArchitextImageLight from "../assets/images/ArchitextLight.png";
+import SugarRushImageLight from "../assets/images/SugarRushLight.png";
 
 export const projects: Project[] = [
   {
@@ -31,12 +38,15 @@ export const projects: Project[] = [
     liveUrl: "https://jazibaskari.com",
     videoLight: PortfolioDark,
     videoDark: PortfolioLight,
+    imageLight: PortfolioImageDark,
+    imageDark: PortfolioImageLight,
     type: "Personal project",
   },
   {
     id: "2",
     title: "Finance Dashboard",
     subtitle: "Budgy",
+    readTime: "15 min read",
     summary:
       "A secure, responsive personal finance dashboard built with React, TypeScript, and Tailwind CSS. The dashboard features real-time Monzo transaction syncing, automated budget management, and interactive data visualisation.",
     skills: [
@@ -51,25 +61,15 @@ export const projects: Project[] = [
     liveUrl: "https://github.com/jazibaskari/budgy",
     videoLight: BudgyDark,
     videoDark: BudgyLight,
+    imageLight: BudgyImageLight,
+    imageDark: BudgyImageDark,
     type: "Personal project",
   },
   {
     id: "3",
-    title: "Software Architecture Diagram Generator",
-    subtitle: "Architext",
-    summary:
-      "A headless script that turns JSON files into instantly-downloadable, high-level software architecture diagrams using a consistent design system. A single source of truth is maintained through repeatable, version-controlled diagram generation, with architectural changes tracked throughout development lifecycles.",
-    skills: ["UI/UX", "Data & Security", "Tooling"],
-    githubUrl: "https://github.com/jazibaskari/architext",
-    liveUrl: "https://github.com/jazibaskari/architext",
-    videoLight: ArchitextDark,
-    videoDark: ArchitextLight,
-    type: "Personal project",
-  },
-  {
-    id: "4",
     title: "Desktop RPG Game",
     subtitle: "Sweet Escape",
+    readTime: "15 min read",
     summary:
       "A React and Typescript-based desktop RPG game, featuring a rich storyline with retro pixel graphics. Step into the shoes of a supermarket employee surviving a chaotic night shift after the inventory chutes malfunction. To escape before the boss locks you in overnight, you must catch falling cakes, dodge vegetables, and tackle high-stakes side quests. ",
     skills: ["UI/UX", "Data & Security", "Tooling"],
@@ -78,11 +78,30 @@ export const projects: Project[] = [
     videoLight: SweetEscapeLight,
     videoDark: SweetEscapeDark,
     type: "Personal project",
+    imageLight: SweetEscapeImage,
+    imageDark: SweetEscapeImage,
+  },
+  {
+    id: "4",
+    title: "Software Architecture Diagram Generator",
+    subtitle: "Architext",
+    readTime: "15 min read",
+    summary:
+      "A headless script that turns JSON files into instantly-downloadable, high-level software architecture diagrams using a consistent design system. A single source of truth is maintained through repeatable, version-controlled diagram generation, with architectural changes tracked throughout development lifecycles.",
+    skills: ["UI/UX", "Data & Security", "Tooling"],
+    githubUrl: "https://github.com/jazibaskari/architext",
+    liveUrl: "https://github.com/jazibaskari/architext",
+    videoLight: ArchitextDark,
+    videoDark: ArchitextLight,
+    type: "Personal project",
+    imageLight: ArchitextImageLight,
+    imageDark: ArchitextImageLight,
   },
   {
     id: "5",
     title: "RPG Underscore",
     subtitle: "Sugar Rush",
+    readTime: "15 min read",
     summary:
       "An underscore for my 'Sweet Escape' RPG, created using Strudel. It draws inspiration from the delicate arrangements of 'Sparkle' by Tom Howe (featured heavily in the Great British Bake Off series), using delayed kalimbas and bells to craft a light yet tension-driven atmosphere.",
     skills: ["Frontend", "Testing"],
@@ -91,5 +110,7 @@ export const projects: Project[] = [
     videoLight: SugarRushLight,
     videoDark: SugarRushDark,
     type: "Personal project",
+    imageLight: SugarRushImageLight,
+    imageDark: SugarRushImageLight,
   },
 ];
