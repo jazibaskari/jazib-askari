@@ -2,8 +2,10 @@ import { Box, Typography, Container, Button } from "@mui/material";
 import { useParams, useNavigate } from "react-router-dom";
 import { projects } from "../data/projects";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
-import GitBreadcrumb from "../components/GitBreadcrumb";
+import GitBreadcrumb from "../components/breadcrumb/GitBreadcrumb";
+import GitBreadcrumbHorizontal from "../components/breadcrumb/GitBreadcrumbHorizontal";
 import { skills } from "../data/skill";
+import TextAnimation from "../animations/AnimatedText";
 
 const defaultColor =
   skills.find((s) => s.id === "frontend")?.color || "#5ccfe6";
@@ -18,15 +20,36 @@ const ProjectDetailPage = () => {
 
   if (!project) {
     return (
-      <Container sx={{ py: 8 }}>
-        <Typography variant="h2">Project not found</Typography>
+      <Container maxWidth="md" sx={{ py: 8 }}>
+        <Typography variant="h2">this project doesn't exist</Typography>
       </Container>
     );
   }
 
+  const breadcrumbItems = [
+    { label: "home", path: "/" },
+    { label: "projects", path: "/projects" },
+    {
+      label: project.subtitle.toLowerCase(),
+      path: `/projects/${id}`,
+    },
+  ];
+
   return (
-    <Container maxWidth="md" sx={{ py: 8 }}>
-      <Box sx={{ mb: 4, display: "flex", justifyContent: "flex-start" }}>
+    <Container
+      maxWidth="md"
+      sx={{
+        py: { xs: 4, md: 8 },
+      }}
+    >
+      <Box
+        sx={{
+          mb: { xs: 2, md: 4 },
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "flex-start",
+        }}
+      >
         <Button
           variant="text"
           disableRipple
@@ -51,9 +74,27 @@ const ProjectDetailPage = () => {
         >
           Go back
         </Button>
+
+        {/* Mobile */}
+        <Box
+          sx={{
+            display: { xs: "block", md: "none" },
+            pt: { xs: 4 },
+          }}
+        >
+          <GitBreadcrumbHorizontal
+            color={defaultColor}
+            items={breadcrumbItems}
+          />
+        </Box>
       </Box>
-      <Box sx={{ position: "relative" }}>
-        <Typography variant="h2"> {project.subtitle.toLowerCase()} </Typography>
+
+      <Box sx={{ position: "relative", pt: { xs: 4 } }}>
+        <TextAnimation duration={0.6} trigger={1}>
+          <Typography variant="h2">{project.subtitle.toLowerCase()}</Typography>
+        </TextAnimation>
+
+        {/* Desktop */}
         <Box
           sx={{
             position: "absolute",
@@ -62,17 +103,7 @@ const ProjectDetailPage = () => {
             display: { xs: "none", md: "block" },
           }}
         >
-          <GitBreadcrumb
-            color={defaultColor}
-            items={[
-              { label: "home", path: "/" },
-              { label: "projects", path: "/projects" },
-              {
-                label: project.subtitle.toLowerCase(),
-                path: `/projects/${id}`,
-              },
-            ]}
-          />
+          <GitBreadcrumb color={defaultColor} items={breadcrumbItems} />
         </Box>
       </Box>
 
@@ -89,31 +120,24 @@ const ProjectDetailPage = () => {
           alignItems: "center",
         }}
       >
-        {/* {project.date instanceof Date
-          ? project.date
-              .toLocaleDateString("en-GB", {
-                year: "numeric",
-                month: "long",
-                day: "numeric",
-              })
-              .toLocaleLowerCase()
-          : project.date} */}
-
         {project.type.toLowerCase()}
         {`, ${project.readTime}`}
       </Typography>
 
-      {/* <Typography
+      {/* Mobile */}
+      <Typography
         variant="body1Montreal"
         sx={{
           color: "text.secondary",
           fontWeight: 500,
           lineHeight: 1.6,
           maxWidth: "800px",
+          display: { xs: "block", md: "none" },
+          mb: 2,
         }}
       >
         {project.summary}
-      </Typography> */}
+      </Typography>
 
       <Box
         sx={{
@@ -126,6 +150,7 @@ const ProjectDetailPage = () => {
       />
 
       <Box sx={{ mt: 6 }}>
+        {/* Desktop */}
         <Typography
           variant="body1Montreal"
           sx={{
@@ -133,6 +158,7 @@ const ProjectDetailPage = () => {
             fontWeight: 500,
             lineHeight: 1.6,
             maxWidth: "800px",
+            display: { xs: "none", md: "block" },
           }}
         >
           {project.summary}
