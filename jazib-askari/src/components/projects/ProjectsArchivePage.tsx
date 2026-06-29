@@ -139,7 +139,7 @@ const ProjectCard = ({ project }: ProjectCardProps) => {
             alignItems: "center",
           }}
         >
-          {project.type} • {project.readTime}
+          {project.type}, {project.readTime}
         </Typography>
       </Box>
     </Box>
