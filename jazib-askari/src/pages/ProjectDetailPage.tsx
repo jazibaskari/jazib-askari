@@ -177,7 +177,7 @@ const ProjectDetailPage = () => {
         </Typography>
       </Box>
 
-      <Box sx={{ mt: 6 }}>
+      {/* <Box sx={{ mt: 6 }}>
         <Typography variant="h3" gutterBottom>
           software architecture
         </Typography>
@@ -189,7 +189,7 @@ const ProjectDetailPage = () => {
             Diagrams for {project.title} will be displayed here.
           </Typography>
         </Box>
-      </Box>
+      </Box> */}
 
       <Box sx={{ mt: 6 }}>
         <Typography variant="h3" gutterBottom>
