@@ -6,6 +6,7 @@ import {
   Chip,
   GlobalStyles,
 } from "@mui/material";
+import { useTheme } from "@mui/material";
 import { useState, useMemo } from "react";
 import { useNavigate } from "react-router-dom";
 import type { Project } from "../../types/project";
@@ -27,6 +28,9 @@ const defaultColor =
 const ProjectCard = ({ project }: ProjectCardProps) => {
   const navigate = useNavigate();
   const projectSlug = project.subtitle.toLowerCase().replace(/\s+/g, "-");
+  const theme = useTheme();
+  const imgSource =
+    theme.palette.mode === "dark" ? project.imageDark : project.imageLight;
 
   return (
     <Box
@@ -38,10 +42,20 @@ const ProjectCard = ({ project }: ProjectCardProps) => {
       }}
     >
       <Box
+        sx={{
+          height: "3px",
+          width: "100%",
+          backgroundColor: "background.paper",
+          mb: 6,
+          mt: 0,
+        }}
+      />
+
+      <Box
         onClick={() => navigate(`/projects/${projectSlug}`)}
         sx={{
           width: "100%",
-          borderRadius: "16px",
+          borderRadius: "6px",
           overflow: "hidden",
           display: "flex",
           position: "relative",
@@ -51,18 +65,34 @@ const ProjectCard = ({ project }: ProjectCardProps) => {
           transition: "opacity 0.3s ease",
           "&:hover": {
             opacity: 0.85,
+            "& img": {
+              filter: "grayscale(0%)",
+            },
           },
         }}
       >
         <Box
           component="img"
-          src={project.image || "/placeholder-image.jpg"}
+          src={imgSource || "/placeholder-image.jpg"}
           alt={project.title || project.subtitle}
           sx={{
             width: "100%",
             height: "100%",
             objectFit: "cover",
             display: "block",
+          }}
+        />
+        <Box
+          sx={{
+            position: "absolute",
+            top: 0,
+            left: 0,
+            width: "100%",
+            height: "100%",
+            backgroundColor: "#2c2c2c",
+            opacity: 0.1,
+            mixBlendMode: "screen",
+            pointerEvents: "none",
           }}
         />
       </Box>
@@ -101,6 +131,7 @@ const ProjectCard = ({ project }: ProjectCardProps) => {
           variant="body1Montreal"
           sx={{
             color: "#bfc0c0",
+            // color: defaultColor,
             fontSize: "0.85rem",
             fontWeight: 500,
             mt: "auto",
@@ -194,7 +225,6 @@ const ProjectsArchivePage = () => {
             Go back
           </Button>
 
-          {/* Mobile View */}
           <Box
             sx={{
               display: { xs: "block", md: "none" },
