@@ -2,6 +2,7 @@ import { ThemeProvider } from "@mui/material/styles";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { CssBaseline } from "@mui/material";
 import { useMemo, useState } from "react";
+import { SpeedInsights } from "@vercel/speed-insights/react";
 import { getTheme } from "./styles/theme";
 import { ColourModeContext } from "./context/ColourModeContext";
 import Navbar from "./components/shared/Navbar";
@@ -42,6 +43,7 @@ const App = () => {
             <Route path="/projects" element={<ProjectsArchivePage />} />
             <Route path="/projects/:id" element={<ProjectDetailPage />} />
           </Routes>
+          <SpeedInsights />
         </BrowserRouter>
       </ThemeProvider>
     </ColourModeContext.Provider>
