@@ -28,6 +28,7 @@ const HomeSection = ({ trigger }: HomeSectionProps) => {
   const isManualScroll = useRef(false);
   const timeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const linkButtonStyle = (theme: any) => ({
     ...theme.typography.body1,
     textTransform: "none",
