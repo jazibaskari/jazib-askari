@@ -14,7 +14,7 @@ import PortfolioImageDark from "../assets/images/PortfolioImageDark.png";
 import PortfolioImageLight from "../assets/images/PortfolioImageLight.png";
 import BudgyImageDark from "../assets/images/BudgyImageDark.png";
 import BudgyImageLight from "../assets/images/BudgyImageLight.png";
-import ArchitextImageLight from "../assets/images/ArchitextLight.png";
+import ArchitextImageLight from "../assets/images/ArchitextImage.png";
 import SugarRushImageLight from "../assets/images/SugarRushLight.png";
 
 export const projects: Project[] = [
@@ -44,26 +44,19 @@ export const projects: Project[] = [
   },
   {
     id: "2",
-    title: "Finance Dashboard",
-    subtitle: "Budgy",
+    title: "Software Architecture Diagram Generator",
+    subtitle: "Architext",
     readTime: "15 min read",
     summary:
-      "A secure, responsive personal finance dashboard built with React, TypeScript, and Tailwind CSS. The dashboard features real-time Monzo transaction syncing, automated budget management, and interactive data visualisation.",
-    skills: [
-      "Frontend",
-      "UI/UX",
-      "Data & Security",
-      "Testing",
-      "Tooling",
-      "Backend",
-    ],
-    githubUrl: "https://github.com/jazibaskari/budgy",
-    liveUrl: "https://github.com/jazibaskari/budgy",
-    videoLight: BudgyDark,
-    videoDark: BudgyLight,
-    imageLight: BudgyImageLight,
-    imageDark: BudgyImageDark,
+      "A headless script that turns JSON files into instantly-downloadable, high-level software architecture diagrams using a consistent design system. A single source of truth is maintained through repeatable, version-controlled diagram generation, with architectural changes tracked throughout development lifecycles.",
+    skills: ["UI/UX", "Data & Security", "Tooling"],
+    githubUrl: "https://github.com/jazibaskari/architext",
+    liveUrl: "https://github.com/jazibaskari/architext",
+    videoLight: ArchitextDark,
+    videoDark: ArchitextLight,
     type: "Personal project",
+    imageLight: ArchitextImageLight,
+    imageDark: ArchitextImageLight,
   },
   {
     id: "3",
@@ -83,19 +76,26 @@ export const projects: Project[] = [
   },
   {
     id: "4",
-    title: "Software Architecture Diagram Generator",
-    subtitle: "Architext",
+    title: "Finance Dashboard",
+    subtitle: "Budgy",
     readTime: "15 min read",
     summary:
-      "A headless script that turns JSON files into instantly-downloadable, high-level software architecture diagrams using a consistent design system. A single source of truth is maintained through repeatable, version-controlled diagram generation, with architectural changes tracked throughout development lifecycles.",
-    skills: ["UI/UX", "Data & Security", "Tooling"],
-    githubUrl: "https://github.com/jazibaskari/architext",
-    liveUrl: "https://github.com/jazibaskari/architext",
-    videoLight: ArchitextDark,
-    videoDark: ArchitextLight,
+      "A secure, responsive personal finance dashboard built with React, TypeScript, and Tailwind CSS. The dashboard features real-time Monzo transaction syncing, automated budget management, and interactive data visualisation.",
+    skills: [
+      "Frontend",
+      "UI/UX",
+      "Data & Security",
+      "Testing",
+      "Tooling",
+      "Backend",
+    ],
+    githubUrl: "https://github.com/jazibaskari/budgy",
+    liveUrl: "https://github.com/jazibaskari/budgy",
+    videoLight: BudgyDark,
+    videoDark: BudgyLight,
+    imageLight: BudgyImageDark,
+    imageDark: BudgyImageLight,
     type: "Personal project",
-    imageLight: ArchitextImageLight,
-    imageDark: ArchitextImageLight,
   },
   {
     id: "5",
