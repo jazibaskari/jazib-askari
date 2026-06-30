@@ -10,6 +10,7 @@ import { useTheme } from "@mui/material";
 import { useState, useMemo } from "react";
 import { useNavigate } from "react-router-dom";
 import type { Project } from "../../types/project";
+import DisclaimerSection from "../disclaimer/DisclaimerSection";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import CheckIcon from "@mui/icons-material/Check";
 import { projects } from "../../data/projects";
@@ -139,7 +140,7 @@ const ProjectCard = ({ project }: ProjectCardProps) => {
             alignItems: "center",
           }}
         >
-          {project.type} • {project.readTime}
+          {project.type}, {project.readTime}
         </Typography>
       </Box>
     </Box>
@@ -335,6 +336,9 @@ const ProjectsArchivePage = () => {
           {filteredProjects.map((project) => (
             <ProjectCard key={project.id} project={project} />
           ))}
+        </Box>
+        <Box sx={{ mt: "auto" }}>
+          <DisclaimerSection />
         </Box>
       </Container>
     </>

@@ -11,8 +11,11 @@ export interface Project {
   videoLight?: string;
   videoDark?: string;
   ideationText?: string;
+  keyConsiderationsText?: string;
   testingText?: string;
   date?: Date;
   readTime?: string;
   type: string;
+  arcImageLight?: string;
+  arcImageDark?: string;
 }
