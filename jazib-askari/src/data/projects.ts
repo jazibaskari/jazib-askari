@@ -18,6 +18,8 @@ import ArchitextImageLight from "../assets/images/ArchitextImage.png";
 import SugarRushImageLight from "../assets/images/SugarRushLight.png";
 import PortfolioArcImageLight from "../assets/images/PortfolioArchitectureLight.png";
 import PortfolioArcImageDark from "../assets/images/PortfolioArchitectureDark.png";
+import PortfolioIdeationImageLight from "../assets/images/PortfolioIdeation_1.png";
+import PortfolioIdeationImageDark from "../assets/images/PortfolioIdeation_1.png";
 
 export const projects: Project[] = [
   {
@@ -25,7 +27,7 @@ export const projects: Project[] = [
     title: "Portfolio Website",
     subtitle: "Jazib Askari",
     date: new Date("2026-03-11"),
-    readTime: "15 min read",
+    readTime: "15 minute read",
     summary:
       "This portfolio website was built using React, Typescript and Material UI. It features a clean and minimal design, showcasing my projects, skills, and experience in an intentional and digestible way. The website is fully responsive, ensuring a seamless experience across all devices.",
     skills: [
@@ -44,17 +46,20 @@ export const projects: Project[] = [
     imageDark: PortfolioImageLight,
     arcImageLight: PortfolioArcImageLight,
     arcImageDark: PortfolioArcImageDark,
+    ideationImageDark: PortfolioIdeationImageLight,
+    ideationImageLight: PortfolioIdeationImageDark,
+    ideationImageCaption: "Screenshot of Vercel's 'Speed Insights' dashboard.",
     type: "Personal project",
     keyConsiderationsText:
-      "My data-driven portfolio is built with React to ensure component modularity and Material UI for a consistent, accessible design system. \n\n Integration of Firebase was the first step in securely capturing interaction data like page clicks, without relying on third-party analytics. React's lazy loading was implemented to keep bundle sizes low. Knowing that my portfolio would be media-heavy, I was focused on a solution that prevented bottlenecks on all devices without adding unnecessary DevOps overhead. \n\n  I planned my architecture around Vercel's built-in CDN, which provides a fast, enterprise-grade foundation through global edge delivery, automatic cache invalidation, and a streamlined developement experience. \n\n I used Vercel Agent to set-up speed insights whichprovided real-time, production telemetry that validated my mobile asset optimisations by proving the portfolio consistently maintained optimal Core Web Vitals scores under real-world conditions.",
+      "My data-driven portfolio is built with React to ensure component modularity and Material UI for a consistent, accessible design system. Integrating Firebase was the first step in securely capturing interaction data, such as page clicks, without relying on third-party analytics. React's lazy loading was implemented to keep bundle sizes low. Knowing that my portfolio would be media-heavy, I was focused on a solution that prevented bottlenecks on all devices without adding unnecessary DevOps overhead. \n\n I planned my architecture around Vercel's built-in CDN, which provides a fast, enterprise-grade foundation through global edge delivery, automatic cache invalidation, and a streamlined development experience.  \n\n  Implementing Vercel Agent's Speed Insights enabled real-time, production telemetry that validated my mobile asset optimisations by proving the portfolio consistently maintained optimal Core Web Vitals scores under real-world conditions.",
     ideationText:
-      "Most modern portfolios are static, offering little to no insight into user engagement. I wanted to move beyond a digital CV-style portfolio and create a dynamic application that provides real-time updates on user interest, allowing me to iterate from feedback and keep users engaged within the first minute that they land on the page.",
+      "Most modern portfolios are static, offering little to no insight into user engagement. I wanted to move beyond a digital CV-style portfolio and create a dynamic application that provides real-time updates on user interest, allowing me to iterate based on feedback and keep users engaged from the moment they land on the page.",
   },
   {
     id: "2",
     title: "Software Architecture Diagram Generator",
     subtitle: "Architext",
-    readTime: "15 min read",
+    readTime: "15 minute read",
     summary:
       "A headless script that turns JSON files into instantly-downloadable, high-level software architecture diagrams using a consistent design system. A single source of truth is maintained through repeatable, version-controlled diagram generation, with architectural changes tracked throughout development lifecycles.",
     skills: ["UI/UX", "Data & Security", "Tooling"],
@@ -70,7 +75,7 @@ export const projects: Project[] = [
     id: "3",
     title: "Desktop RPG Game",
     subtitle: "Sweet Escape",
-    readTime: "15 min read",
+    readTime: "15 minute read",
     summary:
       "A React and Typescript-based desktop RPG game, featuring a rich storyline with retro pixel graphics. Step into the shoes of a supermarket employee surviving a chaotic night shift after the inventory chutes malfunction. To escape before the boss locks you in overnight, you must catch falling cakes, dodge vegetables, and tackle high-stakes side quests. ",
     skills: ["UI/UX", "Data & Security", "Tooling"],
@@ -86,7 +91,7 @@ export const projects: Project[] = [
     id: "4",
     title: "Finance Dashboard",
     subtitle: "Budgy",
-    readTime: "15 min read",
+    readTime: "15 minute read",
     summary:
       "A secure, responsive personal finance dashboard built with React, TypeScript, and Tailwind CSS. The dashboard features real-time Monzo transaction syncing, automated budget management, and interactive data visualisation.",
     skills: [
@@ -109,7 +114,7 @@ export const projects: Project[] = [
     id: "5",
     title: "RPG Underscore",
     subtitle: "Sugar Rush",
-    readTime: "15 min read",
+    readTime: "15 minute read",
     summary:
       "An underscore for my 'Sweet Escape' RPG, created using Strudel. It draws inspiration from the delicate arrangements of 'Sparkle' by Tom Howe (featured heavily in the Great British Bake Off series), using delayed kalimbas and bells to craft a light yet tension-driven atmosphere.",
     skills: ["Frontend", "Testing"],
