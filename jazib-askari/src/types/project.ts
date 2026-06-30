@@ -18,4 +18,7 @@ export interface Project {
   type: string;
   arcImageLight?: string;
   arcImageDark?: string;
+  ideationImageDark?: string;
+  ideationImageLight?: string;
+  ideationImageCaption?: string;
 }

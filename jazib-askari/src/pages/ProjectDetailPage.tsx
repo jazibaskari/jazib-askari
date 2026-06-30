@@ -8,7 +8,6 @@ import GitBreadcrumb from "../components/breadcrumb/GitBreadcrumb";
 import GitBreadcrumbHorizontal from "../components/breadcrumb/GitBreadcrumbHorizontal";
 import { skills } from "../data/skill";
 import TextAnimation from "../animations/AnimatedText";
-import ideationImage from "../assets/images/PortfolioIdeation_1.png";
 import { useTheme } from "@mui/material";
 const defaultColor =
   skills.find((s) => s.id === "frontend")?.color || "#5ccfe6";
@@ -68,10 +67,15 @@ const ProjectDetailPage = () => {
     );
   }
 
-  const imgSource =
+  // const imgSource =
+  //   theme.palette.mode === "dark"
+  //     ? project.arcImageDark
+  //     : project.arcImageLight;
+
+  const ideationImgSource =
     theme.palette.mode === "dark"
-      ? project.arcImageDark
-      : project.arcImageLight;
+      ? project.ideationImageDark
+      : project.ideationImageLight;
 
   const breadcrumbItems = [
     { label: "home", path: "/" },
@@ -250,7 +254,7 @@ const ProjectDetailPage = () => {
         </Typography>
       </Box>
 
-      <Box sx={{ mt: 6 }}>
+      {/* <Box sx={{ mt: 6 }}>
         <Typography variant="h3" gutterBottom>
           software architecture
         </Typography>
@@ -265,7 +269,7 @@ const ProjectDetailPage = () => {
           <Box
             component="img"
             src={imgSource || "/placeholder-image.webp"}
-            alt={`Architecture diagram for ${project.title}`}
+            alt={`Images for ${project.title}`.toLowerCase()}
             loading="lazy"
             sx={{
               width: "100%",
@@ -273,8 +277,8 @@ const ProjectDetailPage = () => {
               display: "block",
             }}
           />
-        </Box>
-        {/* <Box sx={{ my: 4, p: 4, borderRadius: 2 }}>
+        </Box> */}
+      {/* <Box sx={{ my: 4, p: 4, borderRadius: 2 }}>
           <Typography
             variant="body1Montreal"
             sx={{ lineHeight: 1.8, fontWeight: 500 }}
@@ -282,7 +286,7 @@ const ProjectDetailPage = () => {
             Diagrams for {project.title} will be displayed here.
           </Typography>
         </Box> */}
-      </Box>
+      {/* </Box> */}
 
       <Box sx={{ mt: 6 }}>
         <Typography variant="h3" gutterBottom>
@@ -296,7 +300,8 @@ const ProjectDetailPage = () => {
         </Typography>
         <Box
           sx={{
-            my: 4,
+            mt: 4,
+            mb: 2,
             borderRadius: 2,
             overflow: "hidden",
             bgcolor: "background.paper",
@@ -304,8 +309,8 @@ const ProjectDetailPage = () => {
         >
           <Box
             component="img"
-            src={ideationImage || "/placeholder-image.webp"}
-            alt={`Architecture diagram for ${project.title}`}
+            src={ideationImgSource || "/placeholder-image.webp"}
+            alt={`Architecture diagram for ${project.title}`.toLocaleLowerCase()}
             loading="lazy"
             sx={{
               width: "100%",
@@ -314,6 +319,20 @@ const ProjectDetailPage = () => {
             }}
           />
         </Box>
+        {project.ideationImageCaption && (
+          <Typography
+            variant="body1"
+            sx={{
+              color: "#bfc0c0",
+              fontWeight: 500,
+              fontSize: { xs: "0.85rem", md: "0.95rem" },
+              whiteSpace: "nowrap",
+              textAlign: "left",
+            }}
+          >
+            Figure 1: {project.ideationImageCaption}
+          </Typography>
+        )}
       </Box>
       <Box sx={{ mt: "auto" }}>
         <DisclaimerSection />
