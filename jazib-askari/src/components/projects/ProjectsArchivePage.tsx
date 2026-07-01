@@ -1,11 +1,4 @@
-import {
-  Box,
-  Typography,
-  Container,
-  Button,
-  Chip,
-  GlobalStyles,
-} from "@mui/material";
+import { Box, Typography, Container, Button, Chip } from "@mui/material";
 import { useTheme } from "@mui/material";
 import { useState, useMemo } from "react";
 import { useNavigate } from "react-router-dom";
@@ -18,7 +11,6 @@ import { skills } from "../../data/skill";
 import TextAnimation from "../../animations/AnimatedText";
 import GitBreadcrumb from "../breadcrumb/GitBreadcrumb";
 import GitBreadcrumbHorizontal from "../breadcrumb/GitBreadcrumbHorizontal";
-
 interface ProjectCardProps {
   project: Project;
 }
@@ -47,8 +39,8 @@ const ProjectCard = ({ project }: ProjectCardProps) => {
           height: "3px",
           width: "100%",
           backgroundColor: "background.paper",
-          mb: 6,
-          mt: 0,
+          mb: 1,
+          mt: 2,
         }}
       />
 
@@ -60,7 +52,7 @@ const ProjectCard = ({ project }: ProjectCardProps) => {
           overflow: "hidden",
           display: "flex",
           position: "relative",
-          aspectRatio: "16/9",
+          // aspectRatio: "16/9",
           bgcolor: "background.paper",
           cursor: "pointer",
           transition: "opacity 0.3s ease",
@@ -100,15 +92,28 @@ const ProjectCard = ({ project }: ProjectCardProps) => {
 
       <Box sx={{ display: "flex", flexDirection: "column", flexGrow: 1 }}>
         <Typography
-          variant="h5"
+          variant="h2"
           sx={{
             fontWeight: 500,
-            mb: 1,
+            fontSize: "1.5rem",
+            // mb: 1,
             color: "text.primary",
             lineHeight: 1.3,
           }}
         >
-          {project.subtitle || project.id}
+          {project.subtitle.toLowerCase() || project.id}
+        </Typography>
+        <Typography
+          variant="h5"
+          sx={{
+            fontWeight: 500,
+            fontSize: "1.2rem",
+            mb: 1,
+            color: "#bfc0c0",
+            lineHeight: 1.3,
+          }}
+        >
+          {project.title.toLowerCase() || project.id}
         </Typography>
 
         <Typography
@@ -128,7 +133,7 @@ const ProjectCard = ({ project }: ProjectCardProps) => {
           {project.summary}
         </Typography>
 
-        <Typography
+        {/* <Typography
           variant="body1Montreal"
           sx={{
             color: "#bfc0c0",
@@ -141,6 +146,23 @@ const ProjectCard = ({ project }: ProjectCardProps) => {
           }}
         >
           {project.type}, {project.readTime}
+        </Typography> */}
+        <Typography
+          variant="body1Montreal"
+          sx={{
+            fontSize: "0.85rem",
+            fontWeight: 500,
+            mt: "auto",
+            display: "flex",
+            alignItems: "center",
+          }}
+        >
+          <Box component="span" sx={{ color: "#bfc0c0" }}>
+            {project.type},
+          </Box>
+          <Box component="span" sx={{ color: "text.primary", ml: 0.5 }}>
+            {project.readTime}
+          </Box>
         </Typography>
       </Box>
     </Box>
@@ -185,8 +207,6 @@ const ProjectsArchivePage = () => {
 
   return (
     <>
-      <GlobalStyles styles={{ body: { overflowY: "scroll" } }} />
-
       <Container
         maxWidth="md"
         sx={{
@@ -262,7 +282,7 @@ const ProjectsArchivePage = () => {
           {/* mt: 2 + 22px  */}
           <Box sx={{ position: "relative", pt: { xs: "38px" } }}>
             <TextAnimation duration={0.6} trigger={1}>
-              <Typography variant="h2">project archive</Typography>
+              <Typography variant="h2">projects archive</Typography>
             </TextAnimation>
           </Box>
 
@@ -328,7 +348,7 @@ const ProjectsArchivePage = () => {
             gridTemplateColumns: {
               xs: "1fr",
               sm: "repeat(2, 1fr)",
-              md: "repeat(2, 1fr)",
+              md: "repeat(3, 1fr)",
             },
             gap: { xs: 4, md: 6 },
           }}
@@ -337,6 +357,7 @@ const ProjectsArchivePage = () => {
             <ProjectCard key={project.id} project={project} />
           ))}
         </Box>
+
         <Box sx={{ mt: "auto" }}>
           <DisclaimerSection />
         </Box>

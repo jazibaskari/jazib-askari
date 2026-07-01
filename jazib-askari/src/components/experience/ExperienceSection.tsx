@@ -298,38 +298,40 @@ const ExperienceSection = ({ trigger }: ExperienceSectionProps) => {
               maxWidth: "520px",
             }}
           >
-            {skills.map((category) => (
-              <Box
-                key={category.label}
-                sx={{
-                  display: "flex",
-                  alignItems: "center",
-                  gap: 1.2,
-                }}
-              >
+            {skills
+              .filter((category) => category.id !== "multimedia")
+              .map((category) => (
                 <Box
+                  key={category.label}
                   sx={{
-                    width: 12,
-                    height: 12,
-                    borderRadius: "50%",
-                    bgcolor: category.color,
-                    flexShrink: 0,
-                  }}
-                />
-
-                <Typography
-                  variant="body1"
-                  sx={{
-                    fontWeight: 500,
-                    // fontSize: "0.9rem",
-                    // lineHeight: 1,
-                    color: "text.secondary",
+                    display: "flex",
+                    alignItems: "center",
+                    gap: 1.2,
                   }}
                 >
-                  {category.label}
-                </Typography>
-              </Box>
-            ))}
+                  <Box
+                    sx={{
+                      width: 12,
+                      height: 12,
+                      borderRadius: "50%",
+                      bgcolor: category.color,
+                      flexShrink: 0,
+                    }}
+                  />
+
+                  <Typography
+                    variant="body1"
+                    sx={{
+                      fontWeight: 500,
+                      // fontSize: "0.9rem",
+                      // lineHeight: 1,
+                      color: "text.secondary",
+                    }}
+                  >
+                    {category.label}
+                  </Typography>
+                </Box>
+              ))}
           </Box>
         </TextAnimation>
       </Box>

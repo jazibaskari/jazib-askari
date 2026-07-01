@@ -1,5 +1,10 @@
 import { CodeBlock } from "react-code-block";
 
+interface CodeBlockDemoProps {
+  code: string;
+  language: string;
+}
+
 const myCustomTheme = {
   plain: { color: "#E2E8F0", backgroundColor: "background.paper" },
   styles: [
@@ -18,7 +23,7 @@ const myCustomTheme = {
   ],
 };
 
-export default function CodeBlockDemo({ code, language }) {
+export default function CodeBlockDemo({ code, language }: CodeBlockDemoProps) {
   return (
     <div>
       <CodeBlock code={code} language={language} theme={myCustomTheme}>
