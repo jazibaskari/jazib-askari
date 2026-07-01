@@ -1,9 +1,14 @@
+export type ContentBlock =
+  | { type: "text"; content: string }
+  | { type: "image"; srcDark: string; srcLight: string; caption?: string }
+  | { type: "code"; content: string; language: string };
 export interface Project {
   id: string;
   title: string;
   subtitle: string;
   summary: string;
   skills: string[];
+  specificSkills?: string[];
   githubUrl?: string;
   liveUrl?: string;
   imageDark?: string;
@@ -11,6 +16,7 @@ export interface Project {
   videoLight?: string;
   videoDark?: string;
   ideationText?: string;
+  keyConsiderationsContent?: ContentBlock[];
   keyConsiderationsText?: string;
   testingText?: string;
   date?: Date;
@@ -18,6 +24,7 @@ export interface Project {
   type: string;
   arcImageLight?: string;
   arcImageDark?: string;
+  ideationContent?: ContentBlock[];
   ideationImageDark?: string;
   ideationImageLight?: string;
   ideationImageCaption?: string;
