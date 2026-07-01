@@ -408,9 +408,6 @@ const ProjectDetailPage = () => {
         }}
       >
         <Box component="span" sx={{ color: "#bfc0c0" }}>
-          {project.type.toLowerCase()},{"\u00A0"}
-        </Box>
-        <Box component="span" sx={{ color: "#bfc0c0" }}>
           {project.readTime}
         </Box>
       </Typography>

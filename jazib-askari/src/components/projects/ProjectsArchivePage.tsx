@@ -157,9 +157,9 @@ const ProjectCard = ({ project }: ProjectCardProps) => {
             alignItems: "center",
           }}
         >
-          <Box component="span" sx={{ color: "#bfc0c0" }}>
-            {project.type},
-          </Box>
+          {/* <Box component="span" sx={{ color: "#bfc0c0" }}>
+            {project.title},
+          </Box> */}
           <Box component="span" sx={{ color: "text.primary", ml: 0.5 }}>
             {project.readTime}
           </Box>
