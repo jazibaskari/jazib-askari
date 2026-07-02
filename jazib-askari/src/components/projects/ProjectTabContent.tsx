@@ -116,6 +116,8 @@ const ProjectTabContent = ({ project }: Props) => {
             overflow: "hidden",
             display: "flex",
             position: "relative",
+            transform: "translateZ(0)",
+            WebkitMaskImage: "-webkit-radial-gradient(white, black)",
           }}
         >
           <Box
@@ -132,6 +134,7 @@ const ProjectTabContent = ({ project }: Props) => {
               maxHeight: { xs: "300px", md: "450px" },
               objectFit: "cover",
               display: "block",
+              borderRadius: "24px",
             }}
           />
         </Box>
