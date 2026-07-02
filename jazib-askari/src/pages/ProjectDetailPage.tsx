@@ -105,13 +105,13 @@ const GitChangelog = ({ githubUrl, color }: GitChangelogProps) => {
 
         if (Array.isArray(data)) {
           const filtered = data
-            .filter((pr: any) => {
+            .filter((pr) => {
               const isMerged = pr.merged_at !== null;
               const isFeature = pr.title.toLowerCase().startsWith("feat");
               return isMerged && isFeature;
             })
             .slice(0, 3)
-            .map((pr: any) => {
+            .map((pr) => {
               const dateObj = new Date(pr.merged_at || pr.closed_at);
               const formattedDate = dateObj.toLocaleDateString("en-US", {
                 month: "long",
@@ -288,6 +288,10 @@ const linkButtonStyle = {
   fontSize: "1.05rem",
   fontWeight: 500,
   cursor: "pointer",
+  WebkitTapHighlightColor: "transparent",
+  "&:focus": {
+    outline: "none",
+  },
   "&::after": {
     content: '""',
     position: "absolute",

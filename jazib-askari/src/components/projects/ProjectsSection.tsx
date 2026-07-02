@@ -131,6 +131,7 @@ const ProjectsSection = ({ trigger }: ProjectsSectionProps) => {
             }}
           >
             <Button
+              disableRipple
               variant="text"
               endIcon={<ArrowForwardIcon />}
               onClick={() => navigate("/projects")}
@@ -142,6 +143,10 @@ const ProjectsSection = ({ trigger }: ProjectsSectionProps) => {
                 minWidth: 0,
                 color: "text.primary",
                 transition: "color 0.35s cubic-bezier(0.4, 0, 0.2, 1)",
+                WebkitTapHighlightColor: "transparent",
+                "&:focus": {
+                  outline: "none",
+                },
                 "&:hover": {
                   backgroundColor: "transparent",
                   color: "text.tertiary",
