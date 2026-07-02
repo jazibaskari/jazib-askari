@@ -47,6 +47,7 @@ const ProjectCard = ({ project }: ProjectCardProps) => {
       <Box
         onClick={() => navigate(`/projects/${projectSlug}`)}
         sx={{
+          border: (theme) => `3px solid ${theme.palette.background.paper}`,
           width: "100%",
           borderRadius: "6px",
           overflow: "hidden",

@@ -539,6 +539,8 @@ const ProjectDetailPage = () => {
                     alt={block.caption || "Ideation visual"}
                     loading="lazy"
                     sx={{
+                      border: (theme) =>
+                        `3px solid ${theme.palette.background.paper}`,
                       width: "100%",
                       height: "auto",
                       display: "block",
@@ -613,6 +615,8 @@ const ProjectDetailPage = () => {
                       alt={block.caption || "Key consideration visual"}
                       loading="lazy"
                       sx={{
+                        border: (theme) =>
+                          `3px solid ${theme.palette.background.paper}`,
                         width: "100%",
                         height: "auto",
                         display: "block",

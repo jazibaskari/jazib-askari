@@ -98,14 +98,25 @@ const HomeSection = ({ trigger }: HomeSectionProps) => {
   }, []);
 
   const handleScroll = (id: string) => {
-    const el = document.getElementById(id);
-    if (el) {
+    const sectionEl = document.getElementById(id);
+    const nameEl = document.getElementById("my-name-title");
+
+    if (sectionEl) {
       isManualScroll.current = true;
       setActiveSection(id);
+
+      const targetEl = sectionEl.querySelector("h3") || sectionEl;
+
+      let offset = 100;
+      if (nameEl) {
+        offset = nameEl.getBoundingClientRect().top;
+      }
+
       window.scrollTo({
-        top: el.getBoundingClientRect().top + window.pageYOffset - 100,
+        top: targetEl.getBoundingClientRect().top + window.scrollY - offset,
         behavior: "smooth",
       });
+
       if (timeoutRef.current) clearTimeout(timeoutRef.current);
       timeoutRef.current = setTimeout(() => {
         isManualScroll.current = false;
@@ -125,7 +136,7 @@ const HomeSection = ({ trigger }: HomeSectionProps) => {
     >
       <Box>
         <TextAnimation duration={0.6} trigger={trigger}>
-          <Typography variant="h2" fontWeight="medium">
+          <Typography id="my-name-title" variant="h2" fontWeight="medium">
             jazib askari
           </Typography>
         </TextAnimation>
