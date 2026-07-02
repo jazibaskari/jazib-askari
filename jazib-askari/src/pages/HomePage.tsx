@@ -16,6 +16,8 @@ const HomePage = ({ navTrigger }: HomePageProps) => {
         maxWidth: "1800px",
         p: { xs: 4, md: "100px" },
         boxSizing: "border-box",
+        overflowX: { xs: "hidden", md: "visible" },
+        width: "100%",
       }}
     >
       <Box
