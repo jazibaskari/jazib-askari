@@ -7,7 +7,7 @@ export const experiences: Experience[] = [
     dates: "Aug 2024 — Jan 2025",
     website: "www.pwc.com",
     description:
-      "Engineered an enterprise-scale Chrome extension for 300k+ users, by integrating a unified prompt repository directly into their AI workflow",
+      "Engineered an enterprise-scale Chrome extension for 30k+ users, by integrating a unified prompt repository directly into their AI workflow",
     tags: [
       "React",
       "TypeScript",

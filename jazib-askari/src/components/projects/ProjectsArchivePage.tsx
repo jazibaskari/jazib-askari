@@ -53,7 +53,6 @@ const ProjectCard = ({ project }: ProjectCardProps) => {
           overflow: "hidden",
           display: "flex",
           position: "relative",
-          // aspectRatio: "16/9",
           bgcolor: "background.paper",
           cursor: "pointer",
           transition: "opacity 0.3s ease",
@@ -124,7 +123,7 @@ const ProjectCard = ({ project }: ProjectCardProps) => {
             lineHeight: 1.8,
             fontSize: "1.05rem",
             fontWeight: 500,
-            mb: 2,
+            mb: 1,
             display: "-webkit-box",
             WebkitLineClamp: 3,
             WebkitBoxOrient: "vertical",
@@ -152,8 +151,9 @@ const ProjectCard = ({ project }: ProjectCardProps) => {
           variant="body1Montreal"
           sx={{
             fontSize: "0.85rem",
+            // fontSize: "1.05rem",
             fontWeight: 500,
-            mt: "auto",
+
             display: "flex",
             alignItems: "center",
           }}
@@ -318,6 +318,7 @@ const ProjectsArchivePage = () => {
                     </Typography>
                   }
                   sx={{
+                    fontWeight: 500,
                     bgcolor: isSelected
                       ? `${skillColor}20`
                       : "background.paper",
@@ -325,10 +326,10 @@ const ProjectsArchivePage = () => {
                     px: 1,
                     height: "28px",
                     ml: "0 !important",
-                    border: isSelected
-                      ? `1px solid ${skillColor}50`
-                      : "1px solid transparent",
-                    transition: "all 0.2s ease",
+                    // border: isSelected
+                    //   ? `3px solid ${skillColor}50`
+                    //   : "3px solid transparent",
+                    // transition: "all 0.2s ease",
                     cursor: "pointer",
                     "& .MuiChip-icon": {
                       color: skillColor,

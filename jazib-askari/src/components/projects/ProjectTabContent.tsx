@@ -173,7 +173,14 @@ const ProjectTabContent = ({ project }: Props) => {
           )}
           <Box
             onClick={() => navigate(`/projects/${projectSlug}`)}
-            sx={{ ...linkButtonStyle, cursor: "pointer" }}
+            sx={{
+              ...linkButtonStyle,
+              cursor: "pointer",
+              display: "none",
+              "@media (min-width: 376px)": {
+                display: "inline-flex",
+              },
+            }}
           >
             Case Study{" "}
             <ArrowOutwardIcon sx={{ fontSize: "0.95rem", ml: "1px" }} />

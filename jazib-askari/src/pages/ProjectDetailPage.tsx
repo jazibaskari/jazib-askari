@@ -143,9 +143,14 @@ const GitChangelog = ({ githubUrl, color }: GitChangelogProps) => {
       <Box
         sx={{
           display: "flex",
-          justifyContent: "space-between",
-          alignItems: "center",
+
+          flexDirection: { xs: "column", md: "row" },
+
+          justifyContent: { xs: "flex-start", md: "space-between" },
+
+          alignItems: { xs: "flex-start", md: "center" },
           mb: 4,
+          gap: { xs: 2, md: 0 },
         }}
       >
         <Typography variant="h3" sx={{ mb: 0 }}>
