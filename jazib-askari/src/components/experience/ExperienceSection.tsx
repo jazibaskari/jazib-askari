@@ -357,6 +357,7 @@ const ExperienceSection = ({ trigger }: ExperienceSectionProps) => {
         }}
       >
         <Button
+          disableRipple
           variant="text"
           endIcon={<ArrowForwardIcon />}
           onClick={() => navigate("/")}
