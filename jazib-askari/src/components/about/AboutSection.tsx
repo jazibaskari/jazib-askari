@@ -97,10 +97,25 @@ const AboutSection = ({ trigger }: AboutSectionProps) => {
                 justifyContent: "flex-start",
                 alignItems: "center",
                 width: "100%",
+                "@media (max-width: 375px)": {
+                  "& > :not(style) + :not(style)": {
+                    marginLeft: "20px !important",
+                  },
+                },
               }}
             >
+              {/* Years of Experience */}
               <Stack direction="row" spacing={1} alignItems="center">
-                <Typography variant="h3">4</Typography>
+                <Typography
+                  variant="h3"
+                  sx={{
+                    "@media (max-width: 375px)": {
+                      fontSize: "1.75rem",
+                    },
+                  }}
+                >
+                  4
+                </Typography>
                 <Typography
                   variant="h2"
                   sx={{
@@ -108,6 +123,10 @@ const AboutSection = ({ trigger }: AboutSectionProps) => {
                     color: "#5ccfe6",
                     lineHeight: 1,
                     mt: -1,
+                    "@media (max-width: 375px)": {
+                      fontSize: "2rem",
+                      mt: -0.5,
+                    },
                   }}
                 >
                   +
@@ -119,14 +138,28 @@ const AboutSection = ({ trigger }: AboutSectionProps) => {
                     fontWeight: 500,
                     lineHeight: 1.2,
                     ml: 1,
+                    "@media (max-width: 375px)": {
+                      fontSize: "0.8rem",
+                      ml: 0.5,
+                    },
                   }}
                 >
                   Years of <br /> experience
                 </Typography>
               </Stack>
 
+              {/* Users Reached */}
               <Stack direction="row" spacing={1} alignItems="center">
-                <Typography variant="h3">30k</Typography>
+                <Typography
+                  variant="h3"
+                  sx={{
+                    "@media (max-width: 375px)": {
+                      fontSize: "1.75rem",
+                    },
+                  }}
+                >
+                  30k
+                </Typography>
                 <Typography
                   variant="h2"
                   sx={{
@@ -134,6 +167,10 @@ const AboutSection = ({ trigger }: AboutSectionProps) => {
                     color: "#5ccfe6",
                     lineHeight: 1,
                     mt: -1,
+                    "@media (max-width: 375px)": {
+                      fontSize: "2rem",
+                      mt: -0.5,
+                    },
                   }}
                 >
                   +
@@ -145,11 +182,17 @@ const AboutSection = ({ trigger }: AboutSectionProps) => {
                     fontWeight: 500,
                     lineHeight: 1.2,
                     ml: 1,
+                    "@media (max-width: 375px)": {
+                      fontSize: "0.8rem",
+                      ml: 0.5,
+                    },
                   }}
                 >
                   Users <br /> reached
                 </Typography>
               </Stack>
+
+              {/* Page Clicks */}
               <Stack
                 direction="row"
                 spacing={1}

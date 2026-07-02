@@ -369,6 +369,10 @@ const ExperienceSection = ({ trigger }: ExperienceSectionProps) => {
             minWidth: 0,
             color: "text.primary",
             transition: "color 0.35s cubic-bezier(0.4, 0, 0.2, 1)",
+            WebkitTapHighlightColor: "transparent",
+            "&:focus": {
+              outline: "none",
+            },
             "&:hover": {
               backgroundColor: "transparent",
               color: "text.tertiary",
