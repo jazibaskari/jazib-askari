@@ -57,18 +57,32 @@ const Navbar = ({ onNavClick }: NavbarProps) => {
   const handleDrawerToggle = () => setMobileOpen(!mobileOpen);
 
   const handleScroll = (id: string) => {
-    const el = document.getElementById(id);
-    if (el) {
+    const sectionEl = document.getElementById(id);
+    const nameEl = document.getElementById("my-name-title");
+
+    if (sectionEl) {
       isManualScroll.current = true;
       setActiveSection(id);
+      const targetEl = sectionEl.querySelector("h3") || sectionEl;
+      let offset = 80;
+
+      if (nameEl) {
+        const nameTop = nameEl.getBoundingClientRect().top;
+        if (nameTop > 0 && nameTop < window.innerHeight) {
+          offset = nameTop;
+        }
+      }
+
       const elementPosition =
-        el.getBoundingClientRect().top + window.pageYOffset;
-      window.scrollTo({ top: elementPosition - 80, behavior: "smooth" });
+        targetEl.getBoundingClientRect().top + window.scrollY;
+      window.scrollTo({ top: elementPosition - offset, behavior: "smooth" });
+
       if (timeoutRef.current) clearTimeout(timeoutRef.current);
       timeoutRef.current = setTimeout(() => {
         isManualScroll.current = false;
       }, 800);
     }
+
     setMobileOpen(false);
     if (onNavClick) onNavClick();
   };
@@ -123,8 +137,8 @@ const Navbar = ({ onNavClick }: NavbarProps) => {
             {allSections.map((s) => (
               <ListItem key={s} disablePadding>
                 <Button
-                  onClick={() => handleScroll(s)}
                   disableRipple
+                  onClick={() => handleScroll(s)}
                   sx={{
                     color:
                       activeSection === s && !isAtTop
@@ -135,6 +149,9 @@ const Navbar = ({ onNavClick }: NavbarProps) => {
                     px: 3,
                     py: 2,
                     textTransform: "none",
+                    "&:hover": {
+                      backgroundColor: "transparent",
+                    },
                   }}
                 >
                   <Typography variant="h5" fontWeight="medium">
