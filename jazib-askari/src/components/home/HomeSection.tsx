@@ -201,9 +201,8 @@ const HomeSection = ({ trigger }: HomeSectionProps) => {
         </Box>
       </Box>
 
-      {/* Footer Area */}
       <Box sx={{ mt: "auto", pb: { xs: 10, md: 2 } }}>
-        <Box sx={{ mb: 3 }}>
+        {/* <Box sx={{ mb: 3 }}>
           <Button
             variant="text"
             onClick={colourMode.toggleColourMode}
@@ -214,9 +213,9 @@ const HomeSection = ({ trigger }: HomeSectionProps) => {
               ? "Let there be light"
               : "I prefer the dark"}
           </Button>
-        </Box>
+        </Box> */}
 
-        <Stack direction="row" spacing={2} alignItems="center">
+        <Stack sx={{ mt: 2 }} direction="row" spacing={2} alignItems="center">
           <Button
             variant="text"
             component="a" //
