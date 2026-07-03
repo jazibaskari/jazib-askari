@@ -1,17 +1,16 @@
-import { useState, useEffect, useContext, useRef } from "react";
+import { useState, useEffect, useRef } from "react";
 import {
   Box,
   Typography,
   Stack,
   // IconButton,
-  useTheme,
   Button,
 } from "@mui/material";
 import TextAnimation from "../../animations/AnimatedText";
 // import GitHubIcon from "@mui/icons-material/GitHub";
 // import LinkedInIcon from "@mui/icons-material/LinkedIn";
 // import MailOutlineIcon from "@mui/icons-material/MailOutline";
-import { ColourModeContext } from "../../context/ColourModeContext";
+// import { ColourModeContext } from "../../context/ColourModeContext";
 
 interface HomeSectionProps {
   trigger: number;
@@ -21,8 +20,8 @@ const navItems = ["about", "experience", "projects"];
 
 const HomeSection = ({ trigger }: HomeSectionProps) => {
   const [activeSection, setActiveSection] = useState("");
-  const theme = useTheme();
-  const colourMode = useContext(ColourModeContext);
+  // const theme = useTheme();
+  // const colourMode = useContext(ColourModeContext);
   // const iconColor = "text.secondary";
 
   const isManualScroll = useRef(false);
