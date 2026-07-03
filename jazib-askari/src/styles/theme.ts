@@ -22,7 +22,7 @@ declare module "@mui/material/Typography" {
   }
 }
 
-export const getTheme = (mode: PaletteMode) =>
+export const getTheme = (mode: PaletteMode = "dark") =>
   createTheme({
     palette: {
       mode,
