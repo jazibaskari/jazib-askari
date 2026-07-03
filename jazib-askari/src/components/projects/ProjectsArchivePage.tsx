@@ -11,6 +11,7 @@ import { skills } from "../../data/skill";
 import TextAnimation from "../../animations/AnimatedText";
 import GitBreadcrumb from "../breadcrumb/GitBreadcrumb";
 import GitBreadcrumbHorizontal from "../breadcrumb/GitBreadcrumbHorizontal";
+import ArrowOutwardIcon from "@mui/icons-material/ArrowOutward";
 interface ProjectCardProps {
   project: Project;
 }
@@ -161,9 +162,56 @@ const ProjectCard = ({ project }: ProjectCardProps) => {
           {/* <Box component="span" sx={{ color: "#bfc0c0" }}>
             {project.title},
           </Box> */}
-          <Box component="span" sx={{ color: "text.primary", ml: 0.5 }}>
-            {project.readTime}
+          <Box
+            component="a"
+            href={`/projects/${projectSlug}`}
+            // target="_blank"
+            rel="noopener noreferrer"
+            sx={{
+              color: "text.secondary",
+              textDecoration: "none",
+              display: "inline-flex",
+              alignItems: "center",
+              width: "fit-content",
+              fontSize: "1rem",
+              position: "relative",
+              pb: "4px",
+              "&:hover": { color: "text.primary" },
+              "&::after": {
+                content: '""',
+                position: "absolute",
+                bottom: 0,
+                left: 0,
+                width: "100%",
+                height: "3px",
+                bgcolor: "background.paper",
+                transition: "opacity 0.3s ease",
+              },
+              "&::before": {
+                content: '""',
+                position: "absolute",
+                bottom: 0,
+                left: 0,
+                width: "100%",
+                height: "3px",
+                bgcolor: "text.primary",
+                transform: "scaleX(0)",
+                transformOrigin: "left",
+                transition: "transform 0.35s cubic-bezier(0.4, 0, 0.2, 1)",
+                zIndex: 1,
+              },
+              "&:hover::before": {
+                transform: "scaleX(1)",
+              },
+            }}
+          >
+            <Box component="span">{project.readTime}</Box>
+            <ArrowOutwardIcon sx={{ fontSize: "0.95rem", ml: "5px" }} />
           </Box>
+
+          {/* <Box component="span" sx={{ color: "text.primary", ml: 0.5 }}>
+            {project.readTime}
+          </Box> */}
         </Typography>
       </Box>
     </Box>

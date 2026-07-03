@@ -1,17 +1,16 @@
-import { useState, useEffect, useContext, useRef } from "react";
+import { useState, useEffect, useRef } from "react";
 import {
   Box,
   Typography,
   Stack,
   // IconButton,
-  useTheme,
   Button,
 } from "@mui/material";
 import TextAnimation from "../../animations/AnimatedText";
 // import GitHubIcon from "@mui/icons-material/GitHub";
 // import LinkedInIcon from "@mui/icons-material/LinkedIn";
 // import MailOutlineIcon from "@mui/icons-material/MailOutline";
-import { ColourModeContext } from "../../context/ColourModeContext";
+// import { ColourModeContext } from "../../context/ColourModeContext";
 
 interface HomeSectionProps {
   trigger: number;
@@ -21,8 +20,8 @@ const navItems = ["about", "experience", "projects"];
 
 const HomeSection = ({ trigger }: HomeSectionProps) => {
   const [activeSection, setActiveSection] = useState("");
-  const theme = useTheme();
-  const colourMode = useContext(ColourModeContext);
+  // const theme = useTheme();
+  // const colourMode = useContext(ColourModeContext);
   // const iconColor = "text.secondary";
 
   const isManualScroll = useRef(false);
@@ -201,9 +200,8 @@ const HomeSection = ({ trigger }: HomeSectionProps) => {
         </Box>
       </Box>
 
-      {/* Footer Area */}
       <Box sx={{ mt: "auto", pb: { xs: 10, md: 2 } }}>
-        <Box sx={{ mb: 3 }}>
+        {/* <Box sx={{ mb: 3 }}>
           <Button
             variant="text"
             onClick={colourMode.toggleColourMode}
@@ -214,9 +212,9 @@ const HomeSection = ({ trigger }: HomeSectionProps) => {
               ? "Let there be light"
               : "I prefer the dark"}
           </Button>
-        </Box>
+        </Box> */}
 
-        <Stack direction="row" spacing={2} alignItems="center">
+        <Stack sx={{ mt: 2 }} direction="row" spacing={2} alignItems="center">
           <Button
             variant="text"
             component="a" //
