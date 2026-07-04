@@ -7,8 +7,7 @@ import ArchitextDark from "../assets/videos/ArchitextDark.mp4";
 import ArchitextLight from "../assets/videos/ArchitextLight.mp4";
 import SugarRushDark from "../assets/videos/SugarRushDark.mp4";
 import SugarRushLight from "../assets/videos/SugarRushLight.mp4";
-import SweetEscapeHome from "../assets/videos/SweetEscapeHome.mp4";
-import SweetEscapeDemo from "../assets/videos/SweetEscapeDemo.mp4";
+import SweetEscapeDark from "../assets/videos/SweetEscapeDark.mp4";
 import SweetEscapeImage from "../assets/images/SweetEscapeImage.png";
 import SweetEscapeIdeation from "../assets/images/SweetEscapeIdeation.png";
 import SweetEscapeIdeationDebug from "../assets/images/SweetEscapeIdeationDebug.png";
@@ -187,8 +186,8 @@ export const projects: Project[] = [
     skills: ["UI/UX", "Data & Security", "Tooling"],
     githubUrl: "https://github.com/jazibaskari/sweet-escape",
     liveUrl: "https://github.com/jazibaskari/sweet-escape",
-    videoLight: SweetEscapeHome,
-    videoDark: SweetEscapeHome,
+    videoLight: SweetEscapeDark,
+    videoDark: SweetEscapeDark,
     ideationContent: [
       {
         type: "text",
@@ -226,8 +225,8 @@ export const projects: Project[] = [
       },
       {
         type: "video",
-        srcDark: SweetEscapeDemo,
-        srcLight: SweetEscapeDemo,
+        srcDark: SweetEscapeDark,
+        srcLight: SweetEscapeDark,
         caption: "Figure 3: Sweet Escape game play demo.",
       },
       {
