@@ -25,13 +25,21 @@ interface ImageBlock {
   caption?: string;
 }
 
+interface VideoBlock {
+  type: "video";
+  src?: string;
+  srcDark?: string;
+  srcLight?: string;
+  caption?: string;
+}
+
 interface CodeBlock {
   type: "code";
   content: string;
   language: string;
 }
 
-type ContentBlock = TextBlock | ImageBlock | CodeBlock;
+type ContentBlock = TextBlock | ImageBlock | CodeBlock | VideoBlock;
 
 interface PullRequest {
   id: number;
@@ -143,11 +151,8 @@ const GitChangelog = ({ githubUrl, color }: GitChangelogProps) => {
       <Box
         sx={{
           display: "flex",
-
           flexDirection: { xs: "column", md: "row" },
-
           justifyContent: { xs: "flex-start", md: "space-between" },
-
           alignItems: { xs: "flex-start", md: "center" },
           mb: 4,
           gap: { xs: 2, md: 0 },
@@ -572,6 +577,44 @@ const ProjectDetailPage = () => {
                     </Typography>
                   )}
                 </Box>
+              ) : block.type === "video" ? (
+                <Box sx={{ my: 2, borderRadius: 2 }}>
+                  <Box
+                    component="video"
+                    autoPlay
+                    loop
+                    muted
+                    playsInline
+                    src={
+                      theme.palette.mode === "dark"
+                        ? block.srcDark || block.src
+                        : block.srcLight || block.src
+                    }
+                    sx={{
+                      border: (theme) =>
+                        `3px solid ${theme.palette.background.paper}`,
+                      width: "100%",
+                      height: "auto",
+                      display: "block",
+                      objectFit: "cover",
+                      borderRadius: 2,
+                    }}
+                  />
+                  {block.caption && (
+                    <Typography
+                      variant="body1"
+                      sx={{
+                        color: "#bfc0c0",
+                        fontWeight: 500,
+                        fontSize: { xs: "0.85rem", md: "0.95rem" },
+                        mt: 1,
+                        px: 1,
+                      }}
+                    >
+                      {block.caption}
+                    </Typography>
+                  )}
+                </Box>
               ) : (
                 <Box sx={codeBlockWrapperStyle}>
                   <CodeBlockDemo
@@ -623,6 +666,45 @@ const ProjectDetailPage = () => {
                       }
                       alt={block.caption || "Key consideration visual"}
                       loading="lazy"
+                      sx={{
+                        border: (theme) =>
+                          `3px solid ${theme.palette.background.paper}`,
+                        width: "100%",
+                        height: "auto",
+                        display: "block",
+                        objectFit: "cover",
+                        borderRadius: 2,
+                      }}
+                    />
+
+                    {block.caption && (
+                      <Typography
+                        variant="body1"
+                        sx={{
+                          color: "#bfc0c0",
+                          fontWeight: 500,
+                          fontSize: { xs: "0.85rem", md: "0.95rem" },
+                          mt: 1,
+                          px: 1,
+                        }}
+                      >
+                        {block.caption}
+                      </Typography>
+                    )}
+                  </Box>
+                ) : block.type === "video" ? (
+                  <Box sx={{ my: 2, borderRadius: 2, overflow: "hidden" }}>
+                    <Box
+                      component="video"
+                      autoPlay
+                      loop
+                      muted
+                      playsInline
+                      src={
+                        theme.palette.mode === "dark"
+                          ? block.srcDark || block.src
+                          : block.srcLight || block.src
+                      }
                       sx={{
                         border: (theme) =>
                           `3px solid ${theme.palette.background.paper}`,
