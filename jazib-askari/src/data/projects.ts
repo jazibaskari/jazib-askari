@@ -7,9 +7,11 @@ import ArchitextDark from "../assets/videos/ArchitextDark.mp4";
 import ArchitextLight from "../assets/videos/ArchitextLight.mp4";
 import SugarRushDark from "../assets/videos/SugarRushDark.mp4";
 import SugarRushLight from "../assets/videos/SugarRushLight.mp4";
-import SweetEscapeDark from "../assets/videos/SweetEscapeDark.mp4";
-import SweetEscapeLight from "../assets/videos/SweetEscapeLight.mp4";
+import SweetEscapeHome from "../assets/videos/SweetEscapeHome.mp4";
+import SweetEscapeDemo from "../assets/videos/SweetEscapeDemo.mp4";
 import SweetEscapeImage from "../assets/images/SweetEscapeImage.png";
+import SweetEscapeIdeation from "../assets/images/SweetEscapeIdeation.png";
+import SweetEscapeIdeationDebug from "../assets/images/SweetEscapeIdeationDebug.png";
 import PortfolioImageDark from "../assets/images/PortfolioImageDark.png";
 import PortfolioImageLight from "../assets/images/PortfolioImageLight.png";
 import BudgyImageDark from "../assets/images/BudgyImageDark.png";
@@ -185,8 +187,56 @@ export const projects: Project[] = [
     skills: ["UI/UX", "Data & Security", "Tooling"],
     githubUrl: "https://github.com/jazibaskari/sweet-escape",
     liveUrl: "https://github.com/jazibaskari/sweet-escape",
-    videoLight: SweetEscapeLight,
-    videoDark: SweetEscapeDark,
+    videoLight: SweetEscapeHome,
+    videoDark: SweetEscapeHome,
+    ideationContent: [
+      {
+        type: "text",
+        content:
+          "Building a feature-rich, top-down 2D RPG natively inside a modern web browser seemed daunting at first, especially when deciding to bypass game engines in favour of building a lean, performant rendering layer from scratch.",
+      },
+      {
+        type: "text",
+        content:
+          "Using Tiled, I created my game map from a 32px-by-32px tile grid divided into distinct functional layers. These layers consisted of tile layers (the game UI) and object layers (collision boxes to define collision zones and entity waypoints).",
+      },
+      {
+        type: "image",
+        srcDark: SweetEscapeIdeationDebug,
+        srcLight: SweetEscapeIdeationDebug,
+        caption: "Figure 1: Screenshot of Kaplay's 'Debug Mode'.",
+      },
+      {
+        type: "text",
+        content:
+          "Exporting these configurations to a single JSON file enabled dynamic map fetching during scene initialisation, achieving highly efficient load states in my game.",
+      },
+      {
+        type: "image",
+        srcDark: SweetEscapeIdeation,
+        srcLight: SweetEscapeIdeation,
+        caption: "Figure 2: Screenshot of Tiled game map.",
+      },
+    ],
+    keyConsiderationsContent: [
+      {
+        type: "text",
+        content:
+          "A core technical hurdle was designing the game to accommodate varying viewport scales without relying on rigid canvas dimensions, which created borders along the edges of the game map. I resized my map to 2000px-by-2000px and integrated an engine-level camera utility to follow the player entities coordinates, resulting in a fluid visual experience with smooth camera movement.",
+      },
+      {
+        type: "video",
+        srcDark: SweetEscapeDemo,
+        srcLight: SweetEscapeDemo,
+        caption: "Figure 3: Sweet Escape game play demo.",
+      },
+      {
+        type: "text",
+        content:
+          "To build an interactive environment, I designed a specialised Waypoints system that relies on custom coordinate arrays explicitly defined in my JSON map. With added proximity triggers, the NPC entities face the player entity whenever theyre within a certain distance of their bounding box.",
+      },
+    ],
+
     type: "Personal project",
     imageLight: SweetEscapeImage,
     imageDark: SweetEscapeImage,
