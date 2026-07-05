@@ -11,6 +11,7 @@ import SweetEscapeDark from "../assets/videos/SweetEscapeDark.mp4";
 import SweetEscapeImage from "../assets/images/SweetEscapeImage.png";
 import SweetEscapeIdeation from "../assets/images/SweetEscapeIdeation.png";
 import SweetEscapeIdeationDebug from "../assets/images/SweetEscapeIdeationDebug.png";
+import SweetEscapeDemo from "../assets/videos/SweetEscapeCaseStudyDemo.mp4";
 import PortfolioImageDark from "../assets/images/PortfolioImageDark.png";
 import PortfolioImageLight from "../assets/images/PortfolioImageLight.png";
 import BudgyImageDark from "../assets/images/BudgyImageDark.png";
@@ -225,8 +226,8 @@ export const projects: Project[] = [
       },
       {
         type: "video",
-        srcDark: SweetEscapeDark,
-        srcLight: SweetEscapeDark,
+        srcDark: SweetEscapeDemo,
+        srcLight: SweetEscapeDemo,
         caption: "Figure 3: Sweet Escape game play demo.",
       },
       {
