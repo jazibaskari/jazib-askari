@@ -18,7 +18,6 @@ import SweetEscapeIdeation from "../assets/images/SweetEscapeIdeation.png";
 import SweetEscapeIdeationDebug from "../assets/images/SweetEscapeIdeationDebug.png";
 import SweetEscapeDemo from "../assets/videos/SweetEscapeCaseStudyDemo.mp4";
 import PortfolioImageDark from "../assets/images/PortfolioImageDark.png";
-import PortfolioImageLight from "../assets/images/PortfolioImageLight.png";
 import BudgyImageDark from "../assets/images/BudgyImageDark.png";
 import ArchitextImageLight from "../assets/images/ArchitextImage.png";
 import SugarRushImageLight from "../assets/images/SugarRushLight.png";
@@ -63,7 +62,7 @@ export const projects: Project[] = [
     videoLight: PortfolioDark,
     videoDark: PortfolioLight,
     imageLight: PortfolioImageDark,
-    imageDark: PortfolioImageLight,
+    imageDark: PortfolioImageDark,
     arcImageLight: PortfolioArcImageLight,
     arcImageDark: PortfolioArcImageDark,
     ideationImageDark: PortfolioIdeationImageLight,
@@ -78,7 +77,7 @@ export const projects: Project[] = [
       },
       {
         type: "image",
-        srcDark: PortfolioImageLight,
+        srcDark: PortfolioImageDark,
         srcLight: PortfolioImageDark,
         caption: "Figure 1: Screenshot of the portfolio's home page.",
       },
