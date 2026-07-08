@@ -2,11 +2,16 @@ import type { Project } from "../types/project";
 import PortfolioDark from "../assets/videos/PortfolioDark.mp4";
 import PortfolioLight from "../assets/videos/PortfolioLight.mp4";
 import BudgyDark from "../assets/videos/BudgyDark.mp4";
-import BudgyLight from "../assets/videos/BudgyLight.mp4";
+import BudgyCaseStudy_1 from "../assets/images/BudgyCaseStudy_1.png";
+import BudgyCaseStudy_2 from "../assets/images/BudgyCaseStudy_2.png";
+import BudgyCaseStudy_3 from "../assets/images/BudgyCaseStudy_3.png";
+import BudgyCaseStudy_4 from "../assets/images/BudgyCaseStudy_4.png";
+import BudgyAuthentications from "../assets/images/BudgyAuthentication.png";
 import ArchitextDark from "../assets/videos/ArchitextDark.mp4";
 import ArchitextLight from "../assets/videos/ArchitextLight.mp4";
 import SugarRushDark from "../assets/videos/SugarRushDark.mp4";
 import SugarRushLight from "../assets/videos/SugarRushLight.mp4";
+import SugarRushDemo from "../assets/videos/SugarRushCaseStudyDemo.mp4";
 import SweetEscapeDark from "../assets/videos/SweetEscapeDark.mp4";
 import SweetEscapeImage from "../assets/images/SweetEscapeImage.png";
 import SweetEscapeIdeation from "../assets/images/SweetEscapeIdeation.png";
@@ -15,7 +20,6 @@ import SweetEscapeDemo from "../assets/videos/SweetEscapeCaseStudyDemo.mp4";
 import PortfolioImageDark from "../assets/images/PortfolioImageDark.png";
 import PortfolioImageLight from "../assets/images/PortfolioImageLight.png";
 import BudgyImageDark from "../assets/images/BudgyImageDark.png";
-import BudgyImageLight from "../assets/images/BudgyImageLight.png";
 import ArchitextImageLight from "../assets/images/ArchitextImage.png";
 import SugarRushImageLight from "../assets/images/SugarRushLight.png";
 import PortfolioArcImageLight from "../assets/images/PortfolioArchitectureLight.png";
@@ -292,12 +296,81 @@ export const projects: Project[] = [
       "npm/Yarn/pnpm",
       "Vercel",
     ],
+    ideationContent: [
+      {
+        type: "text",
+        content:
+          "The goal was to craft a frantic yet whimsical energy for my light but tension-driven RPG game. By utilising rapid, ascending arpeggios, I created a shimmmering texture that mirrors the chaos of the game.",
+      },
+      {
+        type: "image",
+        srcDark: BudgyCaseStudy_1,
+        srcLight: BudgyCaseStudy_1,
+        caption:
+          "Figure 1: Screenshot of the underscore playing in Strudel REPL.",
+      },
+      {
+        type: "image",
+        srcDark: BudgyCaseStudy_2,
+        srcLight: BudgyCaseStudy_2,
+        caption:
+          "Figure 1: Screenshot of the underscore playing in Strudel REPL.",
+      },
+      {
+        type: "image",
+        srcDark: BudgyCaseStudy_3,
+        srcLight: BudgyCaseStudy_3,
+        caption:
+          "Figure 1: Screenshot of the underscore playing in Strudel REPL.",
+      },
+      {
+        type: "image",
+        srcDark: BudgyCaseStudy_4,
+        srcLight: BudgyCaseStudy_4,
+        caption:
+          "Figure 1: Screenshot of the underscore playing in Strudel REPL.",
+      },
+      {
+        type: "text",
+        content:
+          "Sugar Rush draws direct inspiration from Tom Howe's 'Sparkle. I featured high-register frequencies and the lydian mode (raised 4th note) to reimagine such a delicate arrangement to fit a retro, pixel-art game. ",
+      },
+      {
+        type: "text",
+        content:
+          "To keep the track engaging, I designed a 16-bar looping structure that builds intensity and unravels like a story. The cat() function extends the melodic phrases, allowing the song to evolve beyond the initial loop.",
+      },
+    ],
+    keyConsiderationsContent: [
+      {
+        type: "text",
+        content:
+          "Translating orchestral instruments into a digital synthesis was a significant hurdle. I replaced Howe's glockenspiel with a kalimba to maintain a similar timbre, and used a synth triangle wave for a pizzicato-style plucking. This helped create a much cleaner, sharper sound profile.",
+      },
+      {
+        type: "text",
+        content:
+          "Unlike static audio files, I used .mask() to procedurally keep high-energy layers that use bell chimes and high-pass filtered hi-hats quiet until the second half of the track. This algorithmic approach helped create a high-intensity build-up that signals urgency to the player. ",
+      },
+      {
+        type: "image",
+        imageType: "mobile",
+        srcDark: BudgyAuthentications,
+        srcLight: BudgyAuthentications,
+        caption: "Figure 2: Budgy/Monzo mobile authentication flow.",
+      },
+      {
+        type: "text",
+        content:
+          "Since the underscore was algorithmically generated rather than organically unfolding, it offers perfect synchronisation with game events, turning the music into a responsive game mechanic that enhances the player's experience, rather than a passive background element.",
+      },
+    ],
     githubUrl: "https://github.com/jazibaskari/budgy",
     liveUrl: "https://github.com/jazibaskari/budgy",
     videoLight: BudgyDark,
-    videoDark: BudgyLight,
+    videoDark: BudgyDark,
     imageLight: BudgyImageDark,
-    imageDark: BudgyImageLight,
+    imageDark: BudgyImageDark,
     type: "Personal project",
   },
   {
@@ -309,7 +382,8 @@ export const projects: Project[] = [
       "An underscore for my 'Sweet Escape' RPG, created using Strudel. It draws inspiration from the delicate arrangements of 'Sparkle' by Tom Howe (featured heavily in the Great British Bake Off series), using delayed kalimbas and bells to craft a light yet tension-driven atmosphere.",
     skills: ["Frontend", "Testing"],
     githubUrl: "https://github.com/jazibaskari/sweet-escape-underscore",
-    liveUrl: "https://github.com/jazibaskari/sweet-escape-underscore",
+    liveUrl:
+      "https://strudel.cc/#Ly8gUHJlYmFrZSBzY3JpcHQKLy8KLy8gVGhpcyBpcyBjb2RlIHRoYXQgaXMgbG9hZGVkIGJlZm9yZSB5b3VyIHBhdHRlcm4gaXMgcnVuLgovLyBZb3UgY2FuIHVzZSBpdCB0byBkZWZpbmUgY3VzdG9tIGZ1bmN0aW9ucyB0byB1c2UgaW4gYW55IHBhdHRlcm4uCi8vIAovLyBUaGlzIGlzIGFuIGluaXRpYWwgZXhhbXBsZSBzY3JpcHQuIFlvdSBjYW4gZWRpdCBpdCB0byBhZGQgCi8vIHlvdXIgb3duIGZ1bnRpb25zLgovLwovLyBUbyB1c2UgYSBzY3JpcHQgc2hhcmVkIGJ5IHNvbWUgb3RoZXIgdXNlciB5b3UgY2FuIHVzZQovLyB0aGUgaW1wb3J0LWJ1dHRvbiBvciBwYXN0ZSB0aGUgc2NyaXB0IGluIHRoaXMgZWRpdG9yLgoKY29uc3QgcmF0Y2hldCA9IHJlZ2lzdGVyKCdyYXRjaGV0JywgKHBhdCkgPT4gcGF0LnNvbWV0aW1lcyhwbHkoMikpKQoKY29uc3QgY29uZmlnID0gewogICAgdGVtcG86IDYwLAogICAgZ2xvYmFsR2FpbjogMC40LAp9Owpjb25zdCBnZXRCYXNzTGF5ZXIgPSAoKSA9PiBub3RlKCJjMyBjMyBmMyBmMyBnMyBnMyBhMyBhMyIpCiAgICAucygidHJpYW5nbGUiKQogICAgLnN1c3RhaW4oMC4xKQogICAgLmdhaW4oY29uZmlnLmdsb2JhbEdhaW4pOwpjb25zdCBnZXRUaGVtZUxheWVyID0gKCkgPT4gbm90ZSgiPFtjNSBlNV0gfiBbYzUgZjVdIH4gW2c1IGI1XSB%2BIFthNSBjNl0gfj4iKQogICAgLmNhdCgifiA8W2M1IGU1XSB%2BIFtkNSBmNV0gfiBbZTUgZzVdIH4gW2Y1IGE1XSB%2BPiIpCiAgICAucygia2FsaW1iYSIpCiAgICAuZ2Fpbihjb25maWcuZ2xvYmFsR2Fpbik7CmNvbnN0IGdldFNwYXJrbGVMYXllciA9ICgpID0%2BIG5vdGUoIjxbYzYgZTYgZzYgZTZdIFtiNSBkNiBnNiBkNl0gW2E1IGM2IGU2IGM2XSBbZjUgYTUgYzYgYTVdPiIpCiAgICAucygia2FsaW1iYSIpCiAgICAucm9vbSgwLjUpCiAgICAuZ2FpbigwLjMpCiAgICAubWFzaygiMCAwIDAgMCAxIDEgMSAxIik7CmNvbnN0IGdldEJlbGxMYXllciA9ICgpID0%2BIG5vdGUoIn4gYzcgfiBlNyB%2BIGc3IH4gYjciKS5zKCJiZWxsIikucm9vbSgwLjcpLmdhaW4oMC4yKS5tYXNrKCIwIDAgMSAxIik7CmNvbnN0IGdldFRpY2tpbmdMYXllciA9ICgpID0%2BIHMoImhhdCIpCiAgICAuaHBmKDgwMDApCiAgICAuZ2FpbigwLjUpCiAgICAubWFzaygiMCAwIDAgMSIpCiAgICAuZXZlcnkoMiwgKHgpID0%2BIHgucGx5KDQpKTsKc3RhY2soZ2V0QmFzc0xheWVyKCksIGdldFRoZW1lTGF5ZXIoKSwgZ2V0U3BhcmtsZUxheWVyKCksIGdldEJlbGxMYXllcigpLCBnZXRUaWNraW5nTGF5ZXIoKSkuY3BtKGNvbmZpZy50ZW1wbyk7",
     videoLight: SugarRushLight,
     videoDark: SugarRushDark,
     type: "Personal project",
@@ -349,6 +423,12 @@ export const projects: Project[] = [
         type: "text",
         content:
           "Unlike static audio files, I used .mask() to procedurally keep high-energy layers that use bell chimes and high-pass filtered hi-hats quiet until the second half of the track. This algorithmic approach helped create a high-intensity build-up that signals urgency to the player. ",
+      },
+      {
+        type: "video",
+        srcDark: SugarRushDemo,
+        srcLight: SugarRushDemo,
+        caption: "Figure 2: Sugar Rush export demo.",
       },
       {
         type: "text",
