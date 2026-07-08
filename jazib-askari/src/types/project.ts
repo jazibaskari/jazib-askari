@@ -1,8 +1,20 @@
 export type ContentBlock =
   | { type: "text"; content: string }
-  | { type: "image"; srcDark: string; srcLight: string; caption?: string }
+  | {
+      type: "image";
+      srcDark: string;
+      srcLight: string;
+      caption?: string;
+      imageType?: string;
+    }
   | { type: "code"; content: string; language: string }
-  | { type: "video"; srcDark: string; srcLight: string; caption?: string };
+  | {
+      type: "video";
+      srcDark: string;
+      srcLight: string;
+      caption?: string;
+      videoType?: string;
+    };
 
 export interface Project {
   id: string;

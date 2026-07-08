@@ -19,6 +19,7 @@ interface TextBlock {
 
 interface ImageBlock {
   type: "image";
+  imageType?: string;
   src?: string;
   srcDark?: string;
   srcLight?: string;
@@ -27,6 +28,7 @@ interface ImageBlock {
 
 interface VideoBlock {
   type: "video";
+  videoType?: string;
   src?: string;
   srcDark?: string;
   srcLight?: string;
@@ -75,7 +77,7 @@ const renderTextWithInlineCode = (text: string) => {
           sx={{
             fontFamily: "monospace",
             backgroundColor: "background.paper",
-            color: "#5ccfe6",
+            color: "text.secondary",
             padding: "2px 6px",
             borderRadius: "4px",
             fontSize: "0.9em",
@@ -542,7 +544,12 @@ const ProjectDetailPage = () => {
                   {renderTextWithInlineCode(block.content)}
                 </Typography>
               ) : block.type === "image" ? (
-                <Box sx={{ my: 2, borderRadius: 2 }}>
+                <Box
+                  sx={{
+                    my: 2,
+                    borderRadius: 2,
+                  }}
+                >
                   <Box
                     component="img"
                     src={
@@ -555,11 +562,17 @@ const ProjectDetailPage = () => {
                     sx={{
                       border: (theme) =>
                         `3px solid ${theme.palette.background.paper}`,
-                      width: "100%",
-                      height: "auto",
+                      width:
+                        block.imageType === "mobile"
+                          ? "auto !important"
+                          : "100%",
+                      maxWidth: block.imageType === "mobile" ? "360px" : "100%",
+                      height: "auto !important",
                       display: "block",
-                      objectFit: "cover",
+                      objectFit:
+                        block.imageType === "mobile" ? "contain" : "cover",
                       borderRadius: 2,
+                      mx: block.imageType === "mobile" ? "auto" : "0",
                     }}
                   />
                   {block.caption && (
@@ -591,8 +604,11 @@ const ProjectDetailPage = () => {
                         : block.srcLight || block.src
                     }
                     sx={{
-                      border: (theme) =>
-                        `3px solid ${theme.palette.background.paper}`,
+                      border:
+                        block.videoType !== "mobile"
+                          ? (theme) =>
+                              `3px solid ${theme.palette.background.paper}`
+                          : 0,
                       width: "100%",
                       height: "auto",
                       display: "block",
@@ -656,7 +672,13 @@ const ProjectDetailPage = () => {
                     {renderTextWithInlineCode(block.content)}
                   </Typography>
                 ) : block.type === "image" ? (
-                  <Box sx={{ my: 2, borderRadius: 2, overflow: "hidden" }}>
+                  <Box
+                    sx={{
+                      my: 2,
+                      borderRadius: 2,
+                      overflow: "hidden",
+                    }}
+                  >
                     <Box
                       component="img"
                       src={
@@ -669,11 +691,18 @@ const ProjectDetailPage = () => {
                       sx={{
                         border: (theme) =>
                           `3px solid ${theme.palette.background.paper}`,
-                        width: "100%",
-                        height: "auto",
+                        width:
+                          block.imageType === "mobile"
+                            ? "auto !important"
+                            : "100%",
+                        maxWidth:
+                          block.imageType === "mobile" ? "360px" : "100%",
+                        height: "auto !important",
                         display: "block",
-                        objectFit: "cover",
+                        objectFit:
+                          block.imageType === "mobile" ? "contain" : "cover",
                         borderRadius: 2,
+                        mx: block.imageType === "mobile" ? "auto" : "0",
                       }}
                     />
 
@@ -706,8 +735,11 @@ const ProjectDetailPage = () => {
                           : block.srcLight || block.src
                       }
                       sx={{
-                        border: (theme) =>
-                          `3px solid ${theme.palette.background.paper}`,
+                        border:
+                          block.videoType !== "mobile"
+                            ? (theme) =>
+                                `3px solid ${theme.palette.background.paper}`
+                            : 0,
                         width: "100%",
                         height: "auto",
                         display: "block",
